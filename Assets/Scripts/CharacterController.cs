@@ -19,8 +19,9 @@ public class CharacterController : MonoBehaviour
     [Header("Setup data")]
     public GameObject debugAttackProgressObject;
     public GameObject debugMaxRangeObject;
-    public Slider debugAttackMinLoadingSlider;
-    public Slider debugAttackMaxLoadingSlider;
+    public GameObject debugAttackMinLoadingFeedback;
+    public GameObject debugAttackMaxLoadingFeedback;
+    public AttackRangeTrigger attackRangeTrigger;
 
     public static EventHandler OnPlayerAttackStart;
     public static EventHandler OnPlayerAttackEnd;
@@ -77,6 +78,8 @@ public class CharacterController : MonoBehaviour
         {
             UpdateAttackProgress();
         }
+
+        CheckEnemyWithinMaxRange();
     }
 
     private void StartAttackLoading()
@@ -143,6 +146,10 @@ public class CharacterController : MonoBehaviour
 
     private void CheckEnemyWithinMaxRange()
     {
-
+        foreach (GameObject enemy in attackRangeTrigger.objectsInRange)
+        {
+            float dotProduct = Vector2.Dot(transform.up, (enemy.transform.position - transform.position).normalized);
+            Debug.Log($"Dot product = {dotProduct}");
+        }
     }
 }
