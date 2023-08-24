@@ -2,10 +2,11 @@ using Microsoft.Unity.VisualStudio.Editor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Controller data")]
     public float maxHealth = 1f;
@@ -15,6 +16,8 @@ public class CharacterController : MonoBehaviour
     public float attackMinLoadingTime = 1f;
     public float attackMaxLoadingTime = 5f;
     public List<Modifier> modifiers = new List<Modifier>();
+    public AnimationCurve turnSpeedCurve;
+    public float baseSpeed = 0.1f;
 
     [Header("Setup data")]
     public GameObject debugAttackProgressObject;
@@ -29,7 +32,7 @@ public class CharacterController : MonoBehaviour
     public static EventHandler OnPlayerAttackLoadingCancel;
     public static EventHandler OnPlayerAttackLoadingEnd;
     public static EventHandler OnPlayerReceiveDamage;
-    public static EventHandler OnPlayerHit;
+    public static EventHandler OnEnemyKilled;
 
     private float m_currentHealth;
     private float m_currentAttackLoading;
@@ -38,12 +41,18 @@ public class CharacterController : MonoBehaviour
     private bool m_isLoading;
     private bool m_isAttacking;
     private List<GameObject> m_enemiesWithinMaxRange;
+    private float m_currentSpeed;
 
     private void Start()
     {
         m_currentHealth = maxHealth;
         debugAttackProgressObject.SetActive(false);
         debugMaxRangeObject.transform.localScale = Vector2.one + Vector2.one * attackRange;
+
+        debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
+        debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
+
+        m_currentSpeed = baseSpeed;
     }
 
     private void Update()
@@ -55,14 +64,17 @@ public class CharacterController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            m_isLoading = false;
-            if (m_currentAttackLoading > attackMinLoadingTime)
+            if (m_isLoading)
             {
-                FireAttack();
-            }
-            else
-            {
-                StopAttackLoading(false);
+                if (m_currentAttackLoading > attackMinLoadingTime)
+                {
+                    FireAttack();
+                }
+                else
+                {
+                    StopAttackLoading(false);
+                }
+                m_isLoading = false;
             }
         }
 
@@ -79,7 +91,7 @@ public class CharacterController : MonoBehaviour
             UpdateAttackProgress();
         }
 
-        CheckEnemyWithinMaxRange();
+        //UpdatePosition();
     }
 
     private void StartAttackLoading()
@@ -88,6 +100,9 @@ public class CharacterController : MonoBehaviour
         OnPlayerAttackLoadingStart?.Invoke(this, null);
         m_isLoading = true;
         m_currentAttackLoading = 0f;
+
+        debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
+        debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
     }
 
     private void StopAttackLoading(bool _maxTimeReached)
@@ -103,6 +118,9 @@ public class CharacterController : MonoBehaviour
             Debug.Log("Attack loading canceled");
             OnPlayerAttackLoadingCancel?.Invoke(this, null);
         }
+
+        debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
+        debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
     }
 
     private void FireAttack()
@@ -113,6 +131,9 @@ public class CharacterController : MonoBehaviour
         m_currentAttackProgress = 0f;
         m_currentAttackRange = 0f;
         debugAttackProgressObject.SetActive(true);
+
+        debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
+        debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
     }
 
     private void StopAttack()
@@ -126,15 +147,33 @@ public class CharacterController : MonoBehaviour
     private void UpdateAttackLoading()
     {
         m_currentAttackLoading += Time.deltaTime;
-        Debug.Log($"Current attack loading = {m_currentAttackLoading}");
+
+        if (m_currentAttackLoading < attackMinLoadingTime)
+        {
+            float minLoadingTimeCompletion = Mathf.Clamp(Mathf.Abs((attackMinLoadingTime - m_currentAttackLoading) / attackMinLoadingTime - 1), 0, 1);
+            debugAttackMinLoadingFeedback.transform.localScale = new Vector3(0.1f, 1 * minLoadingTimeCompletion, 1);
+            debugAttackMinLoadingFeedback.transform.localPosition = new Vector3(0, -0.5f + minLoadingTimeCompletion / 2f, 0);
+        }
+        else
+        {
+            debugAttackMinLoadingFeedback.transform.localScale = new Vector3(0.1f, 1, 1);
+            debugAttackMinLoadingFeedback.transform.localPosition = new Vector3(0, 0, 0);
+
+            float maxLoadingTimeCompletion = Mathf.Clamp(Mathf.Abs(ExtensionMethods.MapValueRange(m_currentAttackLoading, attackMinLoadingTime, attackMaxLoadingTime,0,1)), 0, 1);
+            Debug.Log($"maxLoadingTimeCompletion = {maxLoadingTimeCompletion}");
+            debugAttackMaxLoadingFeedback.transform.localScale = new Vector3(0.1f, 1 * maxLoadingTimeCompletion, 1);
+            debugAttackMaxLoadingFeedback.transform.localPosition = new Vector3(0, -0.5f + maxLoadingTimeCompletion / 2f, 0);
+        }
+        //Debug.Log($"Current attack loading = {m_currentAttackLoading}");
     }
 
     private void UpdateAttackProgress()
     {
         m_currentAttackProgress += Time.deltaTime * attackSpeed;
-        Debug.Log($"Current attack progress = {m_currentAttackProgress}");
+
+        //Debug.Log($"Current attack progress = {m_currentAttackProgress}");
         m_currentAttackRange = m_currentAttackProgress * attackRange;
-        Debug.Log($"Current attack range = {m_currentAttackRange}");
+        //Debug.Log($"Current attack range = {m_currentAttackRange}");
         if (m_currentAttackRange > attackRange)
             StopAttack();
         else
@@ -146,10 +185,50 @@ public class CharacterController : MonoBehaviour
 
     private void CheckEnemyWithinMaxRange()
     {
+        List<GameObject> killedEnemy = new List<GameObject>();
         foreach (GameObject enemy in attackRangeTrigger.objectsInRange)
         {
             float dotProduct = Vector2.Dot(transform.up, (enemy.transform.position - transform.position).normalized);
-            Debug.Log($"Dot product = {dotProduct}");
+            //Debug.Log($"Dot product = {dotProduct}");
+            if (Mathf.Abs(dotProduct) <= attackAngle)
+            {
+                //Debug.Log($"Enemy is in attack angle");
+                if ((enemy.transform.position - transform.position).magnitude < m_currentAttackRange)
+                {
+                    Debug.Log($"Enemy is in attack range. Destroying it");
+                    OnEnemyKilled?.Invoke(this, null);
+                    killedEnemy.Add(enemy);
+                }
+            }
+        }
+
+        int count = killedEnemy.Count;
+        for (int i  = 0; i < count; i++)
+        {
+            Destroy(killedEnemy[i]);
         }
     }
+
+    private void UpdatePosition()
+    {
+        Vector3 direction = gameObject.transform.up.normalized * m_currentSpeed * 0.001f;
+
+        if (Input.GetKeyDown(KeyCode.Q) && !Input.GetKeyDown(KeyCode.S))
+        {
+            //direction += Mathf.Lerp()
+        }
+
+        gameObject.transform.position += direction;
+    }
 }
+
+public static class ExtensionMethods
+{
+
+    public static float MapValueRange(this float value, float from1, float to1, float from2, float to2)
+    {
+        return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
+    }
+
+}
+

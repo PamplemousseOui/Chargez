@@ -302,7 +302,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782028644}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.766, y: 0.329, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -366,25 +366,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9105690685780486065, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
-      propertyPath: attackRangeTrigger
-      value: 
-      objectReference: {fileID: 897302500580469869}
+      propertyPath: attackAngle
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
---- !u!114 &897302500580469869 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1926650134223799032, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
-  m_PrefabInstance: {fileID: 897302500580469864}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de94f778d260425409af0dc69abc0294, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6151505330068096484
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -664,6 +664,7 @@ Transform:
   - {fileID: 1344696621745173131}
   - {fileID: 7673574093083229332}
   - {fileID: 8844916372885731188}
+  - {fileID: 8885499720201152440}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -682,14 +683,22 @@ MonoBehaviour:
   maxHealth: 1
   attackRange: 2
   attackSpeed: 1
-  attackAngle: 1
+  attackAngle: 0.5
   attackMinLoadingTime: 1
   attackMaxLoadingTime: 5
   modifiers: []
+  turnSpeedCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  baseSpeed: 1
   debugAttackProgressObject: {fileID: 5715337923411684194}
   debugMaxRangeObject: {fileID: 2506293804012771020}
-  debugAttackMinLoadingSlider: {fileID: 0}
-  debugAttackMaxLoadingSlider: {fileID: 0}
+  debugAttackMinLoadingFeedback: {fileID: 5815227195335721573}
+  debugAttackMaxLoadingFeedback: {fileID: 1691278200778516280}
+  attackRangeTrigger: {fileID: 1926650134223799032}
 --- !u!70 &3809242312347741707
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -799,7 +808,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0.26057076, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.13348532, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -809,6 +818,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6553461607083421661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8885499720201152440}
+  m_Layer: 0
+  m_Name: AngleRange
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8885499720201152440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6553461607083421661}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7131076433791632262}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6875490939211800791
 GameObject:
   m_ObjectHideFlags: 0
