@@ -687,13 +687,9 @@ MonoBehaviour:
   attackMinLoadingTime: 1
   attackMaxLoadingTime: 5
   modifiers: []
-  turnSpeedCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  baseSpeed: 1
+  baseSpeed: 5
+  maxTurnSpeed: 3
+  turnInertia: 0.02
   debugAttackProgressObject: {fileID: 5715337923411684194}
   debugMaxRangeObject: {fileID: 2506293804012771020}
   debugAttackMinLoadingFeedback: {fileID: 5815227195335721573}
@@ -942,6 +938,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8844916372885731188}
+  - component: {fileID: 3852407188025594561}
   m_Layer: 0
   m_Name: LoadingGauges
   m_TagString: Untagged
@@ -966,6 +963,18 @@ Transform:
   m_Father: {fileID: 7131076433791632262}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3852407188025594561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836662932049227171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 048342d08aa0455428c4e88ac654c4f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9164083317521902105
 GameObject:
   m_ObjectHideFlags: 0

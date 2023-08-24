@@ -16,8 +16,9 @@ public class PlayerController : MonoBehaviour
     public float attackMinLoadingTime = 1f;
     public float attackMaxLoadingTime = 5f;
     public List<Modifier> modifiers = new List<Modifier>();
-    public AnimationCurve turnSpeedCurve;
     public float baseSpeed = 0.1f;
+    public float maxTurnSpeed = 1f;
+    public float turnInertia = 0.1f;
 
     [Header("Setup data")]
     public GameObject debugAttackProgressObject;
@@ -42,6 +43,9 @@ public class PlayerController : MonoBehaviour
     private bool m_isAttacking;
     private List<GameObject> m_enemiesWithinMaxRange;
     private float m_currentSpeed;
+    private float m_currentTurnSpeed;
+    private float m_targetTurnSpeed;
+    private float m_curTurnInertia;
 
     private void Start()
     {
@@ -90,8 +94,11 @@ public class PlayerController : MonoBehaviour
         {
             UpdateAttackProgress();
         }
+    }
 
-        //UpdatePosition();
+    private void FixedUpdate()
+    {
+        UpdatePosition();
     }
 
     private void StartAttackLoading()
@@ -211,13 +218,25 @@ public class PlayerController : MonoBehaviour
 
     private void UpdatePosition()
     {
-        Vector3 direction = gameObject.transform.up.normalized * m_currentSpeed * 0.001f;
+        m_currentSpeed = baseSpeed;
 
-        if (Input.GetKeyDown(KeyCode.Q) && !Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
-            //direction += Mathf.Lerp()
+            //Debug.Log("Turning left");
+            m_targetTurnSpeed = maxTurnSpeed;
         }
+        else if (!Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+        {
+            //Debug.Log("Turning left");
+            m_targetTurnSpeed = -maxTurnSpeed;
+        }
+        else
+            m_targetTurnSpeed = 0;
 
+        m_currentTurnSpeed = Mathf.Lerp(m_currentTurnSpeed, m_targetTurnSpeed, turnInertia);
+        gameObject.transform.Rotate(transform.forward, m_currentTurnSpeed);
+
+        Vector3 direction = gameObject.transform.up.normalized * m_currentSpeed * 0.01f;
         gameObject.transform.position += direction;
     }
 }
