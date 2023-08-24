@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour
         }
         else
             m_targetTurnSpeed = 0;
-
+            
         m_currentTurnSpeed = Mathf.Lerp(m_currentTurnSpeed, m_targetTurnSpeed, turnInertia);
         gameObject.transform.Rotate(transform.forward, m_currentTurnSpeed);
 
