@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6717572938447341481}
   - component: {fileID: 8525566253742330748}
   - component: {fileID: 1846917121418555223}
+  - component: {fileID: 5704583372900503224}
+  - component: {fileID: 4043143177436533345}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Enemy
@@ -176,6 +178,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  contactDamage: 5
+  healthComponent: {fileID: 4043143177436533345}
+--- !u!114 &5704583372900503224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2404172852184435263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca6df2a919ead344b2b9d003ca059e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseProjectileSpeed: 4
+  baseDamage: 4
+  baseShootingRate: 2
+  projectilePrefab: {fileID: 1001141446820905455, guid: 342e60dd219823c4fa6b30268b0d621a, type: 3}
+--- !u!114 &4043143177436533345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2404172852184435263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ba5fa4e1e5bac4486d94219327b0e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHealth: 1
+  currentHealth: 0
+  isAlive: 0
 --- !u!1 &4137141523380001903
 GameObject:
   m_ObjectHideFlags: 0

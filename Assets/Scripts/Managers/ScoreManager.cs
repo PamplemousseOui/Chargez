@@ -49,7 +49,7 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            currentTotalScore += fallbackKillScore;
+            currentTotalScore += fallbackKillScore; 
             Debug.LogWarning($"Kill score not found for type {_enemyType}. Using fallback kill score.");
         }
     }

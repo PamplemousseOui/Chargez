@@ -20,7 +20,12 @@ public class HealthComponent : MonoBehaviour
     public void ApplyDamage(float _damage)
     {
         currentHealth -= _damage;
-        if (currentHealth <= 0)
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+        }
+        Debug.Log($"Received {_damage}. {currentHealth} HP remaining.");
+        if (currentHealth == 0)
         {
             Kill();
         }

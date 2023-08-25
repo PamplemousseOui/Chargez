@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
     public SpawnManager spawnManager;
     public WaveManager waveManager;
     public ScoreManager scoreManager;
+
+    public static EventHandler OnPlayerDeath;
 
     private void Awake()
     {

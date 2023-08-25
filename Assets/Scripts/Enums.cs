@@ -14,5 +14,6 @@ public enum EnemyType
 {
     Footman,
     Archer,
-    Line
+    Line,
+    Projectile
 }

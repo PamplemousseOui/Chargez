@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class PlayerController : MonoBehaviour
 {
@@ -67,44 +68,48 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (healthComponent.isAlive && !GameManager.gameIsPaused)
         {
-            StartAttackLoading();
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                StartAttackLoading();
+            }
 
-        if (Input.GetMouseButtonUp(0))
-        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (m_isLoading)
+                {
+                    if (m_currentAttackLoading > attackMinLoadingTime)
+                    {
+                        FireAttack();
+                    }
+                    else
+                    {
+                        StopAttackLoading(false);
+                    }
+                    m_isLoading = false;
+                }
+            }
+
             if (m_isLoading)
             {
-                if (m_currentAttackLoading > attackMinLoadingTime)
+                UpdateAttackLoading();
+                if (m_currentAttackLoading > attackMaxLoadingTime)
                 {
-                    FireAttack();
+                    StopAttackLoading(true);
                 }
-                else
-                {
-                    StopAttackLoading(false);
-                }
-                m_isLoading = false;
             }
-        }
-
-        if (m_isLoading)
-        {
-            UpdateAttackLoading();
-            if (m_currentAttackLoading > attackMaxLoadingTime)
+            else if (m_isAttacking)
             {
-                StopAttackLoading(true);
+                UpdateAttackProgress();
             }
-        }
-        else if (m_isAttacking)
-        {
-            UpdateAttackProgress();
         }
     }
 
     private void FixedUpdate()
     {
-        UpdatePosition();
+        if (healthComponent.isAlive && !GameManager.gameIsPaused)
+            UpdatePosition();
     }
 
     private void StartAttackLoading()
@@ -209,7 +214,6 @@ public class PlayerController : MonoBehaviour
                 if ((enemy.transform.position - transform.position).magnitude < m_currentAttackRange)
                 {
                     Debug.Log($"Enemy is in attack range. Destroying it");
-                    OnEnemyKilled?.Invoke(this, enemy.GetComponent<EnemyComponent>().type);
                     killedEnemy.Add(enemy);
                 }
             }
@@ -218,7 +222,13 @@ public class PlayerController : MonoBehaviour
         int count = killedEnemy.Count;
         for (int i  = 0; i < count; i++)
         {
-            Destroy(killedEnemy[i]);
+            if (killedEnemy[i].TryGetComponent(out HealthComponent healthComponent) && killedEnemy[i].TryGetComponent(out EnemyComponent enemyComponent))
+            {
+                healthComponent.InstantKill();
+                OnEnemyKilled?.Invoke(this, enemyComponent.type);
+            }
+            else
+                Debug.LogError("Enemy is missing components to be properly killed");
         }
     }
 
@@ -251,6 +261,15 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == Tag.Enemy.ToString())
         {
             Debug.Log("Oh lala Brive la Gaillarde");
+            if (collision.TryGetComponent(out EnemyComponent enemyComponent))
+            {
+                float damageToApply = enemyComponent.contactDamage;
+                healthComponent.ApplyDamage(damageToApply);
+                if (!healthComponent.isAlive)
+                    GameManager.OnPlayerDeath?.Invoke(this, null);
+            }
+            else
+                Debug.LogWarning("No enemy component found on enemy.");
         }
     }
 }
