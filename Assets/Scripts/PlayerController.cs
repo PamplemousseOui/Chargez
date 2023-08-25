@@ -54,6 +54,21 @@ public class PlayerController : MonoBehaviour
         GameManager.player = this;
     }
 
+    private void OnEnable()
+    {
+        healthComponent.OnDeath += OnDeath;
+    }
+
+    private void OnDisable()
+    {
+        healthComponent.OnDeath -= OnDeath;
+    }
+
+    private void OnDeath(object sender, EventArgs e)
+    {
+        GameManager.OnPlayerDeath?.Invoke(this, null);
+    }
+
     private void Start()
     {
         m_currentHealth = maxHealth;
@@ -114,7 +129,7 @@ public class PlayerController : MonoBehaviour
 
     private void StartAttackLoading()
     {
-        Debug.Log("Attack loading start");
+        //Debug.Log("Attack loading start");
         OnPlayerAttackLoadingStart?.Invoke(this, null);
         m_isLoading = true;
         m_currentAttackLoading = 0f;
@@ -128,12 +143,12 @@ public class PlayerController : MonoBehaviour
         m_isLoading = false;
         if (_maxTimeReached)
         {
-            Debug.Log("Attack loading end");
+            //Debug.Log("Attack loading end");
             OnPlayerAttackLoadingEnd?.Invoke(this, null);
         }
         else
         {
-            Debug.Log("Attack loading canceled");
+            //Debug.Log("Attack loading canceled");
             OnPlayerAttackLoadingCancel?.Invoke(this, null);
         }
 
@@ -143,7 +158,7 @@ public class PlayerController : MonoBehaviour
 
     private void FireAttack()
     {
-        Debug.Log("Firing attack");
+        //Debug.Log("Firing attack");
         OnPlayerAttackStart?.Invoke(this, null);
         m_isAttacking = true;
         m_currentAttackProgress = 0f;
@@ -156,7 +171,7 @@ public class PlayerController : MonoBehaviour
 
     private void StopAttack()
     {
-        Debug.Log("Attack stopped");
+        //Debug.Log("Attack stopped");
         OnPlayerAttackEnd?.Invoke(this, null);
         m_isAttacking = false;
         debugAttackProgressObject.SetActive(false);
@@ -178,7 +193,6 @@ public class PlayerController : MonoBehaviour
             debugAttackMinLoadingFeedback.transform.localPosition = new Vector3(0, 0, 0);
 
             float maxLoadingTimeCompletion = Mathf.Clamp(Mathf.Abs(ExtensionMethods.MapValueRange(m_currentAttackLoading, attackMinLoadingTime, attackMaxLoadingTime,0,1)), 0, 1);
-            Debug.Log($"maxLoadingTimeCompletion = {maxLoadingTimeCompletion}");
             debugAttackMaxLoadingFeedback.transform.localScale = new Vector3(0.1f, 1 * maxLoadingTimeCompletion, 1);
             debugAttackMaxLoadingFeedback.transform.localPosition = new Vector3(0, -0.5f + maxLoadingTimeCompletion / 2f, 0);
         }
@@ -213,7 +227,7 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log($"Enemy is in attack angle");
                 if ((enemy.transform.position - transform.position).magnitude < m_currentAttackRange)
                 {
-                    Debug.Log($"Enemy is in attack range. Destroying it");
+                    //Debug.Log($"Enemy is in attack range. Destroying it");
                     killedEnemy.Add(enemy);
                 }
             }
@@ -226,6 +240,7 @@ public class PlayerController : MonoBehaviour
             {
                 healthComponent.InstantKill();
                 OnEnemyKilled?.Invoke(this, enemyComponent.type);
+                Debug.Log($"Destroying enemy {killedEnemy[i].name}");
             }
             else
                 Debug.LogError("Enemy is missing components to be properly killed");

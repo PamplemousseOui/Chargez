@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class ProjectileComponent : MonoBehaviour
 {
-    public float baseSpeed;
-    public float baseDamage;
-    public float baseLifetime;
+    private float m_baseSpeed;
+    private float m_baseDamage;
+    private float m_baseLifetime;
 
     private float m_curSpeed;
     private float m_curDamage;
     private float m_curLifetime;
     private float m_curAliveTime;
 
-    private void Start()
+    public void Init(float _speed, float _damage, float _lifetime)
     {
-        m_curSpeed = baseSpeed;
-        m_curDamage = baseDamage;
-        m_curLifetime = baseLifetime;
+        m_curSpeed = m_baseSpeed = _speed;
+        m_curDamage = m_baseDamage = _damage;
+        m_curLifetime = m_baseLifetime = _lifetime;
         m_curAliveTime = 0;
     }
 
@@ -39,10 +39,14 @@ public class ProjectileComponent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out HealthComponent healthComponent))
+        if (collision.tag != Tag.Trigger.ToString())
         {
-            healthComponent.ApplyDamage(m_curDamage);
+            if (collision.TryGetComponent(out HealthComponent healthComponent))
+            {
+                healthComponent.ApplyDamage(m_curDamage);
+                Debug.Log($"Object {collision.gameObject.name} received {m_curDamage} damages.");
+            }
+            Destroy(gameObject);
         }
-        Destroy(this);
     }
 }

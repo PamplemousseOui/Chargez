@@ -7,6 +7,8 @@ public enum Tag
 {
     Player,
     Enemy,
+    Projectile,
+    Trigger
 }
 
 [Serializable]

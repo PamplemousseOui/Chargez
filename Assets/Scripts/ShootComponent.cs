@@ -6,7 +6,8 @@ using UnityEngine;
 public class ShootComponent : MonoBehaviour
 {
     public float baseProjectileSpeed;
-    public float baseDamage;
+    public float baseProjectileDamage;
+    public float baseProjectileLifetime;
     public float baseShootingRate;
     public GameObject projectilePrefab;
 
@@ -37,11 +38,10 @@ public class ShootComponent : MonoBehaviour
     {
         GameObject projectile = Instantiate(projectilePrefab);
         projectile.transform.rotation = gameObject.transform.rotation;
-        projectile.transform.position = gameObject.transform.position + gameObject.transform.up * 2f;
+        projectile.transform.position = gameObject.transform.position + gameObject.transform.up * 1f;
         if (projectile.TryGetComponent(out ProjectileComponent projectileComponent))
         {
-            projectileComponent.baseSpeed = baseProjectileSpeed;
-            projectileComponent.baseDamage = baseDamage;
+            projectileComponent.Init(baseProjectileSpeed, baseProjectileDamage, baseProjectileLifetime);
         }
     }
 }

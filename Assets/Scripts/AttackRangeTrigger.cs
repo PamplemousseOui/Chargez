@@ -9,7 +9,7 @@ public class AttackRangeTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"GameObject {collision.gameObject.name} entered range.");
+        //Debug.Log($"GameObject {collision.gameObject.name} entered range.");
         if (collision.tag == tagToCheck.ToString())
         {
             objectsInRange.Add(collision.gameObject);
@@ -18,7 +18,7 @@ public class AttackRangeTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log($"GameObject {collision.gameObject.name} exited range.");
+        //Debug.Log($"GameObject {collision.gameObject.name} exited range.");
         if (collision.tag == tagToCheck.ToString())
         {
             objectsInRange.Remove(collision.gameObject);
