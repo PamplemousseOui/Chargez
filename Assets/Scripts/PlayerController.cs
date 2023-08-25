@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public GameObject debugAttackMinLoadingFeedback;
     public GameObject debugAttackMaxLoadingFeedback;
     public AttackRangeTrigger attackRangeTrigger;
+    public HealthComponent healthComponent;
 
     public static EventHandler OnPlayerAttackStart;
     public static EventHandler OnPlayerAttackEnd;
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour
     public static EventHandler OnPlayerAttackLoadingCancel;
     public static EventHandler OnPlayerAttackLoadingEnd;
     public static EventHandler OnPlayerReceiveDamage;
-    public static EventHandler OnEnemyKilled;
+    public static EventHandler<EnemyType> OnEnemyKilled;
 
     private float m_currentHealth;
     private float m_currentAttackLoading;
@@ -46,6 +47,11 @@ public class PlayerController : MonoBehaviour
     private float m_currentTurnSpeed;
     private float m_targetTurnSpeed;
     private float m_curTurnInertia;
+
+    private void Awake()
+    {
+        GameManager.player = this;
+    }
 
     private void Start()
     {
@@ -203,7 +209,7 @@ public class PlayerController : MonoBehaviour
                 if ((enemy.transform.position - transform.position).magnitude < m_currentAttackRange)
                 {
                     Debug.Log($"Enemy is in attack range. Destroying it");
-                    OnEnemyKilled?.Invoke(this, null);
+                    OnEnemyKilled?.Invoke(this, enemy.GetComponent<EnemyComponent>().type);
                     killedEnemy.Add(enemy);
                 }
             }
@@ -238,6 +244,14 @@ public class PlayerController : MonoBehaviour
 
         Vector3 direction = gameObject.transform.up.normalized * m_currentSpeed * 0.01f;
         gameObject.transform.position += direction;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == Tag.Enemy.ToString())
+        {
+            Debug.Log("Oh lala Brive la Gaillarde");
+        }
     }
 }
 
