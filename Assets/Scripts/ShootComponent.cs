@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Purchasing;
@@ -8,7 +9,9 @@ public class ShootComponent : MonoBehaviour
     public float baseProjectileSpeed;
     public float baseProjectileDamage;
     public float baseProjectileLifetime;
-    public float baseShootingRate;
+    public float baseShootingRateMin = 1f;
+    public float baseShootingRateMax = 2f;
+
     public GameObject projectilePrefab;
 
     private float m_curShootingRate;
@@ -16,7 +19,7 @@ public class ShootComponent : MonoBehaviour
 
     private void Start()
     {
-        m_curShootingRate = baseShootingRate;
+        m_curShootingRate = UnityEngine.Random.Range(baseShootingRateMin, baseShootingRateMax);
         m_curShootTime = 0;
     }
 
@@ -29,7 +32,8 @@ public class ShootComponent : MonoBehaviour
             if (m_curShootTime > m_curShootingRate)
             {
                 ShootProjectile();
-                m_curShootTime = 0f;
+                m_curShootTime = 0f; 
+                m_curShootingRate = UnityEngine.Random.Range(baseShootingRateMin, baseShootingRateMax);
             }
         }
     }
