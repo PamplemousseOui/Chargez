@@ -18,6 +18,8 @@ public class HitScanComponent : MonoBehaviour
     public float baseDamage;
     public bool isShooting { get; private set; }
     public SimpleLookAt lookAtComponent;
+    public Transform rayTransform;
+    public SpriteRenderer raySprite;
 
     public EventHandler<float> OnLoadingRatioUpdate;
     public EventHandler OnShootActivate;
@@ -39,7 +41,7 @@ public class HitScanComponent : MonoBehaviour
     {
         if (target == null)
             target = GameManager.player.gameObject;
-
+        DeactivateRay();
         ReinitShoot();
     }
 
@@ -69,6 +71,9 @@ public class HitScanComponent : MonoBehaviour
 
         m_curLoadingTimerValue = 0;
         m_curLoadingTime = baseLoadingTime;
+
+        raySprite.color = loadingColor;
+        ActivateRay();
     }
 
     private void UpdateLoading()
@@ -92,9 +97,12 @@ public class HitScanComponent : MonoBehaviour
     private void StartShoot()
     {
         isShooting = true;
+        m_canHitPlayer = true;
         m_curshootDurationTimerValue = 0; 
         m_curShootDuration = baseShootDuration;
         lookAtComponent.SetCanRotate(false);
+
+        raySprite.color = shootingColor;
     }
 
     private void UpdateShoot()
@@ -112,6 +120,7 @@ public class HitScanComponent : MonoBehaviour
     private void StopShoot()
     {
         isShooting = false;
+        DeactivateRay();
         ReinitShoot();
     }
 
@@ -124,26 +133,39 @@ public class HitScanComponent : MonoBehaviour
 
     private void UpdateRaycast()
     {
-        if (isShooting)
+        if (isShooting && m_canHitPlayer)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.up, transform.up, m_curShootLength);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.up, transform.up, m_curShootLength, LayerMask.GetMask("Default"));
 
             Debug.DrawLine(transform.position, transform.position + transform.up * m_curShootLength, Color.red);
 
-            if (hit.collider != null)
+            if (hit.collider != null && hit.transform.gameObject.tag == Tag.Player.ToString())
             {
                 if (hit.collider.gameObject.TryGetComponent(out HealthComponent healthComponent))
                 {
-                    Debug.Log("hit by archer");
+                    Debug.Log($"hit object {hit.transform.gameObject}");
                     m_curDamage = baseDamage;
                     healthComponent.ApplyDamage(m_curDamage);
+                    m_canHitPlayer = false;
                 }
-                StopShoot();
+                //StopShoot();
             }
         }
         else if (m_isLoading)
         {
             Debug.DrawLine(transform.position, transform.position + transform.up * m_curShootLength, loadingColor);
         }
+    }
+    
+    private void ActivateRay()
+    {
+        rayTransform.gameObject.SetActive(true);
+        rayTransform.localPosition = new Vector3(0, m_curShootLength * 1 / transform.localScale.y / 2, 0);
+        rayTransform.localScale = new Vector3(0.2f, m_curShootLength * 1 / transform.localScale.y, 1);
+    }
+
+    private void DeactivateRay()
+    {
+        rayTransform.gameObject.SetActive(false);
     }
 }
