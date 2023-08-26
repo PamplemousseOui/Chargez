@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7596457425445003145}
   - component: {fileID: 6635968451697119698}
   - component: {fileID: 1173454092065505742}
-  - component: {fileID: 1419095659420805668}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -34,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3875582320925652809
 MonoBehaviour:
@@ -51,7 +50,6 @@ MonoBehaviour:
   spawnManager: {fileID: 7596457425445003145}
   waveManager: {fileID: 6635968451697119698}
   scoreManager: {fileID: 1173454092065505742}
-  uiManager: {fileID: 1419095659420805668}
 --- !u!114 &7596457425445003145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,15 +95,3 @@ MonoBehaviour:
     score: 1
   - type: 1
     score: 2
---- !u!114 &1419095659420805668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3712539938188520294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0aca7c25ebab0df48a655f874fd25e33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

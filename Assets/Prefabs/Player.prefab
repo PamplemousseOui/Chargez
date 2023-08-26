@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 106075231185364441}
   - component: {fileID: 6989130178952597055}
   - component: {fileID: 1926650134223799032}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AttackRange
   m_TagString: Trigger
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1562623689307617073}
   - component: {fileID: 5614732804583491301}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8113869009336988339}
   - component: {fileID: 1828638190528823998}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -688,7 +688,7 @@ MonoBehaviour:
   attackMinLoadingTime: 1
   attackMaxLoadingTime: 5
   modifiers: []
-  baseSpeed: 2
+  baseSpeed: 4
   maxTurnSpeed: 3
   turnInertia: 0.02
   debugAttackProgressObject: {fileID: 5715337923411684194}
