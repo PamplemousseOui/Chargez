@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 4430870442049679174}
   m_Layer: 0
   m_Name: AttackProgress
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -641,9 +641,10 @@ GameObject:
   - component: {fileID: 7131076433791632262}
   - component: {fileID: 9105690685780486065}
   - component: {fileID: 3809242312347741707}
+  - component: {fileID: 3850433096186504612}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -687,7 +688,7 @@ MonoBehaviour:
   attackMinLoadingTime: 1
   attackMaxLoadingTime: 5
   modifiers: []
-  baseSpeed: 5
+  baseSpeed: 2
   maxTurnSpeed: 3
   turnInertia: 0.02
   debugAttackProgressObject: {fileID: 5715337923411684194}
@@ -695,7 +696,7 @@ MonoBehaviour:
   debugAttackMinLoadingFeedback: {fileID: 5815227195335721573}
   debugAttackMaxLoadingFeedback: {fileID: 1691278200778516280}
   attackRangeTrigger: {fileID: 1926650134223799032}
-  healthComponent: {fileID: 0}
+  healthComponent: {fileID: 3850433096186504612}
 --- !u!70 &3809242312347741707
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -731,6 +732,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
+--- !u!114 &3850433096186504612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5752417969661420192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ba5fa4e1e5bac4486d94219327b0e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHealth: 10
+  currentHealth: 0
+  isAlive: 0
 --- !u!1 &5815227195335721573
 GameObject:
   m_ObjectHideFlags: 0

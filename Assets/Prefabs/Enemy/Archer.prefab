@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 6717572938447341481}
   - component: {fileID: 8525566253742330748}
   - component: {fileID: 1846917121418555223}
-  - component: {fileID: 5704583372900503224}
   - component: {fileID: 4043143177436533345}
+  - component: {fileID: 8216656555719093075}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Enemy
@@ -37,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 5343423167547449420}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6210350304649111842
 SpriteRenderer:
@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d585873faf979e44bcb94a10aea0ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseRotationSpeed: 1
 --- !u!114 &1846917121418555223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,23 +181,6 @@ MonoBehaviour:
   type: 1
   contactDamage: 5
   healthComponent: {fileID: 4043143177436533345}
---- !u!114 &5704583372900503224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2404172852184435263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ca6df2a919ead344b2b9d003ca059e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseProjectileSpeed: 6
-  baseProjectileDamage: 4
-  baseProjectileLifetime: 5
-  baseShootingRate: 2
-  projectilePrefab: {fileID: 1001141446820905455, guid: 342e60dd219823c4fa6b30268b0d621a, type: 3}
 --- !u!114 &4043143177436533345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +196,28 @@ MonoBehaviour:
   startHealth: 1
   currentHealth: 0
   isAlive: 0
+--- !u!114 &8216656555719093075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2404172852184435263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06730d0afc95fc04cb1a5eb7160a17f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  loadingColor: {r: 0.95568347, g: 1, b: 0, a: 0.16862746}
+  shootingColor: {r: 1, g: 0.7951088, b: 0, a: 1}
+  baseShootDuration: 1
+  baseLoadingTime: 1
+  baseShootMinRate: 1
+  baseShootMaxRate: 2
+  baseShootLength: 15
+  baseDamage: 12
+  lookAtComponent: {fileID: 8525566253742330748}
 --- !u!1 &4137141523380001903
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +290,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 0, g: 1, b: 0.9083636, a: 1}
   m_FlipX: 0
