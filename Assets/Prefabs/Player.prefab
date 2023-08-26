@@ -667,7 +667,7 @@ Transform:
   - {fileID: 8844916372885731188}
   - {fileID: 8885499720201152440}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9105690685780486065
 MonoBehaviour:
@@ -689,8 +689,8 @@ MonoBehaviour:
   attackMaxLoadingTime: 5
   modifiers: []
   baseSpeed: 4
-  maxTurnSpeed: 3
-  turnInertia: 0.02
+  maxTurnSpeed: 180
+  turnInertia: 0.2
   debugAttackProgressObject: {fileID: 5715337923411684194}
   debugMaxRangeObject: {fileID: 2506293804012771020}
   debugAttackMinLoadingFeedback: {fileID: 5815227195335721573}

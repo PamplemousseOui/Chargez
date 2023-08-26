@@ -254,12 +254,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
             //Debug.Log("Turning left");
-            m_targetTurnSpeed = maxTurnSpeed;
+            m_targetTurnSpeed = maxTurnSpeed * Time.deltaTime;
         }
         else if (!Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
         {
             //Debug.Log("Turning left");
-            m_targetTurnSpeed = -maxTurnSpeed;
+            m_targetTurnSpeed = -maxTurnSpeed * Time.deltaTime;
         }
         else
             m_targetTurnSpeed = 0;
@@ -267,7 +267,7 @@ public class PlayerController : MonoBehaviour
         m_currentTurnSpeed = Mathf.Lerp(m_currentTurnSpeed, m_targetTurnSpeed, turnInertia);
         gameObject.transform.Rotate(transform.forward, m_currentTurnSpeed);
 
-        Vector3 direction = gameObject.transform.up.normalized * m_currentSpeed * 0.01f;
+        Vector3 direction = gameObject.transform.up.normalized * m_currentSpeed * Time.deltaTime;
         gameObject.transform.position += direction;
     }
 
