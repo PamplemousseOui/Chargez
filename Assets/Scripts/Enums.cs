@@ -16,6 +16,13 @@ public enum EnemyType
 {
     Footman,
     Archer,
-    Line,
+    Wall,
     Projectile
+}
+
+[Serializable]
+public enum SpawnPosition
+{
+    Wall,
+    Inside
 }

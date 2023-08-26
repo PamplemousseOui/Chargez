@@ -62,8 +62,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc896a42df3ad443901cc31c85f96aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 10
-  maxEnemyCount: 10
+  arenaSize: {x: 40, y: 22}
+  enemiesSpawnData:
+  - type: 0
+    enemyPrefab: {fileID: 2210985187186924065, guid: 5b95652b09f8c1445b5c36f24ba355ea, type: 3}
+    spawnProbability: 1
+    countToSpawn: 0
+    minSpawnTime: 1
+    maxSpawnTime: 2
 --- !u!114 &6635968451697119698
 MonoBehaviour:
   m_ObjectHideFlags: 0
