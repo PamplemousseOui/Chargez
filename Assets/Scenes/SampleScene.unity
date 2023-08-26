@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 202184841}
   m_Layer: 2
   m_Name: LeftWall
-  m_TagString: Untagged
+  m_TagString: Arena
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 446952833}
   m_Layer: 2
   m_Name: RightWall
-  m_TagString: Untagged
+  m_TagString: Arena
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -701,7 +701,7 @@ GameObject:
   - component: {fileID: 1136282582}
   m_Layer: 2
   m_Name: UpperWall
-  m_TagString: Untagged
+  m_TagString: Arena
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -962,7 +962,7 @@ GameObject:
   - component: {fileID: 1406141783}
   m_Layer: 2
   m_Name: BottowWall
-  m_TagString: Untagged
+  m_TagString: Arena
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1117,7 +1117,7 @@ GameObject:
   - component: {fileID: 1594485523}
   m_Layer: 0
   m_Name: Arena
-  m_TagString: Untagged
+  m_TagString: Arena
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1407,16 +1407,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
       propertyPath: enemiesSpawnData.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
       propertyPath: enemiesSpawnData.Array.data[1].type
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: enemiesSpawnData.Array.data[2].type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: enemiesSpawnData.Array.data[0].allowSpawn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: enemiesSpawnData.Array.data[1].allowSpawn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: enemiesSpawnData.Array.data[2].allowSpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
       propertyPath: enemiesSpawnData.Array.data[1].enemyPrefab
       value: 
       objectReference: {fileID: 2404172852184435263, guid: b7bc618d48a8e5144aeaefce90b61d75, type: 3}
+    - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: enemiesSpawnData.Array.data[2].enemyPrefab
+      value: 
+      objectReference: {fileID: 5993396035862707313, guid: 39442a79bcaf48044ac8e019cb60f522, type: 3}
     - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
       propertyPath: enemiesSpawnData.Array.data[0].countToSpawn
       value: 10
@@ -1434,7 +1454,23 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: enemiesSpawnData.Array.data[2].countToSpawn
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: enemiesSpawnData.Array.data[2].maxSpawnTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: enemiesSpawnData.Array.data[2].minSpawnTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
       propertyPath: enemiesSpawnData.Array.data[1].spawnProbability
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: enemiesSpawnData.Array.data[2].spawnProbability
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

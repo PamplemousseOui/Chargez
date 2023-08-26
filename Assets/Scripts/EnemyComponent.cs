@@ -11,12 +11,14 @@ public class EnemyComponent : MonoBehaviour
 
     private void OnEnable()
     {
-        healthComponent.OnDeath += OnDeath;
+        if (healthComponent != null)
+            healthComponent.OnDeath += OnDeath;
     }
 
     private void OnDisable()
     {
-        healthComponent.OnDeath -= OnDeath;
+        if (healthComponent != null)
+            healthComponent.OnDeath -= OnDeath;
     }
 
     private void OnDeath(object sender, EventArgs e)

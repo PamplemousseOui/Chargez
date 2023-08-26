@@ -8,7 +8,8 @@ public enum Tag
     Player,
     Enemy,
     Projectile,
-    Trigger
+    Trigger,
+    Arena
 }
 
 [Serializable]
@@ -25,4 +26,13 @@ public enum SpawnPosition
 {
     Wall,
     Inside
+}
+
+[Serializable]
+public enum MoveDirection
+{
+    Foward,
+    Backward,
+    Left,
+    Right,
 }

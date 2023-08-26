@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class EnemySpawnData
 {
+    public bool allowSpawn;
     public EnemyType type;
     public GameObject enemyPrefab;
     public float spawnProbability;
@@ -26,7 +27,7 @@ public class EnemySpawnData
 
     public bool UpdateSpawnTimer()
     {
-        if (m_curSpawnCount < countToSpawn)
+        if (m_curSpawnCount < countToSpawn && allowSpawn)
         {
             curSpawnTimerValue += Time.deltaTime;
             if (curSpawnTimerValue > curSpawnTargetTime)
@@ -133,6 +134,36 @@ public class SpawnManager : MonoBehaviour
             case EnemyType.Archer:
                 x = UnityEngine.Random.Range(0, arenaSize.x) - (arenaSize.x / 2);
                 y = UnityEngine.Random.Range(0, arenaSize.y) - (arenaSize.y / 2);
+                break;
+            case EnemyType.Wall:
+                pickedWallIndex = UnityEngine.Random.Range(0, 4); //0 = upper then clockwise;
+                switch (pickedWallIndex)
+                {
+                    case 0:
+                        x = 0;
+                        y = -arenaSize.y / 2 + 1;
+                        spawnedEnemy.transform.localScale = new Vector3(arenaSize.x, 1, 1);
+                        spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0,0,0));
+                        break;
+                    case 1:
+                        x = arenaSize.x / 2 - 1;
+                        y = 0;
+                        spawnedEnemy.transform.localScale = new Vector3(arenaSize.y, 1, 1);
+                        spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                        break;
+                    case 2:
+                        x = 0;
+                        y = -arenaSize.y / 2 + 1;
+                        spawnedEnemy.transform.localScale = new Vector3(arenaSize.x, 1, 1);
+                        spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                        break;
+                    case 3:
+                        x = arenaSize.x / 2 + 1;
+                        y = 0;
+                        spawnedEnemy.transform.localScale = new Vector3(arenaSize.y, 1, 1);
+                        spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -90));
+                        break;
+                }
                 break;
         }
 
