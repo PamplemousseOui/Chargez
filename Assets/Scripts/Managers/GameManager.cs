@@ -14,12 +14,30 @@ public class GameManager : MonoBehaviour
     public ScoreManager scoreManager;
 
     public static EventHandler OnPlayerDeath;
+    public static EventHandler OnGameStart;
+    public static EventHandler OnGamePause;
+    public static EventHandler OnGameResume;
+    public static EventHandler OnGameRetry;
 
     private void Awake()
     {
+        gameIsPaused = true;
+
         if (instance == null)
             instance = this;
         else
             Destroy(this);
+    }
+
+    public void StartGame()
+    {
+        OnGameStart?.Invoke(this, null);
+        gameIsPaused = false;
+    }
+
+    public void RetryGame()
+    {
+        gameIsPaused = true;
+        OnGameRetry?.Invoke(this, null);
     }
 }

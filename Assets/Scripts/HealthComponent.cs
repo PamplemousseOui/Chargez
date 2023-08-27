@@ -16,7 +16,13 @@ public class HealthComponent : MonoBehaviour
 
     private void Start()
     {
+        Init();
+    }
+
+    public void Init()
+    {
         currentHealth = startHealth;
+        OnHealthUpdated?.Invoke(this, currentHealth);
         isAlive = true;
         m_canTakeDamage = true;
     }

@@ -13,12 +13,16 @@ public class EnemyComponent : MonoBehaviour
     {
         if (healthComponent != null)
             healthComponent.OnDeath += OnDeath;
+
+        GameManager.OnGameRetry += OnGameRetry;
     }
 
     private void OnDisable()
     {
         if (healthComponent != null)
             healthComponent.OnDeath -= OnDeath;
+
+        GameManager.OnGameRetry -= OnGameRetry;
     }
 
     private void OnDeath(object sender, EventArgs e)
@@ -38,5 +42,10 @@ public class EnemyComponent : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnGameRetry(object sender, EventArgs e)
+    {
+        Destroy(gameObject);
     }
 }
