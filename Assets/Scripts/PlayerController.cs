@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public float baseDashCooldown;
     public float baseGripFactor;
     public GameObject LeftAttackTriggerPrefab;
+    public bool reinitHealthOnNewWave;
 
     [Header("Setup data")]
     public GameObject debugAttackMinLoadingFeedback;
@@ -82,6 +83,8 @@ public class PlayerController : MonoBehaviour
         healthComponent.OnHealthUpdated += OnHealthUpdate;
         healthComponent.OnDeath += OnDeath;
         GameManager.OnGameRetry += OnGameRetry;
+        WaveManager.OnStartNewWave += OnStartNewWave;
+        WaveManager.OnEndWaveEvent += OnEndWave;
     }
 
     private void OnDisable()
@@ -89,8 +92,23 @@ public class PlayerController : MonoBehaviour
         healthComponent.OnHealthUpdated -= OnHealthUpdate;
         healthComponent.OnDeath -= OnDeath;
         GameManager.OnGameRetry -= OnGameRetry;
+        WaveManager.OnStartNewWave -= OnStartNewWave;
+        WaveManager.OnEndWaveEvent -= OnEndWave;
     }
-    
+
+    private void OnStartNewWave(WaveData _waveData)
+    {
+        ReinitPos();
+        if (reinitHealthOnNewWave)
+            healthComponent.Init();
+    }
+
+    private void OnEndWave()
+    {
+        rb.velocity = Vector2.zero;
+        StopAttack();
+    }
+
     private void OnHealthUpdate(object sender, float _health)
     {
         healthSlider.value = _health;
@@ -215,7 +233,6 @@ public class PlayerController : MonoBehaviour
         m_currentAttackProgress = 0f;
         m_curAttackTime = attackTime;
         m_currentAttackRange = attackRange;
-        //debugAttackProgressObject.SetActive(true);
 
         debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
         debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
@@ -227,7 +244,6 @@ public class PlayerController : MonoBehaviour
         OnPlayerAttackEnd?.Invoke(this, null);
         m_isAttacking = false;
         Destroy(m_curLeftAttackTrigger);
-        //debugAttackProgressObject.SetActive(false);
     }
 
     private void UpdateAttackLoading()
@@ -249,21 +265,15 @@ public class PlayerController : MonoBehaviour
             debugAttackMaxLoadingFeedback.transform.localScale = new Vector3(0.1f, 1 * maxLoadingTimeCompletion, 1);
             debugAttackMaxLoadingFeedback.transform.localPosition = new Vector3(0, -0.5f + maxLoadingTimeCompletion / 2f, 0);
         }
-        //Debug.Log($"Current attack loading = {m_currentAttackLoading}");
     }
 
     private void UpdateAttackProgress()
     {
         m_currentAttackProgress += Time.deltaTime;
-
-        //Debug.Log($"Current attack progress = {m_currentAttackProgress}");
-        //m_currentAttackRange = m_currentAttackProgress * attackRange;
-        //Debug.Log($"Current attack range = {m_currentAttackRange}");
         if (m_currentAttackProgress > m_curAttackTime)
             StopAttack();
         else
         {
-            //debugAttackProgressObject.transform.localScale = Vector2.one + Vector2.one * m_currentAttackRange;
             CheckEnemyWithinMaxRange();
         }
     }
@@ -273,19 +283,6 @@ public class PlayerController : MonoBehaviour
         List<GameObject> killedEnemy = new List<GameObject>();
         foreach (GameObject enemy in m_leftAttackTrigger.objectsInRange)
         {
-            //float dotProduct = Vector2.Dot(transform.up, (enemy.transform.position - transform.position).normalized);
-            //Debug.Log($"Dot product = {dotProduct}");
-            /*
-            if (Mathf.Abs(dotProduct) <= attackAngle)
-            {
-                //Debug.Log($"Enemy is in attack angle");
-                if ((enemy.transform.position - transform.position).magnitude < m_currentAttackRange)
-                {
-                    //Debug.Log($"Enemy is in attack range. Destroying it");
-                    killedEnemy.Add(enemy);
-                }
-            }
-            */
 
             if ((enemy.transform.position - transform.position).magnitude < m_currentAttackRange)
             {
@@ -343,6 +340,12 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.velocity = Vector2.Lerp(rb.velocity.normalized, gameObject.transform.up.normalized, baseGripFactor) * speedToApply;
+    }
+
+    private void ReinitPos()
+    {
+        transform.position = new Vector3(0, 0, 0);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     //DASH FUNCTIONS

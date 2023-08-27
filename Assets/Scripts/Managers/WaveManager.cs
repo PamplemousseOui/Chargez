@@ -1,8 +1,10 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static WaveManager;
 using Random = UnityEngine.Random;
 
 public class WaveManager : MonoBehaviour
@@ -21,7 +23,12 @@ public class WaveManager : MonoBehaviour
     private List<IBonusData> remainingBonuses;
 
     private float timerBeforeSpawn = 0.0f;
-    
+
+    public delegate void StartNewWaveEvent(WaveData waveData);
+    public static StartNewWaveEvent OnStartNewWave;
+
+    public delegate void EndWaveEvent();
+    public static EndWaveEvent OnEndWaveEvent;
 
     private void OnEnable()
     {
@@ -85,6 +92,8 @@ public class WaveManager : MonoBehaviour
         }
         currentWaveNumber++;
         timerBeforeSpawn = currentWaveData.startCooldown;
+        OnStartNewWave?.Invoke(currentWaveData);
+        GameManager.instance.ResumeGame();
         Debug.Log("Start wave " + currentWaveNumber);
     }
 
@@ -92,6 +101,8 @@ public class WaveManager : MonoBehaviour
     {
         currentWaveData = null;
         SelectBonuses();
+        OnEndWaveEvent?.Invoke();
+        GameManager.instance.PauseGame();
         Debug.Log("End of wave");
     }
     

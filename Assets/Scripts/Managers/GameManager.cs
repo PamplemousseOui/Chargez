@@ -40,4 +40,16 @@ public class GameManager : MonoBehaviour
         gameIsPaused = true;
         OnGameRetry?.Invoke(this, null);
     }
+
+    public void PauseGame()
+    {
+        gameIsPaused = true;
+        OnGamePause?.Invoke(this, null);
+    }
+
+    public void ResumeGame()
+    {
+        gameIsPaused = false;
+        OnGameResume?.Invoke(this, null);
+    }
 }
