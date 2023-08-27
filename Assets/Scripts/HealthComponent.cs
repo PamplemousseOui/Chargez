@@ -9,19 +9,24 @@ public class HealthComponent : MonoBehaviour
     public float currentHealth;
     public bool isAlive;
 
+    public EventHandler<float> OnHealthUpdated;
     public EventHandler OnDeath;
+
+    private bool m_canTakeDamage;
 
     private void Start()
     {
         currentHealth = startHealth;
         isAlive = true;
+        m_canTakeDamage = true;
     }
 
     public void ApplyDamage(float _damage)
     {
-        if (currentHealth > 0)
+        if (currentHealth > 0 && m_canTakeDamage)
         {
             currentHealth -= _damage;
+            OnHealthUpdated?.Invoke(this, currentHealth);
             if (currentHealth < 0)
             {
                 currentHealth = 0;
@@ -41,8 +46,16 @@ public class HealthComponent : MonoBehaviour
 
     private void Kill()
     {
-        isAlive = false;
-        Debug.Log($"Character {gameObject.name} is dead. Cheh.");
-        OnDeath?.Invoke(this, null);
+        if (m_canTakeDamage)
+        {
+            isAlive = false;
+            Debug.Log($"Character {gameObject.name} is dead. Cheh.");
+            OnDeath?.Invoke(this, null);
+        }
+    }
+
+    public void SetCanTakeDamage(bool _canTakeDamage)
+    {
+        m_canTakeDamage = _canTakeDamage;
     }
 }

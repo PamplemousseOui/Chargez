@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
     public float baseSpeed = 0.1f;
     public float maxTurnSpeed = 1f;
     public float turnInertia = 0.1f;
+    public float baseDashSpeed;
+    public float baseDashConsumption;
+    public float baseRefillSpeed;
+    public bool canTurnWhileDashing;
+    public float baseDashCooldown;
 
     [Header("Setup data")]
     public GameObject debugAttackProgressObject;
@@ -28,6 +33,8 @@ public class PlayerController : MonoBehaviour
     public GameObject debugAttackMaxLoadingFeedback;
     public AttackRangeTrigger attackRangeTrigger;
     public HealthComponent healthComponent;
+    public Slider healthSlider;
+    public Slider dashEnergySlider;
 
     public static EventHandler OnPlayerAttackStart;
     public static EventHandler OnPlayerAttackEnd;
@@ -36,18 +43,30 @@ public class PlayerController : MonoBehaviour
     public static EventHandler OnPlayerAttackLoadingEnd;
     public static EventHandler OnPlayerReceiveDamage;
     public static EventHandler<EnemyType> OnEnemyKilled;
+    public static EventHandler OnDashStart;
+    public static EventHandler OnDashStop;
+    public static EventHandler<float> OnDashEnergyConsumption;
+    public static EventHandler<float> OnDashEnergyRefill;
 
-    private float m_currentHealth;
     private float m_currentAttackLoading;
     private float m_currentAttackProgress;
     private float m_currentAttackRange;
     private bool m_isLoading;
     private bool m_isAttacking;
+    private bool m_isDashing;
     private List<GameObject> m_enemiesWithinMaxRange;
     private float m_currentSpeed;
     private float m_currentTurnSpeed;
     private float m_targetTurnSpeed;
-    private float m_curTurnInertia;
+
+    //Dash
+    private float m_curDashSpeed;
+    private float m_curDashConsumption;
+    private float m_curDashRefillSpeed;
+    private float m_curDashEnergyRatio;
+    private float m_curDashCooldown;
+    private float m_dashCooldownValue;
+    private bool m_canDash;
 
     private void Awake()
     {
@@ -56,12 +75,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        healthComponent.OnHealthUpdated += OnHealthUpdate;
         healthComponent.OnDeath += OnDeath;
     }
 
     private void OnDisable()
     {
+        healthComponent.OnHealthUpdated -= OnHealthUpdate;
         healthComponent.OnDeath -= OnDeath;
+    }
+    
+    private void OnHealthUpdate(object sender, float _health)
+    {
+
     }
 
     private void OnDeath(object sender, EventArgs e)
@@ -71,7 +97,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        m_currentHealth = maxHealth;
         debugAttackProgressObject.SetActive(false);
         debugMaxRangeObject.transform.localScale = Vector2.one + Vector2.one * attackRange;
 
@@ -79,32 +104,18 @@ public class PlayerController : MonoBehaviour
         debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
 
         m_currentSpeed = baseSpeed;
+
+        m_curDashEnergyRatio = 1;
+        InitDashProperties();
     }
 
     private void Update()
     {
         if (healthComponent.isAlive && !GameManager.gameIsPaused)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                StartAttackLoading();
-            }
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                if (m_isLoading)
-                {
-                    if (m_currentAttackLoading > attackMinLoadingTime)
-                    {
-                        FireAttack();
-                    }
-                    else
-                    {
-                        StopAttackLoading(false);
-                    }
-                    m_isLoading = false;
-                }
-            }
+            UpdateDashCooldown();
+            CheckDashInput();
+            CheckAttackInput();
 
             if (m_isLoading)
             {
@@ -121,10 +132,37 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void CheckAttackInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartAttackLoading();
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (m_isLoading)
+            {
+                if (m_currentAttackLoading > attackMinLoadingTime)
+                {
+                    FireAttack();
+                }
+                else
+                {
+                    StopAttackLoading(false);
+                }
+                m_isLoading = false;
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
         if (healthComponent.isAlive && !GameManager.gameIsPaused)
+        {
+            UpdateDash();
             UpdatePosition();
+        }
     }
 
     private void StartAttackLoading()
@@ -251,31 +289,137 @@ public class PlayerController : MonoBehaviour
     {
         m_currentSpeed = baseSpeed;
 
-        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        if (!m_isDashing || canTurnWhileDashing)
         {
-            //Debug.Log("Turning left");
-            m_targetTurnSpeed = maxTurnSpeed * Time.deltaTime;
+            if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+            {
+                //Debug.Log("Turning left");
+                m_targetTurnSpeed = maxTurnSpeed * Time.deltaTime;
+            }
+            else if (!Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+            {
+                //Debug.Log("Turning left");
+                m_targetTurnSpeed = -maxTurnSpeed * Time.deltaTime;
+            }
+            else
+                m_targetTurnSpeed = 0;
+
+            m_currentTurnSpeed = Mathf.Lerp(m_currentTurnSpeed, m_targetTurnSpeed, turnInertia);
+            gameObject.transform.Rotate(transform.forward, m_currentTurnSpeed);
         }
-        else if (!Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+
+        Vector3 direction = Vector3.zero;
+
+        if (m_isDashing)
         {
-            //Debug.Log("Turning left");
-            m_targetTurnSpeed = -maxTurnSpeed * Time.deltaTime;
+            direction = gameObject.transform.up.normalized * m_curDashSpeed * Time.deltaTime;
         }
         else
-            m_targetTurnSpeed = 0;
-            
-        m_currentTurnSpeed = Mathf.Lerp(m_currentTurnSpeed, m_targetTurnSpeed, turnInertia);
-        gameObject.transform.Rotate(transform.forward, m_currentTurnSpeed);
-
-        Vector3 direction = gameObject.transform.up.normalized * m_currentSpeed * Time.deltaTime;
+        {
+            direction = gameObject.transform.up.normalized * m_currentSpeed * Time.deltaTime;
+        }
         gameObject.transform.position += direction;
     }
 
+    //DASH FUNCTIONS
+    private void InitDashProperties()
+    {
+        m_canDash = true;
+        ComputeDashProperties();
+    }
+
+    public void ComputeDashProperties()
+    {
+        m_curDashSpeed = baseDashSpeed;
+        m_curDashConsumption = baseDashConsumption;
+        m_curDashRefillSpeed = baseRefillSpeed;
+        m_curDashCooldown = baseDashCooldown;
+    }
+
+    private void CheckDashInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartDash();
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            StopDash();
+        }
+    }
+
+    private void StartDash()
+    {
+        if (m_canDash)
+        {
+            m_isDashing = true;
+            healthComponent.SetCanTakeDamage(false);
+            ComputeDashProperties();
+            Debug.Log("Start dash");
+        }
+    }
+    
+    private void StopDash()
+    {
+        if (m_isDashing)
+        {
+            m_isDashing = false;
+            StartDashCooldown();
+            healthComponent.SetCanTakeDamage(true);
+            Debug.Log("Stop dash");
+        }
+    }
+
+    private void UpdateDash()
+    {
+        if (m_isDashing)
+        {
+            if (m_curDashEnergyRatio > 0)
+            {
+                m_curDashEnergyRatio -= m_curDashConsumption * Time.deltaTime;
+                OnDashEnergyConsumption?.Invoke(this, m_curDashEnergyRatio);
+
+                dashEnergySlider.value = m_curDashEnergyRatio;
+            }
+            else
+            {
+                StopDash();
+            }
+        }
+        else if (m_curDashEnergyRatio < 1)
+        {
+            m_curDashEnergyRatio += m_curDashRefillSpeed * Time.deltaTime;
+            OnDashEnergyRefill?.Invoke(this, m_curDashEnergyRatio);
+
+            dashEnergySlider.value = m_curDashEnergyRatio;
+        }
+    }
+
+    private void StartDashCooldown()
+    {
+        m_canDash = false;
+        m_dashCooldownValue = 0;
+    }
+
+    private void UpdateDashCooldown()
+    {
+        if (!m_canDash)
+        {
+            m_dashCooldownValue += Time.deltaTime;
+            if (m_dashCooldownValue > m_curDashCooldown)
+            {
+                m_canDash = true;
+            }
+        }
+    }
+
+    //CONTACT DAMAGE
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == Tag.Enemy.ToString())
         {
-            Debug.Log("Oh lala Brive la Gaillarde");
+            Debug.Log($"Player colliding with enemy {collision.gameObject.name}");
             if (collision.TryGetComponent(out EnemyComponent enemyComponent))
             {
                 float damageToApply = enemyComponent.contactDamage;
