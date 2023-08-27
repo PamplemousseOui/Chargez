@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KillOnTriggerEnter : MonoBehaviour
+public class DestroyOnTriggerEnter : MonoBehaviour
 {
     public Tag tagToCheck;
 
