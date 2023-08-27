@@ -697,6 +697,7 @@ MonoBehaviour:
   baseRefillSpeed: 0.2
   canTurnWhileDashing: 0
   baseDashCooldown: 0.5
+  baseGripFactor: 0.08
   debugAttackProgressObject: {fileID: 5715337923411684194}
   debugMaxRangeObject: {fileID: 2506293804012771020}
   debugAttackMinLoadingFeedback: {fileID: 5815227195335721573}
@@ -705,6 +706,7 @@ MonoBehaviour:
   healthComponent: {fileID: 3850433096186504612}
   healthSlider: {fileID: 0}
   dashEnergySlider: {fileID: 0}
+  rb: {fileID: 6993250933194112308}
 --- !u!70 &3809242312347741707
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -768,8 +770,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 10
+  m_AngularDrag: 10
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:

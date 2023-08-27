@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public float baseRefillSpeed;
     public bool canTurnWhileDashing;
     public float baseDashCooldown;
+    public float baseGripFactor;
 
     [Header("Setup data")]
     public GameObject debugAttackProgressObject;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public HealthComponent healthComponent;
     public Slider healthSlider;
     public Slider dashEnergySlider;
+    public Rigidbody2D rb;
 
     public static EventHandler OnPlayerAttackStart;
     public static EventHandler OnPlayerAttackEnd;
@@ -308,17 +310,18 @@ public class PlayerController : MonoBehaviour
             gameObject.transform.Rotate(transform.forward, m_currentTurnSpeed);
         }
 
-        Vector3 direction = Vector3.zero;
+        float speedToApply;
 
         if (m_isDashing)
         {
-            direction = gameObject.transform.up.normalized * m_curDashSpeed * Time.deltaTime;
+            speedToApply = m_curDashSpeed;
         }
         else
         {
-            direction = gameObject.transform.up.normalized * m_currentSpeed * Time.deltaTime;
+            speedToApply = m_currentSpeed;
         }
-        gameObject.transform.position += direction;
+
+        rb.velocity = Vector2.Lerp(rb.velocity.normalized, gameObject.transform.up.normalized, baseGripFactor) * speedToApply;
     }
 
     //DASH FUNCTIONS
