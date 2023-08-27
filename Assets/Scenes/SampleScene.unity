@@ -2767,10 +2767,6 @@ PrefabInstance:
       propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: bonuses.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
       propertyPath: enemiesSpawnData.Array.size
       value: 3
@@ -2829,6 +2825,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
       propertyPath: enemiesSpawnData.Array.data[2].spawnProbability
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037181878283397365, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: m_Alpha
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

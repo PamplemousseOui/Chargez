@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  contactDamage: 5
+  contactDamage: 1
   healthComponent: {fileID: 4043143177436533345}
 --- !u!114 &4043143177436533345
 MonoBehaviour:
