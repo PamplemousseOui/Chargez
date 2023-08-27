@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackRangeTrigger : MonoBehaviour
+public class AttackTrigger : MonoBehaviour
 {
     public Tag tagToCheck;
     public List<GameObject> objectsInRange = new List<GameObject>();

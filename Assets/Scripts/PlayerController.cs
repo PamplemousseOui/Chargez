@@ -12,8 +12,7 @@ public class PlayerController : MonoBehaviour
     [Header("Controller data")]
     public float maxHealth = 1f;
     public float attackRange = 2f;
-    public float attackSpeed = 2f;
-    public float attackAngle = 1f;
+    public float attackTime = 2f;
     public float attackMinLoadingTime = 1f;
     public float attackMaxLoadingTime = 5f;
     public List<Modifier> modifiers = new List<Modifier>();
@@ -26,13 +25,11 @@ public class PlayerController : MonoBehaviour
     public bool canTurnWhileDashing;
     public float baseDashCooldown;
     public float baseGripFactor;
+    public GameObject LeftAttackTriggerPrefab;
 
     [Header("Setup data")]
-    public GameObject debugAttackProgressObject;
-    public GameObject debugMaxRangeObject;
     public GameObject debugAttackMinLoadingFeedback;
     public GameObject debugAttackMaxLoadingFeedback;
-    public AttackRangeTrigger attackRangeTrigger;
     public HealthComponent healthComponent;
     public Slider healthSlider;
     public Slider dashEnergySlider;
@@ -53,6 +50,7 @@ public class PlayerController : MonoBehaviour
     private float m_currentAttackLoading;
     private float m_currentAttackProgress;
     private float m_currentAttackRange;
+    private float m_curAttackTime;
     private bool m_isLoading;
     private bool m_isAttacking;
     private bool m_isDashing;
@@ -69,6 +67,10 @@ public class PlayerController : MonoBehaviour
     private float m_curDashCooldown;
     private float m_dashCooldownValue;
     private bool m_canDash;
+
+    //Attack
+    private GameObject m_curLeftAttackTrigger;
+    private AttackTrigger m_leftAttackTrigger;
 
     private void Awake()
     {
@@ -89,7 +91,7 @@ public class PlayerController : MonoBehaviour
     
     private void OnHealthUpdate(object sender, float _health)
     {
-
+        healthSlider.value = _health;
     }
 
     private void OnDeath(object sender, EventArgs e)
@@ -99,8 +101,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        debugAttackProgressObject.SetActive(false);
-        debugMaxRangeObject.transform.localScale = Vector2.one + Vector2.one * attackRange;
+        //debugAttackProgressObject.SetActive(false);
+        //debugMaxRangeObject.transform.localScale = Vector2.one + Vector2.one * attackRange;
 
         debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
         debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
@@ -201,9 +203,12 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("Firing attack");
         OnPlayerAttackStart?.Invoke(this, null);
         m_isAttacking = true;
+        m_curLeftAttackTrigger = Instantiate(LeftAttackTriggerPrefab, transform);
+        m_leftAttackTrigger = m_curLeftAttackTrigger.GetComponent<AttackTrigger>();
         m_currentAttackProgress = 0f;
-        m_currentAttackRange = 0f;
-        debugAttackProgressObject.SetActive(true);
+        m_curAttackTime = attackTime;
+        m_currentAttackRange = attackRange;
+        //debugAttackProgressObject.SetActive(true);
 
         debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
         debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
@@ -214,7 +219,8 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("Attack stopped");
         OnPlayerAttackEnd?.Invoke(this, null);
         m_isAttacking = false;
-        debugAttackProgressObject.SetActive(false);
+        Destroy(m_curLeftAttackTrigger);
+        //debugAttackProgressObject.SetActive(false);
     }
 
     private void UpdateAttackLoading()
@@ -241,16 +247,16 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateAttackProgress()
     {
-        m_currentAttackProgress += Time.deltaTime * attackSpeed;
+        m_currentAttackProgress += Time.deltaTime;
 
         //Debug.Log($"Current attack progress = {m_currentAttackProgress}");
-        m_currentAttackRange = m_currentAttackProgress * attackRange;
+        //m_currentAttackRange = m_currentAttackProgress * attackRange;
         //Debug.Log($"Current attack range = {m_currentAttackRange}");
-        if (m_currentAttackRange > attackRange)
+        if (m_currentAttackProgress > m_curAttackTime)
             StopAttack();
         else
         {
-            debugAttackProgressObject.transform.localScale = Vector2.one + Vector2.one * m_currentAttackRange;
+            //debugAttackProgressObject.transform.localScale = Vector2.one + Vector2.one * m_currentAttackRange;
             CheckEnemyWithinMaxRange();
         }
     }
@@ -258,10 +264,11 @@ public class PlayerController : MonoBehaviour
     private void CheckEnemyWithinMaxRange()
     {
         List<GameObject> killedEnemy = new List<GameObject>();
-        foreach (GameObject enemy in attackRangeTrigger.objectsInRange)
+        foreach (GameObject enemy in m_leftAttackTrigger.objectsInRange)
         {
-            float dotProduct = Vector2.Dot(transform.up, (enemy.transform.position - transform.position).normalized);
+            //float dotProduct = Vector2.Dot(transform.up, (enemy.transform.position - transform.position).normalized);
             //Debug.Log($"Dot product = {dotProduct}");
+            /*
             if (Mathf.Abs(dotProduct) <= attackAngle)
             {
                 //Debug.Log($"Enemy is in attack angle");
@@ -270,6 +277,13 @@ public class PlayerController : MonoBehaviour
                     //Debug.Log($"Enemy is in attack range. Destroying it");
                     killedEnemy.Add(enemy);
                 }
+            }
+            */
+
+            if ((enemy.transform.position - transform.position).magnitude < m_currentAttackRange)
+            {
+                //Debug.Log($"Enemy is in attack range. Destroying it");
+                killedEnemy.Add(enemy);
             }
         }
 
