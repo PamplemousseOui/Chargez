@@ -81,12 +81,14 @@ public class PlayerController : MonoBehaviour
     {
         healthComponent.OnHealthUpdated += OnHealthUpdate;
         healthComponent.OnDeath += OnDeath;
+        GameManager.OnGameRetry += OnGameRetry;
     }
 
     private void OnDisable()
     {
         healthComponent.OnHealthUpdated -= OnHealthUpdate;
         healthComponent.OnDeath -= OnDeath;
+        GameManager.OnGameRetry -= OnGameRetry;
     }
     
     private void OnHealthUpdate(object sender, float _health)
@@ -104,6 +106,11 @@ public class PlayerController : MonoBehaviour
         //debugAttackProgressObject.SetActive(false);
         //debugMaxRangeObject.transform.localScale = Vector2.one + Vector2.one * attackRange;
 
+        Init();
+    }
+
+    private void Init()
+    {
         debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
         debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
 
@@ -342,6 +349,7 @@ public class PlayerController : MonoBehaviour
     private void InitDashProperties()
     {
         m_canDash = true;
+        dashEnergySlider.value = 1;
         ComputeDashProperties();
     }
 
@@ -429,6 +437,14 @@ public class PlayerController : MonoBehaviour
                 m_canDash = true;
             }
         }
+    }
+
+    private void OnGameRetry(object sender, EventArgs e)
+    {
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
+        healthComponent.Init();
+        Init();
     }
 }
 

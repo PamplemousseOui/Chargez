@@ -181,4 +181,13 @@ public class SpawnManager : MonoBehaviour
             }
         }
     }
+
+    private void OnGameRetry()
+    {
+        foreach (EnemySpawnData data in enemiesSpawnData)
+        {
+            data.InitSpawnTimer();
+            data.ResetSpawnCounter();
+        }
+    }
 }
