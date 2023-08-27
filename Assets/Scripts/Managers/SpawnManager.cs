@@ -143,7 +143,7 @@ public class SpawnManager : MonoBehaviour
                         spawnedEnemy.transform.localScale = new Vector3(arenaSize.x, 1, 1);
                         spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0,0,0));
                         x = 0;
-                        y = -arenaSize.y / 2 - 2;
+                        y = arenaSize.y / 2 - 2;
                         break;
                     case 1:
                         spawnedEnemy.transform.localScale = new Vector3(arenaSize.y, 1, 1);
@@ -160,7 +160,7 @@ public class SpawnManager : MonoBehaviour
                     case 3:
                         spawnedEnemy.transform.localScale = new Vector3(arenaSize.y, 1, 1);
                         spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -90));
-                        x = arenaSize.x / 2 + 2;
+                        x = -arenaSize.x / 2 + 2;
                         y = 0;
                         break;
                 }
