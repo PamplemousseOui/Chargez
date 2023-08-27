@@ -795,6 +795,17 @@ MonoBehaviour:
   target: {fileID: 1115191266}
   smoothSpeed: 0.125
   offset: {x: 0, y: 0, z: -10}
+--- !u!114 &872123275 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+  m_PrefabInstance: {fileID: 663707450339423437}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1600c71cc27fffa4f8a27a5be408fcfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1007447513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,6 +2197,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 3875582320925652809, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: waveManager
+      value: 
+      objectReference: {fileID: 872123275}
     - target: {fileID: 4232766049812127944, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2245,14 +2260,6 @@ PrefabInstance:
     - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
       propertyPath: enemiesSpawnData.Array.data[0].allowSpawn
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: enemiesSpawnData.Array.data[1].allowSpawn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: enemiesSpawnData.Array.data[2].allowSpawn
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
       propertyPath: enemiesSpawnData.Array.data[1].enemyPrefab

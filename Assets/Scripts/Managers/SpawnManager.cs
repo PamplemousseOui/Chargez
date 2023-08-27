@@ -71,6 +71,7 @@ public class SpawnManager : MonoBehaviour
     public static EventHandler<EnemyType> OnEnemySpawn;
 
     public static SpawnManager instance;
+    public List<EnemyComponent> enemies;
 
     private void Awake()
     {
@@ -86,10 +87,13 @@ public class SpawnManager : MonoBehaviour
         {
             data.InitSpawnTimer();
         }
+        enemies = new List<EnemyComponent>();
     }
 
     private void Update()
     {
+        enemies.RemoveAll(x => x == null);
+        /*
         if (!GameManager.gameIsPaused && GameManager.player.healthComponent.isAlive)
         {
             foreach (EnemySpawnData data in enemiesSpawnData)
@@ -98,6 +102,7 @@ public class SpawnManager : MonoBehaviour
                     SpawnEnemy(data);
             }
         }
+        */
     }
 
     private void SpawnEnemy(EnemySpawnData enemySpawnData)
@@ -169,6 +174,7 @@ public class SpawnManager : MonoBehaviour
 
         pos = new Vector3(x, y, 0);
         spawnedEnemy.transform.position = pos;
+        enemies.Add(spawnedEnemy.GetComponent<EnemyComponent>());
     }
 
     public void SpawnEnemyType(EnemyType _type)
@@ -178,7 +184,17 @@ public class SpawnManager : MonoBehaviour
             if (enemySpawnData.type == _type)
             {
                 SpawnEnemy(enemySpawnData);
+                return;
             }
+        }
+    }
+
+    private void OnGameRetry()
+    {
+        foreach (EnemySpawnData data in enemiesSpawnData)
+        {
+            data.InitSpawnTimer();
+            data.ResetSpawnCounter();
         }
     }
 }
