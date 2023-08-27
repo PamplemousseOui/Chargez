@@ -413,24 +413,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-    //CONTACT DAMAGE
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == Tag.Enemy.ToString())
-        {
-            Debug.Log($"Player colliding with enemy {collision.gameObject.name}");
-            if (collision.TryGetComponent(out EnemyComponent enemyComponent))
-            {
-                float damageToApply = enemyComponent.contactDamage;
-                healthComponent.ApplyDamage(damageToApply);
-                if (!healthComponent.isAlive)
-                    GameManager.OnPlayerDeath?.Invoke(this, null);
-            }
-            else
-                Debug.LogWarning("No enemy component found on enemy.");
-        }
-    }
 }
 
 public static class ExtensionMethods

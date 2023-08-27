@@ -25,4 +25,18 @@ public class EnemyComponent : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == Tag.Player.ToString())
+        {
+            if (collision.TryGetComponent(out HealthComponent healthComponent))
+            {
+                if (healthComponent.isAlive)
+                {
+                    healthComponent.ApplyDamage(contactDamage);
+                }
+            }
+        }
+    }
 }
