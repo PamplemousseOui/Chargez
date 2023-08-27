@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a450605ffdae04f852e506caa21c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusData: {fileID: 0}
+  bonusDataData: {fileID: 0}
   name: {fileID: 3043138971062592191}
   image: {fileID: 870372289165399278}
   description: {fileID: 6957709429402614225}
@@ -278,8 +278,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4648809537644330282}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+      - m_Target: {fileID: 1499038824746758482}
+        m_TargetAssemblyTypeName: UIBonus, Assembly-CSharp
         m_MethodName: Select
         m_Mode: 1
         m_Arguments:

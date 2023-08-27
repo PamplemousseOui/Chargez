@@ -6,13 +6,16 @@ using UnityEngine.UI;
 
 public class UIBonus : MonoBehaviour
 {
-    public IBonus bonusData;
+    public delegate void SelectBonus(IBonusData _bonusData);
+    public static SelectBonus OnSelectBonus;
+    
+    public IBonusData bonusData;
     
     [SerializeField] private TextMeshProUGUI name;
     [SerializeField] private Image image;
     [SerializeField] private TextMeshProUGUI description;
 
-    public void SetBonus(IBonus _data)
+    public void SetBonus(IBonusData _data)
     {
         bonusData = _data;
         name.text = bonusData.name;
@@ -22,6 +25,8 @@ public class UIBonus : MonoBehaviour
 
     public void Select()
     {
+        bonusData.ApplyEffect();
+        OnSelectBonus?.Invoke(bonusData);
         Debug.Log("Select bonus " + name.text);
     }
 }

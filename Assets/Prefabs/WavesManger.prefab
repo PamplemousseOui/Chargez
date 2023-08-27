@@ -46,13 +46,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - numberOfEnemyByTypes:
+  - startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 1
+      minCooldown: 0
+      maxCooldown: 5
+  - startCooldown: 5
+    numberOfEnemyByTypes:
     - type: 0
       number: 5
+      minCooldown: 0
+      maxCooldown: 5
     - type: 1
       number: 2
-  bonus: []
+      minCooldown: 0
+      maxCooldown: 5
+  bonuses:
+  - {fileID: 11400000, guid: 656c7b2797c8b8d4e9011778ea3fbfe0, type: 2}
+  - {fileID: 11400000, guid: eb41c2afbcc1df84daf2d9026fb8350c, type: 2}
+  - {fileID: 11400000, guid: e41946d6f2d4e804abca29f767d7394c, type: 2}
+  - {fileID: 11400000, guid: 28316b5f4fadb1a4e9adbd3136a68463, type: 2}
   menuManager: {fileID: 184284324361109787}
+  remainingEnemiesInWave: []
+  remainingBonuses: []
 --- !u!1 &1990366792461702583
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  bonuses: []
 --- !u!114 &4270806172266287385
 MonoBehaviour:
   m_ObjectHideFlags: 0

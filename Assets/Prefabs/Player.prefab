@@ -320,7 +320,7 @@ Transform:
   - {fileID: 7673574093083229332}
   - {fileID: 8844916372885731188}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9105690685780486065
 MonoBehaviour:
@@ -432,7 +432,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &5815227195335721573
 GameObject:
   m_ObjectHideFlags: 0

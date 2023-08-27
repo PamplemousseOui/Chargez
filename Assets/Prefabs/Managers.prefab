@@ -64,27 +64,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arenaSize: {x: 40, y: 22}
   enemiesSpawnData:
-  - allowSpawn: 1
-    type: 0
+  - type: 0
     enemyPrefab: {fileID: 2210985187186924065, guid: 5b95652b09f8c1445b5c36f24ba355ea, type: 3}
-    spawnProbability: 1
-    countToSpawn: 10
-    minSpawnTime: 1
-    maxSpawnTime: 2
-  - allowSpawn: 0
-    type: 1
+  - type: 1
     enemyPrefab: {fileID: 2404172852184435263, guid: b7bc618d48a8e5144aeaefce90b61d75, type: 3}
-    spawnProbability: 1
-    countToSpawn: 4
-    minSpawnTime: 1
-    maxSpawnTime: 2
-  - allowSpawn: 0
-    type: 2
+  - type: 2
     enemyPrefab: {fileID: 5993396035862707313, guid: 39442a79bcaf48044ac8e019cb60f522, type: 3}
-    spawnProbability: 1
-    countToSpawn: 8
-    minSpawnTime: 2
-    maxSpawnTime: 3
   enemies: []
 --- !u!114 &1173454092065505742
 MonoBehaviour:
@@ -258,10 +243,6 @@ PrefabInstance:
       propertyPath: m_Alpha
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7538150756890998338, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
-      propertyPath: m_Alpha
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8006719355509399282, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -306,7 +287,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4627239320517089855, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5015026027380923330, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
     - {fileID: 3164925836289284326, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}

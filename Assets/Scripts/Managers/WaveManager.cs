@@ -10,14 +10,15 @@ public class WaveManager : MonoBehaviour
     [SerializeField] 
     private List<WaveData> waves;
     [SerializeField]
-    private List<IBonus> bonuses;
+    private List<IBonusData> bonuses;
     [SerializeField]
     private MenuManager menuManager;
 
     private int currentWaveNumber = 0;
     private WaveData currentWaveData;
-    [SerializeField] private List<WaveData.NumberOfEnemyByType> remainingEnemiesInWave; 
-    private List<IBonus> remainingBonuses;
+    
+    private List<WaveData.NumberOfEnemyByType> remainingEnemiesInWave; 
+    private List<IBonusData> remainingBonuses;
 
     private float timerBeforeSpawn = 0.0f;
     
@@ -26,20 +27,26 @@ public class WaveManager : MonoBehaviour
     {
         GameManager.OnGameStart += OnGameStart;
         GameManager.OnGameRetry += OnGameStart;
+        UIBonus.OnSelectBonus += OnSelectBonus;
     }
 
     private void OnDisable()
     {
         GameManager.OnGameStart -= OnGameStart;
         GameManager.OnGameRetry -= OnGameStart;
+        UIBonus.OnSelectBonus -= OnSelectBonus;
     }
-    
+
     private void OnGameStart(object sender, EventArgs e)
     {
         if (waves.Count == 0) Debug.LogError("No wave in data");
         else
         {
-            remainingBonuses = new List<IBonus>(bonuses);
+            remainingBonuses = new List<IBonusData>(bonuses);
+            foreach (IBonusData bonusData in remainingBonuses)
+            {
+                bonusData.Reset();
+            }
             
             currentWaveNumber = 0;
             StartNextWave();
@@ -62,6 +69,36 @@ public class WaveManager : MonoBehaviour
                 SpawnEnemy();
             }
         }
+    }
+
+    private void StartNextWave()
+    {
+        if (currentWaveNumber >= waves.Count)
+        {
+            return;
+        }
+        currentWaveData = waves[currentWaveNumber];
+        remainingEnemiesInWave = new List<WaveData.NumberOfEnemyByType>();
+        foreach (var enemyInWave in currentWaveData.numberOfEnemyByTypes)
+        {
+            remainingEnemiesInWave.Add(enemyInWave.Clone());
+        }
+        currentWaveNumber++;
+        timerBeforeSpawn = currentWaveData.startCooldown;
+        Debug.Log("Start wave " + currentWaveNumber);
+    }
+
+    private void EndOfWave()
+    {
+        currentWaveData = null;
+        SelectBonuses();
+        Debug.Log("End of wave");
+    }
+    
+    private void OnSelectBonus(IBonusData _bonusdata)
+    {
+        menuManager.HideBonus();
+        StartNextWave();
     }
 
     private void SpawnEnemy()
@@ -100,27 +137,40 @@ public class WaveManager : MonoBehaviour
         return remainingEnemiesInWave[^1];
     }
 
-    private void StartNextWave()
+    private void SelectBonuses()
     {
-        if (currentWaveNumber >= waves.Count)
-        {
-            return;
-        }
-        currentWaveData = waves[currentWaveNumber];
-        remainingEnemiesInWave = new List<WaveData.NumberOfEnemyByType>();
-        foreach (var enemyInWave in currentWaveData.numberOfEnemyByTypes)
-        {
-            remainingEnemiesInWave.Add(enemyInWave.Clone());
-        }
-        currentWaveNumber++;
-        timerBeforeSpawn = currentWaveData.startCooldown;
-        Debug.Log("Start wave " + currentWaveNumber);
+        remainingBonuses.RemoveAll(x => x.currentNumber <= 0);
+        menuManager.DrawBonus(GetRandomBonuses(3));
     }
-
-    private void EndOfWave()
+    
+    public List<IBonusData> GetRandomBonuses(int count)
     {
-        currentWaveData = null;
-        Debug.Log("End of wave");
-        
+        List<IBonusData> selectedElements = new List<IBonusData>();
+        List<IBonusData> availableElements = new List<IBonusData>(remainingBonuses);
+
+        while (selectedElements.Count < count && availableElements.Count > 0)
+        {
+            float totalWeight = 0;
+            foreach (var weightedElement in availableElements)
+            {
+                totalWeight += weightedElement.currentNumber;
+            }
+
+            float randomValue = Random.Range(0f, totalWeight);
+
+            foreach (var weightedElement in availableElements)
+            {
+                if (randomValue < weightedElement.currentNumber)
+                {
+                    selectedElements.Add(weightedElement);
+                    availableElements.Remove(weightedElement);
+                    break;
+                }
+                randomValue -= weightedElement.currentNumber;
+            }
+
+        }
+
+        return selectedElements;
     }
 }
