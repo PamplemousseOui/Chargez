@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WaveManager : MonoBehaviour
 {
@@ -13,10 +16,25 @@ public class WaveManager : MonoBehaviour
 
     private int currentWaveNumber = 0;
     private WaveData currentWaveData;
-    private List<WaveData.NumberOfEnemyByType> remainingEnemiesInWave; 
-    private List<IBonus> remainingBonuses; 
+    [SerializeField] private List<WaveData.NumberOfEnemyByType> remainingEnemiesInWave; 
+    private List<IBonus> remainingBonuses;
+
+    private float timerBeforeSpawn = 0.0f;
     
-    void Start()
+
+    private void OnEnable()
+    {
+        GameManager.OnGameStart += OnGameStart;
+        GameManager.OnGameRetry += OnGameStart;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnGameStart -= OnGameStart;
+        GameManager.OnGameRetry -= OnGameStart;
+    }
+    
+    private void OnGameStart(object sender, EventArgs e)
     {
         if (waves.Count == 0) Debug.LogError("No wave in data");
         else
@@ -30,16 +48,56 @@ public class WaveManager : MonoBehaviour
     
     void Update()
     {
-        if (currentWaveData != null && remainingEnemiesInWave.Count == 0 && SpawnManager.instance.enemies.Count == 0)
+        if (currentWaveData == null || GameManager.gameIsPaused) return;
+        
+        if (remainingEnemiesInWave.Count == 0 && SpawnManager.instance.enemies.Count == 0)
         {
             EndOfWave();
         }
+        else if(remainingEnemiesInWave.Count > 0)
+        {
+            timerBeforeSpawn -= Time.deltaTime;
+            if (timerBeforeSpawn <= 0.0f)
+            {
+                SpawnEnemy();
+            }
+        }
     }
 
-    private void EndOfWave()
+    private void SpawnEnemy()
     {
-        currentWaveData = null;
-        
+        WaveData.NumberOfEnemyByType enemy = SelectEnemyTypeToSpawn();
+        --enemy.number;
+        if (enemy.number <= 0)
+        {
+            remainingEnemiesInWave.Remove(enemy);
+        }
+        SpawnManager.instance.SpawnEnemyType(enemy.type);
+
+        timerBeforeSpawn = Random.Range(enemy.minCooldown, enemy.maxCooldown);
+
+    }
+
+    private WaveData.NumberOfEnemyByType SelectEnemyTypeToSpawn()
+    {
+        float totalWeight = 0;
+        foreach (var weightedElement in remainingEnemiesInWave)
+        {
+            totalWeight += weightedElement.number;
+        }
+
+        float randomValue = Random.Range(0f, totalWeight);
+        foreach (var weightedElement in remainingEnemiesInWave)
+        {
+            if (randomValue < weightedElement.number)
+            {
+                return weightedElement;
+            }
+            randomValue -= weightedElement.number;
+        }
+
+        // Fallback, should never reach this point
+        return remainingEnemiesInWave[^1];
     }
 
     private void StartNextWave()
@@ -49,8 +107,20 @@ public class WaveManager : MonoBehaviour
             return;
         }
         currentWaveData = waves[currentWaveNumber];
-        remainingEnemiesInWave = new List<WaveData.NumberOfEnemyByType>(currentWaveData.numberOfEnemyByTypes);
+        remainingEnemiesInWave = new List<WaveData.NumberOfEnemyByType>();
+        foreach (var enemyInWave in currentWaveData.numberOfEnemyByTypes)
+        {
+            remainingEnemiesInWave.Add(enemyInWave.Clone());
+        }
         currentWaveNumber++;
+        timerBeforeSpawn = currentWaveData.startCooldown;
         Debug.Log("Start wave " + currentWaveNumber);
+    }
+
+    private void EndOfWave()
+    {
+        currentWaveData = null;
+        Debug.Log("End of wave");
+        
     }
 }

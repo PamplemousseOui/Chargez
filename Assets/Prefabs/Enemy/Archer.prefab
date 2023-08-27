@@ -217,7 +217,7 @@ MonoBehaviour:
   baseShootMinRate: 1
   baseShootMaxRate: 2
   baseShootLength: 6
-  baseDamage: 12
+  baseDamage: 1
   lookAtComponent: {fileID: 8525566253742330748}
   rayTransform: {fileID: 8914152295775151898}
   raySprite: {fileID: 998422566771435583}

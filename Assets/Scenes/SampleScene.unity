@@ -2763,6 +2763,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5125777919003165832, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
       propertyPath: enemiesSpawnData.Array.size
       value: 3

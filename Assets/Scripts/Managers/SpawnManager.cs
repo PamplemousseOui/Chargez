@@ -6,61 +6,8 @@ using UnityEngine;
 [Serializable]
 public class EnemySpawnData
 {
-    public bool allowSpawn;
     public EnemyType type;
     public GameObject enemyPrefab;
-    public float spawnProbability;
-    public uint countToSpawn;
-    public float minSpawnTime;
-    public float maxSpawnTime;
-    public float curSpawnTimerValue { get; private set; }
-    public float curSpawnTargetTime { get; private set; }
-
-    private List<GameObject> m_spawnedEnemies = new List<GameObject>();
-    private uint m_curSpawnCount;
-
-    public void InitSpawnTimer()
-    {
-        curSpawnTimerValue = 0;
-        curSpawnTargetTime = UnityEngine.Random.Range(minSpawnTime, maxSpawnTime);
-    }
-
-    public bool UpdateSpawnTimer()
-    {
-        if (m_curSpawnCount < countToSpawn && allowSpawn)
-        {
-            curSpawnTimerValue += Time.deltaTime;
-            if (curSpawnTimerValue > curSpawnTargetTime)
-            {
-                if (UnityEngine.Random.value < spawnProbability)
-                {
-                    InitSpawnTimer();
-                    m_curSpawnCount++;
-                    return true;
-                }
-                return false;
-            }
-            else
-                return false;
-        }
-        else
-            return false; 
-    }
-
-    public void AddSpawnedEnemy(GameObject enemy)
-    {
-        m_spawnedEnemies.Add(enemy);
-    }
-
-    public void RemoveSpawnedEnemy(GameObject enemy)
-    {
-        m_spawnedEnemies.Remove(enemy);
-    }
-
-    public void ResetSpawnCounter()
-    {
-        m_curSpawnCount = 0;
-    }
 }
 
 public class SpawnManager : MonoBehaviour
@@ -76,33 +23,46 @@ public class SpawnManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
+        {
             instance = this;
+            enemies = new List<EnemyComponent>();
+        }
         else
             Destroy(this);
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        foreach (EnemySpawnData data in enemiesSpawnData)
-        {
-            data.InitSpawnTimer();
-        }
+        GameManager.OnGameStart += OnGameStart;
+        GameManager.OnGameRetry += OnGameStart;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnGameStart -= OnGameStart;
+        GameManager.OnGameRetry -= OnGameStart;
+    }
+    
+    private void OnGameStart(object sender, EventArgs e)
+    {
         enemies = new List<EnemyComponent>();
     }
 
     private void Update()
     {
         enemies.RemoveAll(x => x == null);
-        /*
-        if (!GameManager.gameIsPaused && GameManager.player.healthComponent.isAlive)
+    }
+
+    public void SpawnEnemyType(EnemyType _type)
+    {
+        foreach (EnemySpawnData enemySpawnData in enemiesSpawnData)
         {
-            foreach (EnemySpawnData data in enemiesSpawnData)
+            if (enemySpawnData.type == _type)
             {
-                if(data.UpdateSpawnTimer())
-                    SpawnEnemy(data);
+                SpawnEnemy(enemySpawnData);
+                return;
             }
         }
-        */
     }
 
     private void SpawnEnemy(EnemySpawnData enemySpawnData)
@@ -177,24 +137,8 @@ public class SpawnManager : MonoBehaviour
         enemies.Add(spawnedEnemy.GetComponent<EnemyComponent>());
     }
 
-    public void SpawnEnemyType(EnemyType _type)
-    {
-        foreach (EnemySpawnData enemySpawnData in enemiesSpawnData)
-        {
-            if (enemySpawnData.type == _type)
-            {
-                SpawnEnemy(enemySpawnData);
-                return;
-            }
-        }
-    }
-
     private void OnGameRetry()
     {
-        foreach (EnemySpawnData data in enemiesSpawnData)
-        {
-            data.InitSpawnTimer();
-            data.ResetSpawnCounter();
-        }
+        enemies = new List<EnemyComponent>();
     }
 }
