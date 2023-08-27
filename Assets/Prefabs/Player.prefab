@@ -320,7 +320,7 @@ Transform:
   - {fileID: 7673574093083229332}
   - {fileID: 8844916372885731188}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9105690685780486065
 MonoBehaviour:
@@ -350,6 +350,7 @@ MonoBehaviour:
   baseDashCooldown: 0.5
   baseGripFactor: 0.08
   LeftAttackTriggerPrefab: {fileID: 34802375284031903, guid: 20498be53557f884480f7fef821437ed, type: 3}
+  reinitHealthOnNewWave: 1
   debugAttackMinLoadingFeedback: {fileID: 5815227195335721573}
   debugAttackMaxLoadingFeedback: {fileID: 1691278200778516280}
   healthComponent: {fileID: 3850433096186504612}

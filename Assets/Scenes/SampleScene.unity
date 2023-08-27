@@ -2900,6 +2900,10 @@ PrefabInstance:
       propertyPath: dashEnergySlider
       value: 
       objectReference: {fileID: 1347400021}
+    - target: {fileID: 9105690685780486065, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
+      propertyPath: reinitHealthOnNewWave
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
