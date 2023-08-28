@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float attackTime = 2f;
     public float attackMinLoadingTime = 1f;
     public float attackMaxLoadingTime = 5f;
+    public bool attackAutoReleaseOnLoadingEnd;
     public List<Modifier> modifiers = new List<Modifier>();
     public float baseSpeed = 0.1f;
     public float maxTurnSpeed = 1f;
@@ -165,6 +166,11 @@ public class PlayerController : MonoBehaviour
                 UpdateAttackLoading();
                 if (m_currentAttackLoading > attackMaxLoadingTime)
                 {
+                    if (attackAutoReleaseOnLoadingEnd)
+                    {
+                        FireAttack();
+                    }
+                    
                     StopAttackLoading(true);
                 }
             }
