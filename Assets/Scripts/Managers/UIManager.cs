@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
     private void OnRetryButtonPressed()
     {
         GameManager.instance.RetryGame();
-        retryButton.gameObject.SetActive(false);
+        retryButton.gameObject.SetActive(false);    
         deathText.gameObject.SetActive(false);
     }
 
