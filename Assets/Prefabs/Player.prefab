@@ -350,7 +350,7 @@ MonoBehaviour:
   baseDashCooldown: 0.5
   baseGripFactor: 0.08
   LeftAttackTriggerPrefab: {fileID: 34802375284031903, guid: 20498be53557f884480f7fef821437ed, type: 3}
-  reinitHealthOnNewWave: 1
+  reinitHealthOnNewWave: 0
   debugAttackMinLoadingFeedback: {fileID: 5815227195335721573}
   debugAttackMaxLoadingFeedback: {fileID: 1691278200778516280}
   healthComponent: {fileID: 3850433096186504612}
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ba5fa4e1e5bac4486d94219327b0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 10
+  startHealth: 3
   currentHealth: 0
   isAlive: 0
 --- !u!50 &6993250933194112308

@@ -85,6 +85,11 @@ public class PlayerController : MonoBehaviour
         GameManager.OnGameRetry += OnGameRetry;
         WaveManager.OnStartNewWave += OnStartNewWave;
         WaveManager.OnEndWaveEvent += OnEndWave;
+        
+        InputManager.OnAttackPress += StartAttackLoading;
+        InputManager.OnAttackRelease += ReleaseAttack;
+        InputManager.OnDashPress += StartDash;
+        InputManager.OnDashRelease += StopDash;
     }
 
     private void OnDisable()
@@ -94,6 +99,11 @@ public class PlayerController : MonoBehaviour
         GameManager.OnGameRetry -= OnGameRetry;
         WaveManager.OnStartNewWave -= OnStartNewWave;
         WaveManager.OnEndWaveEvent -= OnEndWave;
+        
+        InputManager.OnAttackPress -= StartAttackLoading;
+        InputManager.OnAttackRelease -= ReleaseAttack;
+        InputManager.OnDashPress -= StartDash;
+        InputManager.OnDashRelease -= StopDash;
     }
 
     private void OnStartNewWave(WaveData _waveData)
@@ -143,8 +153,6 @@ public class PlayerController : MonoBehaviour
         if (healthComponent.isAlive && !GameManager.gameIsPaused)
         {
             UpdateDashCooldown();
-            CheckDashInput();
-            CheckAttackInput();
 
             if (m_isLoading)
             {
@@ -157,30 +165,6 @@ public class PlayerController : MonoBehaviour
             else if (m_isAttacking)
             {
                 UpdateAttackProgress();
-            }
-        }
-    }
-
-    private void CheckAttackInput()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartAttackLoading();
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (m_isLoading)
-            {
-                if (m_currentAttackLoading > attackMinLoadingTime)
-                {
-                    FireAttack();
-                }
-                else
-                {
-                    StopAttackLoading(false);
-                }
-                m_isLoading = false;
             }
         }
     }
@@ -203,6 +187,22 @@ public class PlayerController : MonoBehaviour
 
         debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
         debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
+    }
+
+    private void ReleaseAttack()
+    {
+        if (m_isLoading)
+        {
+            if (m_currentAttackLoading > attackMinLoadingTime)
+            {
+                FireAttack();
+            }
+            else
+            {
+                StopAttackLoading(false);
+            }
+            m_isLoading = false;
+        }
     }
 
     private void StopAttackLoading(bool _maxTimeReached)
@@ -311,12 +311,12 @@ public class PlayerController : MonoBehaviour
 
         if (!m_isDashing || canTurnWhileDashing)
         {
-            if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+            if (InputManager.isLeft)
             {
                 //Debug.Log("Turning left");
                 m_targetTurnSpeed = maxTurnSpeed * Time.deltaTime;
             }
-            else if (!Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+            else if (InputManager.isRight)
             {
                 //Debug.Log("Turning left");
                 m_targetTurnSpeed = -maxTurnSpeed * Time.deltaTime;
@@ -362,19 +362,6 @@ public class PlayerController : MonoBehaviour
         m_curDashConsumption = baseDashConsumption;
         m_curDashRefillSpeed = baseRefillSpeed;
         m_curDashCooldown = baseDashCooldown;
-    }
-
-    private void CheckDashInput()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartDash();
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            StopDash();
-        }
     }
 
     private void StartDash()

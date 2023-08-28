@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3875582320925652809}
   - component: {fileID: 7596457425445003145}
   - component: {fileID: 1173454092065505742}
+  - component: {fileID: 5807007494156560372}
+  - component: {fileID: 8707717832081445901}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -33,7 +35,7 @@ Transform:
   m_Children:
   - {fileID: 7496451227127660613}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3875582320925652809
 MonoBehaviour:
@@ -62,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc896a42df3ad443901cc31c85f96aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arenaSize: {x: 40, y: 22}
+  arenaSize: {x: 32, y: 18}
   enemiesSpawnData:
   - type: 0
     enemyPrefab: {fileID: 2210985187186924065, guid: 5b95652b09f8c1445b5c36f24ba355ea, type: 3}
@@ -90,6 +92,112 @@ MonoBehaviour:
     score: 1
   - type: 1
     score: 2
+--- !u!114 &5807007494156560372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3712539938188520294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 4261034eda1e8be4c9e68f10cbaa602b, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8707717832081445901}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: ReadLeftInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 947e1112-4521-4cdc-9255-d2a82b044dbc
+    m_ActionName: Basic/MoveLeft[/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8707717832081445901}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: ReadRightInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: db2f1428-aa93-4ad6-8369-5850ac7d590b
+    m_ActionName: Basic/MoveRight[/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8707717832081445901}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: ReadAttackInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 815c9c27-7573-45c0-9e55-8bdf40cba306
+    m_ActionName: Basic/Attack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8707717832081445901}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: ReadDashInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: eed07718-3768-4b5d-b02e-39bb6d5955b3
+    m_ActionName: Basic/Dash[/Keyboard/space]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Basic
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &8707717832081445901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3712539938188520294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f31cb27b7b5e87e439a8db04720c43c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &58391870441321296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -242,6 +350,38 @@ PrefabInstance:
     - target: {fileID: 4627239320517089855, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
       propertyPath: m_Alpha
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[0].number
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].number
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[0].maxCooldown
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[0].minCooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].maxCooldown
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].minCooldown
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8006719355509399282, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
       propertyPath: m_RootOrder

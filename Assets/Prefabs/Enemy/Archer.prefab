@@ -38,7 +38,7 @@ Transform:
   - {fileID: 5343423167547449420}
   - {fileID: 8914152295775151898}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6210350304649111842
 SpriteRenderer:
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 1, b: 0.9083636, a: 1}
   m_FlipX: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d585873faf979e44bcb94a10aea0ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseRotationSpeed: 1
+  baseRotationSpeed: 360
 --- !u!114 &1846917121418555223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,10 +213,10 @@ MonoBehaviour:
   loadingColor: {r: 0.95568347, g: 1, b: 0, a: 0.16862746}
   shootingColor: {r: 1, g: 0.7951088, b: 0, a: 1}
   baseShootDuration: 1
-  baseLoadingTime: 1
+  baseLoadingTime: 2
   baseShootMinRate: 1
   baseShootMaxRate: 2
-  baseShootLength: 6
+  baseShootLength: 20
   baseDamage: 1
   lookAtComponent: {fileID: 8525566253742330748}
   rayTransform: {fileID: 8914152295775151898}
