@@ -119,9 +119,9 @@ public class PlayerController : MonoBehaviour
         StopAttack();
     }
 
-    private void OnHealthUpdate(object sender, float _health)
+    private void OnHealthUpdate(object sender, float _healthRatio)
     {
-        healthSlider.value = _health;
+        healthSlider.value = _healthRatio;
     }
 
     private void OnDeath(object sender, EventArgs e)

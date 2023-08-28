@@ -22,7 +22,7 @@ public class HealthComponent : MonoBehaviour
     public void Init()
     {
         currentHealth = startHealth;
-        OnHealthUpdated?.Invoke(this, currentHealth);
+        OnHealthUpdated?.Invoke(this, currentHealth / startHealth);
         isAlive = true;
         m_canTakeDamage = true;
     }
@@ -32,7 +32,7 @@ public class HealthComponent : MonoBehaviour
         if (currentHealth > 0 && m_canTakeDamage)
         {
             currentHealth -= _damage;
-            OnHealthUpdated?.Invoke(this, currentHealth);
+            OnHealthUpdated?.Invoke(this, currentHealth / startHealth);
             if (currentHealth < 0)
             {
                 currentHealth = 0;
