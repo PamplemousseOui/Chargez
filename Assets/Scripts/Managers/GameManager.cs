@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour
             Destroy(this);
     }
 
+    public void Start()
+    {
+        StartGame();
+    }
+    
     public void StartGame()
     {
         OnGameStart?.Invoke(this, null);

@@ -12,6 +12,7 @@ public class HitScanComponent : MonoBehaviour
     public Color shootingColor;
     public float baseShootDuration;
     public float baseLoadingTime;
+    public float baseStopRotationBeforeShootTime;
     public float baseShootMinRate;
     public float baseShootMaxRate;
     public float baseShootLength;
@@ -27,6 +28,7 @@ public class HitScanComponent : MonoBehaviour
 
     private float m_curShootDuration;
     private float m_curLoadingTime;
+    private float m_curStopRotationBeforeShootTime;
     private float m_curRate;
     private float m_curRateTimerValue;
     private float m_curLoadingTimerValue;
@@ -56,7 +58,7 @@ public class HitScanComponent : MonoBehaviour
                 {
                     StartLoading();
                 }
-            }
+            } 
         }
 
         UpdateLoading();
@@ -71,6 +73,7 @@ public class HitScanComponent : MonoBehaviour
 
         m_curLoadingTimerValue = 0;
         m_curLoadingTime = baseLoadingTime;
+        m_curStopRotationBeforeShootTime = baseStopRotationBeforeShootTime;
 
         raySprite.color = loadingColor;
         ActivateRay();
@@ -81,6 +84,9 @@ public class HitScanComponent : MonoBehaviour
         if (m_isLoading)
         {
             m_curLoadingTimerValue += Time.deltaTime;
+            if(m_curLoadingTimerValue > m_curLoadingTime - m_curStopRotationBeforeShootTime)
+                lookAtComponent.SetCanRotate(false);
+                
             if (m_curLoadingTimerValue > m_curLoadingTime)
             {
                 StopLoading();
@@ -100,7 +106,6 @@ public class HitScanComponent : MonoBehaviour
         m_canHitPlayer = true;
         m_curshootDurationTimerValue = 0; 
         m_curShootDuration = baseShootDuration;
-        lookAtComponent.SetCanRotate(false);
 
         raySprite.color = shootingColor;
     }
