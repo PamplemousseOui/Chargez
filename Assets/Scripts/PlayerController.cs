@@ -11,7 +11,6 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class PlayerController : MonoBehaviour
 {
     [Header("Controller data")]
-    public float maxHealth = 1f;
     public float attackRange = 2f;
     public float attackTime = 2f;
     public float attackMinLoadingTime = 1f;
@@ -20,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public List<Modifier> modifiers = new List<Modifier>();
     public float baseSpeed = 0.1f;
     public float maxTurnSpeed = 1f;
+    public float maxDashTurnSpeed = 1f;
     public float turnInertia = 0.1f;
     public float baseDashSpeed;
     public float baseDashConsumption;
@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
     public HealthComponent healthComponent;
     public Slider healthSlider;
     public Slider dashEnergySlider;
-    public Rigidbody2D rb;
 
     public static EventHandler OnPlayerAttackStart;
     public static EventHandler OnPlayerAttackEnd;
@@ -75,6 +74,7 @@ public class PlayerController : MonoBehaviour
     private float m_dashCooldownValue;
     private bool m_canDash;
     private Vector2 m_curDashDirection;
+    private Rigidbody2D m_rigidbody;
 
     //Attack
     private GameObject m_curLeftAttackTrigger;
@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         GameManager.player = this;
+        m_rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()
@@ -122,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnEndWave()
     {
-        rb.velocity = Vector2.zero;
+        m_rigidbody.velocity = Vector2.zero;
         StopAttack();
     }
 
@@ -326,15 +327,18 @@ public class PlayerController : MonoBehaviour
             if (InputManager.isLeft)
             {
                 //Debug.Log("Turning left");
-                m_targetTurnSpeed = maxTurnSpeed * Time.deltaTime;
+                m_targetTurnSpeed = 1.0f;
             }
             else if (InputManager.isRight)
             {
                 //Debug.Log("Turning left");
-                m_targetTurnSpeed = -maxTurnSpeed * Time.deltaTime;
+                m_targetTurnSpeed = -1.0f;
             }
             else
                 m_targetTurnSpeed = 0;
+
+            m_targetTurnSpeed *= m_isDashing ? maxDashTurnSpeed : maxTurnSpeed;
+            m_targetTurnSpeed *= Time.deltaTime;
 
             m_currentTurnSpeed = Mathf.Lerp(m_currentTurnSpeed, m_targetTurnSpeed, turnInertia);
             gameObject.transform.Rotate(transform.forward, m_currentTurnSpeed);
@@ -346,22 +350,22 @@ public class PlayerController : MonoBehaviour
             {
                 if (canTurnWhileDashing)
                 {
-                    rb.velocity = Vector2.Lerp(rb.velocity.normalized, gameObject.transform.up.normalized, baseGripFactor) * m_curDashSpeed;
+                    m_rigidbody.velocity = Vector2.Lerp(m_rigidbody.velocity.normalized, gameObject.transform.up.normalized, baseGripFactor) * m_curDashSpeed;
                 }
                 else
-                    rb.velocity = Vector2.Lerp(rb.velocity.normalized, m_curDashDirection.normalized, baseGripFactor) * m_curDashSpeed;
+                    m_rigidbody.velocity = Vector2.Lerp(m_rigidbody.velocity.normalized, m_curDashDirection.normalized, baseGripFactor) * m_curDashSpeed;
             }
             else
             {
                 if (canTurnWhileDashing)
-                    rb.velocity = gameObject.transform.up.normalized * m_curDashSpeed;
+                    m_rigidbody.velocity = gameObject.transform.up.normalized * m_curDashSpeed;
                 else
-                    rb.velocity = m_curDashDirection.normalized * m_curDashSpeed;
+                    m_rigidbody.velocity = m_curDashDirection.normalized * m_curDashSpeed;
             }
         }
         else
         {
-            rb.velocity = Vector2.Lerp(rb.velocity.normalized, gameObject.transform.up.normalized, baseGripFactor) * m_currentSpeed;
+            m_rigidbody.velocity = Vector2.Lerp(m_rigidbody.velocity.normalized, gameObject.transform.up.normalized, baseGripFactor) * m_currentSpeed;
         }
     }
 
@@ -405,7 +409,7 @@ public class PlayerController : MonoBehaviour
         if (m_isDashing)
         {
             if (resetVelocityOnDashEnd)
-                rb.velocity = transform.up.normalized * m_currentSpeed;
+                m_rigidbody.velocity = transform.up.normalized * m_currentSpeed;
             m_isDashing = false;
             StartDashCooldown();
             healthComponent.SetCanTakeDamage(true);

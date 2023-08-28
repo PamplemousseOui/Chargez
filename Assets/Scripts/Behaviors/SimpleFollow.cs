@@ -7,6 +7,12 @@ public class SimpleFollow : MonoBehaviour
 {
     public float baseSpeed = 1f;
     private float m_curSpeed;
+    private Rigidbody2D m_rigidbody;
+
+    private void Awake()
+    {
+        m_rigidbody = GetComponent<Rigidbody2D>();
+    }
 
     private void Start()
     {
@@ -21,8 +27,7 @@ public class SimpleFollow : MonoBehaviour
             {
                 if (GameManager.player.healthComponent.isAlive)
                 {
-                    Vector3 direction = (GameManager.player.transform.position - transform.position).normalized * m_curSpeed * 0.01f;
-                    gameObject.transform.position += direction;
+                    m_rigidbody.velocity = transform.up * m_curSpeed;
                 }
             }
         }

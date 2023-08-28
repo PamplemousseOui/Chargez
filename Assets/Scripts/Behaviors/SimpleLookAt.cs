@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class SimpleLookAt : MonoBehaviour
@@ -24,7 +25,7 @@ public class SimpleLookAt : MonoBehaviour
                 if (GameManager.player.healthComponent.isAlive && m_canRotate)
                 {
                     Vector3 direction = GameManager.player.transform.position - transform.position;
-                    transform.up = Vector3.Lerp(transform.up, direction, m_curRotSpeed * 0.01f);
+                    transform.up = Vector3.RotateTowards(transform.up, direction, m_curRotSpeed * Time.deltaTime * math.PI / 180.0f, 0.0f);
                 }
             }
         }
