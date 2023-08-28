@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public bool canDriftWhileDashing;
     public bool canTurnWhileDashing;
     public bool resetVelocityOnDashEnd;
+    public bool isInvincibleDuringDash;
     public float baseDashCooldown;
     public float baseGripFactor;
     public GameObject LeftAttackTriggerPrefab;
@@ -386,7 +387,8 @@ public class PlayerController : MonoBehaviour
         {
             m_curDashDirection = transform.up.normalized;
             m_isDashing = true;
-            healthComponent.SetCanTakeDamage(false);
+            if (isInvincibleDuringDash)
+                healthComponent.SetCanTakeDamage(false);
             ComputeDashProperties();
             Debug.Log("Start dash");
         }
