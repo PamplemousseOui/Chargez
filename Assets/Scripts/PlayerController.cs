@@ -2,7 +2,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+    using System.Security.Cryptography;
+    using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float attackMinLoadingTime = 1f;
     public float attackMaxLoadingTime = 5f;
     public bool attackAutoReleaseOnLoadingEnd;
+    public List<float> attackRotations;
     public List<Modifier> modifiers = new List<Modifier>();
     public float baseSpeed = 0.1f;
     public float maxTurnSpeed = 1f;
@@ -77,8 +79,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D m_rigidbody;
 
     //Attack
-    private GameObject m_curLeftAttackTrigger;
-    private AttackTrigger m_leftAttackTrigger;
+    private List<AttackTrigger> m_curAttacks;
 
     private void Awake()
     {
@@ -147,6 +148,7 @@ public class PlayerController : MonoBehaviour
 
     private void Init()
     {
+        m_curAttacks = new List<AttackTrigger>();
         debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
         debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
 
@@ -241,8 +243,15 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("Firing attack");
         OnPlayerAttackStart?.Invoke(this, null);
         m_isAttacking = true;
-        m_curLeftAttackTrigger = Instantiate(LeftAttackTriggerPrefab, transform);
-        m_leftAttackTrigger = m_curLeftAttackTrigger.GetComponent<AttackTrigger>();
+        ResetAttack();
+        foreach (var attackRot in attackRotations)
+        {
+            GameObject curAttack = Instantiate(LeftAttackTriggerPrefab, transform);
+            curAttack.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, attackRot);
+            AttackTrigger attackTrigger = curAttack.GetComponent<AttackTrigger>();
+            m_curAttacks.Add(attackTrigger);    
+        }
+        
         m_currentAttackProgress = 0f;
         m_curAttackTime = attackTime;
         m_currentAttackRange = attackRange;
@@ -256,7 +265,17 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("Attack stopped");
         OnPlayerAttackEnd?.Invoke(this, null);
         m_isAttacking = false;
-        Destroy(m_curLeftAttackTrigger);
+        ResetAttack();
+    }
+
+    private void ResetAttack()
+    {
+        foreach (var attack in m_curAttacks)
+        {
+            Destroy(attack.gameObject);
+        }
+
+        m_curAttacks = new List<AttackTrigger>();
     }
 
     private void UpdateAttackLoading()
@@ -293,28 +312,21 @@ public class PlayerController : MonoBehaviour
 
     private void CheckEnemyWithinMaxRange()
     {
-        List<GameObject> killedEnemy = new List<GameObject>();
-        foreach (GameObject enemy in m_leftAttackTrigger.objectsInRange)
+        List<EnemyComponent> killedEnemies = new List<EnemyComponent>();
+        foreach (AttackTrigger attack in m_curAttacks)
         {
-
-            if ((enemy.transform.position - transform.position).magnitude < m_currentAttackRange)
+            foreach (EnemyComponent enemy in attack.enemiesInRange)
             {
-                //Debug.Log($"Enemy is in attack range. Destroying it");
-                killedEnemy.Add(enemy);
-            }
+                killedEnemies.Add(enemy);
+            }   
         }
 
-        int count = killedEnemy.Count;
-        for (int i  = 0; i < count; i++)
+        for (int i = 0; i < killedEnemies.Count; ++i)
         {
-            if (killedEnemy[i].TryGetComponent(out HealthComponent healthComponent) && killedEnemy[i].TryGetComponent(out EnemyComponent enemyComponent))
-            {
-                healthComponent.InstantKill();
-                OnEnemyKilled?.Invoke(this, enemyComponent.type);
-                Debug.Log($"Destroying enemy {killedEnemy[i].name}");
-            }
-            else
-                Debug.LogError("Enemy is missing components to be properly killed");
+            EnemyComponent enemy = killedEnemies[i];
+            enemy.healthComponent.InstantKill();
+            OnEnemyKilled?.Invoke(this, enemy.type);
+            Debug.Log($"Destroying enemy {enemy.name}");
         }
     }
 

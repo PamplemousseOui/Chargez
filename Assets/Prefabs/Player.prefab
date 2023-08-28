@@ -338,8 +338,11 @@ MonoBehaviour:
   attackRange: 10
   attackTime: 0.66
   attackMinLoadingTime: 0.33
-  attackMaxLoadingTime: 2
-  attackAutoReleaseOnLoadingEnd: 0
+  attackMaxLoadingTime: 1.33
+  attackAutoReleaseOnLoadingEnd: 1
+  attackRotations:
+  - 90
+  - -90
   modifiers: []
   baseSpeed: 8
   maxTurnSpeed: 120
