@@ -337,7 +337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 10
   attackTime: 0.66
-  attackMinLoadingTime: 0.33
+  attackMinLoadingTime: 0.5
   attackMaxLoadingTime: 1.33
   attackAutoReleaseOnLoadingEnd: 1
   attackRotations:
@@ -346,11 +346,11 @@ MonoBehaviour:
   modifiers: []
   baseSpeed: 8
   maxTurnSpeed: 120
-  maxDashTurnSpeed: 180
+  maxDashTurnSpeed: 240
   turnInertia: 1
   baseDashSpeed: 15
-  baseDashConsumption: 1
-  baseRefillSpeed: 0.4
+  baseDashConsumption: 1.51516
+  baseRefillSpeed: 0.66
   canRotateWhileDashing: 1
   canDriftWhileDashing: 1
   canTurnWhileDashing: 0

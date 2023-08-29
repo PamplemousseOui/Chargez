@@ -71,10 +71,33 @@ MonoBehaviour:
       maxCooldown: 0
   - startCooldown: 5
     numberOfEnemyByTypes:
-    - type: 0
+    - type: 1
       minCooldown: 5
       maxCooldown: 5
     - type: 1
+      minCooldown: 5
+      maxCooldown: 5
+    - type: 1
+      minCooldown: 5
+      maxCooldown: 5
+    - type: 1
+      minCooldown: 5
+      maxCooldown: 5
+    - type: 1
+      minCooldown: 5
+      maxCooldown: 5
+  - startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 2
+      minCooldown: 5
+      maxCooldown: 5
+    - type: 2
+      minCooldown: 5
+      maxCooldown: 5
+    - type: 2
+      minCooldown: 5
+      maxCooldown: 5
+    - type: 2
       minCooldown: 5
       maxCooldown: 5
   bonuses:

@@ -35,7 +35,7 @@ Transform:
   m_Children:
   - {fileID: 7496451227127660613}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3875582320925652809
 MonoBehaviour:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc896a42df3ad443901cc31c85f96aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arenaSize: {x: 32, y: 18}
+  arenaSize: {x: 46, y: 25}
   enemiesSpawnData:
   - type: 0
     enemyPrefab: {fileID: 2210985187186924065, guid: 5b95652b09f8c1445b5c36f24ba355ea, type: 3}
