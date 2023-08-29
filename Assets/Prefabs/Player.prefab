@@ -340,6 +340,7 @@ MonoBehaviour:
   attackMinLoadingTime: 0.5
   attackMaxLoadingTime: 1.33
   attackAutoReleaseOnLoadingEnd: 1
+  attackRecoveryTime: 1
   attackRotations:
   - 90
   - -90
