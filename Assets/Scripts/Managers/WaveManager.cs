@@ -88,7 +88,7 @@ public class WaveManager : MonoBehaviour
         remainingEnemiesInWave = new List<WaveData.NumberOfEnemyByType>();
         foreach (var enemyInWave in currentWaveData.numberOfEnemyByTypes)
         {
-            remainingEnemiesInWave.Add(enemyInWave.Clone());
+            remainingEnemiesInWave.Add(enemyInWave);
         }
         currentWaveNumber++;
         timerBeforeSpawn = currentWaveData.startCooldown;
@@ -115,11 +115,13 @@ public class WaveManager : MonoBehaviour
     private void SpawnEnemy()
     {
         WaveData.NumberOfEnemyByType enemy = SelectEnemyTypeToSpawn();
+        /*
         --enemy.number;
         if (enemy.number <= 0)
         {
             remainingEnemiesInWave.Remove(enemy);
         }
+        */
         SpawnManager.instance.SpawnEnemyType(enemy.type);
 
         timerBeforeSpawn = Random.Range(enemy.minCooldown, enemy.maxCooldown);
@@ -128,6 +130,11 @@ public class WaveManager : MonoBehaviour
 
     private WaveData.NumberOfEnemyByType SelectEnemyTypeToSpawn()
     {
+        var enemy = remainingEnemiesInWave[0];
+        remainingEnemiesInWave.RemoveAt(0);
+        return enemy;
+        
+        /*
         float totalWeight = 0;
         foreach (var weightedElement in remainingEnemiesInWave)
         {
@@ -145,7 +152,7 @@ public class WaveManager : MonoBehaviour
         }
 
         // Fallback, should never reach this point
-        return remainingEnemiesInWave[^1];
+        */
     }
 
     private void SelectBonuses()
