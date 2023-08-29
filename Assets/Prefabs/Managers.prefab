@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a363f2af94ca704eba017d461df28b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesFreezeDelay: 0.5
   spawnManager: {fileID: 7596457425445003145}
   waveManager: {fileID: 6012407080955617152}
   scoreManager: {fileID: 1173454092065505742}

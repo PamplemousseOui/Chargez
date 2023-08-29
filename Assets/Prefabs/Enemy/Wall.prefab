@@ -176,6 +176,7 @@ MonoBehaviour:
   moveDirection: 0
   baseMoveSpeed: 2
   rb: {fileID: 3032308415412938053}
+  freezeOnPlayerHit: 1
 --- !u!114 &395390454147744701
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static PlayerController player;
     public static GameManager instance;
     public static bool gameIsPaused;
+    public static bool canUpdateEnemies;
+    public float enemiesFreezeDelay;
 
     public SpawnManager spawnManager;
     public WaveManager waveManager;
@@ -19,10 +21,26 @@ public class GameManager : MonoBehaviour
     public static EventHandler OnGameResume;
     public static EventHandler OnGameRetry;
 
+    private float m_curEnemiesFreezeTime;
+
+    private void OnEnable()
+    {
+        PlayerController.OnPlayerHit += OnPlayerHit;
+    }
+
+    private void OnDisable()
+    {
+        PlayerController.OnPlayerHit -= OnPlayerHit;
+    }
+
+    private void OnPlayerHit()
+    {
+        canUpdateEnemies = false;
+        m_curEnemiesFreezeTime = 0;
+    }
+
     private void Awake()
     {
-        gameIsPaused = true;
-
         if (instance == null)
             instance = this;
         else
@@ -31,9 +49,25 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
+        m_curEnemiesFreezeTime = enemiesFreezeDelay;
+        gameIsPaused = true;
+        canUpdateEnemies = true;
+
         StartGame();
     }
-    
+
+    private void Update()
+    {
+        if (m_curEnemiesFreezeTime < enemiesFreezeDelay)
+        {
+            m_curEnemiesFreezeTime += Time.deltaTime;
+        }
+        else if (!canUpdateEnemies)
+        {
+            canUpdateEnemies = true;
+        }
+    }
+
     public void StartGame()
     {
         OnGameStart?.Invoke(this, null);

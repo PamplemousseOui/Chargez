@@ -17,6 +17,7 @@ public class HitScanComponent : MonoBehaviour
     public float baseShootMaxRate;
     public float baseShootLength;
     public float baseDamage;
+    public bool freezeOnPlayerHit;
     public bool isShooting { get; private set; }
     public SimpleLookAt lookAtComponent;
     public Transform rayTransform;
@@ -49,21 +50,27 @@ public class HitScanComponent : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.gameIsPaused && GameManager.player.healthComponent.isAlive)
+        if (!GameManager.gameIsPaused && GameManager.player.healthComponent.isAlive && (GameManager.canUpdateEnemies && freezeOnPlayerHit))
         {
-            if (m_curRateTimerValue <= m_curRate)
+            if (freezeOnPlayerHit)
             {
-                m_curRateTimerValue += Time.deltaTime;
-                if (m_curRateTimerValue > m_curRate)
+                if ((freezeOnPlayerHit && GameManager.canUpdateEnemies) || !freezeOnPlayerHit)
                 {
-                    StartLoading();
-                }
-            } 
-        }
+                    if (m_curRateTimerValue <= m_curRate)
+                    {
+                        m_curRateTimerValue += Time.deltaTime;
+                        if (m_curRateTimerValue > m_curRate)
+                        {
+                            StartLoading();
+                        }
+                    }
 
-        UpdateLoading();
-        UpdateShoot();
-        UpdateRaycast();
+                    UpdateRaycast();
+                    UpdateLoading();
+                    UpdateShoot();
+                }
+            }
+        }
     }
 
     private void StartLoading()
