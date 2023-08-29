@@ -18,12 +18,15 @@ public class PlayerController : MonoBehaviour
     public float attackMinLoadingTime = 1f;
     public float attackMaxLoadingTime = 5f;
     public bool attackAutoReleaseOnLoadingEnd;
+    public float attackRecoveryTime;
     public List<float> attackRotations;
     public List<Modifier> modifiers = new List<Modifier>();
+
     public float baseSpeed = 0.1f;
     public float maxTurnSpeed = 1f;
     public float maxDashTurnSpeed = 1f;
     public float turnInertia = 0.1f;
+
     public float baseDashSpeed;
     public float baseDashConsumption;
     public float baseRefillSpeed;
@@ -34,7 +37,9 @@ public class PlayerController : MonoBehaviour
     public bool isInvincibleDuringDash;
     public float baseDashCooldown;
     public float baseGripFactor;
+
     public GameObject LeftAttackTriggerPrefab;
+
     public bool reinitHealthOnNewWave;
 
     [Header("Setup data")]
@@ -62,6 +67,9 @@ public class PlayerController : MonoBehaviour
     private float m_currentAttackProgress;
     private float m_currentAttackRange;
     private float m_curAttackTime;
+    private bool m_isAttackRecovering;
+    private IEnumerator AttackRecoveryCoroutine;
+
     private bool m_isLoading;
     private bool m_isAttacking;
     private bool m_isDashing;
@@ -150,7 +158,6 @@ public class PlayerController : MonoBehaviour
     {
         //debugAttackProgressObject.SetActive(false);
         //debugMaxRangeObject.transform.localScale = Vector2.one + Vector2.one * attackRange;
-
         Init();
     }
 
@@ -161,6 +168,8 @@ public class PlayerController : MonoBehaviour
         debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
 
         m_currentSpeed = baseSpeed;
+        m_isAttackRecovering = false;
+        StopCoroutine(AttackRecoveryCoroutine);
 
         m_curDashEnergyRatio = 1;
         InitDashProperties();
@@ -204,12 +213,16 @@ public class PlayerController : MonoBehaviour
     private void StartAttackLoading()
     {
         //Debug.Log("Attack loading start");
-        OnPlayerAttackLoadingStart?.Invoke(this, null);
-        m_isLoading = true;
-        m_currentAttackLoading = 0f;
+        if (m_isAttackRecovering || m_isAttacking ) return;
+        else
+        {
+            OnPlayerAttackLoadingStart?.Invoke(this, null);
+            m_isLoading = true;
+            m_currentAttackLoading = 0f;
 
-        debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
-        debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
+            debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
+            debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
+        }
     }
 
     private void ReleaseAttack()
@@ -272,8 +285,20 @@ public class PlayerController : MonoBehaviour
     {
         //Debug.Log("Attack stopped");
         OnPlayerAttackEnd?.Invoke(this, null);
-        m_isAttacking = false;
+        if (m_isAttacking)
+        {
+            m_isAttackRecovering = true;
+            m_isAttacking = false;
+            AttackRecoveryCoroutine = AttackRecoveryDelay();
+            StartCoroutine(AttackRecoveryCoroutine);
+        }
         ResetAttack();
+    }
+
+    private IEnumerator AttackRecoveryDelay()
+    {
+        yield return new WaitForSeconds(attackRecoveryTime);
+        m_isAttackRecovering = false;
     }
 
     private void ResetAttack()
