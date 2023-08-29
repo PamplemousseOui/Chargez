@@ -32,7 +32,7 @@ public class EnemyComponent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == Tag.Player.ToString())
+        if (collision.tag == Tag.Player.ToString() && GameManager.canUpdateEnemies)
         {
             if (collision.TryGetComponent(out HealthComponent healthComponent))
             {

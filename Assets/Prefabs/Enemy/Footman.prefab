@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 4
+  freezeOnPlayerHit: 1
 --- !u!114 &3376176216262632138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseRotationSpeed: 90
+  freezeOnPlayerHit: 1
 --- !u!114 &4186231191954206546
 MonoBehaviour:
   m_ObjectHideFlags: 0

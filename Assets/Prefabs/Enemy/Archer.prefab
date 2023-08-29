@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseRotationSpeed: 360
+  freezeOnPlayerHit: 1
 --- !u!114 &1846917121418555223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +220,7 @@ MonoBehaviour:
   baseShootMaxRate: 2
   baseShootLength: 20
   baseDamage: 1
+  freezeOnPlayerHit: 1
   lookAtComponent: {fileID: 8525566253742330748}
   rayTransform: {fileID: 8914152295775151898}
   raySprite: {fileID: 998422566771435583}

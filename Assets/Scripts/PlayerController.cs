@@ -6,6 +6,7 @@ using System.Collections.Generic;
     using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 using static UnityEngine.EventSystems.EventTrigger;
 
@@ -54,6 +55,8 @@ public class PlayerController : MonoBehaviour
     public static EventHandler OnDashStop;
     public static EventHandler<float> OnDashEnergyConsumption;
     public static EventHandler<float> OnDashEnergyRefill;
+    public delegate void OnPlayerHitEvent();
+    public static OnPlayerHitEvent OnPlayerHit;
 
     private float m_currentAttackLoading;
     private float m_currentAttackProgress;
@@ -130,12 +133,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnHealthUpdate(object sender, float _healthRatio)
     {
+        if (healthSlider.value > _healthRatio && _healthRatio != 0)
+        {
+            OnPlayerHit?.Invoke();
+        }
         healthSlider.value = _healthRatio;
     }
 
     private void OnDeath(object sender, EventArgs e)
     {
         GameManager.OnPlayerDeath?.Invoke(this, null);
+        GameManager.gameIsPaused = true;
     }
 
     private void Start()
