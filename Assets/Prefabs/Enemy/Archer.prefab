@@ -215,10 +215,10 @@ MonoBehaviour:
   shootingColor: {r: 1, g: 0.7951088, b: 0, a: 1}
   baseShootDuration: 1
   baseLoadingTime: 2
-  baseStopRotationBeforeShootTime: 0.6
+  baseStopRotationBeforeShootTime: 0.33
   baseShootMinRate: 1
   baseShootMaxRate: 2
-  baseShootLength: 20
+  baseShootLength: 100
   baseDamage: 1
   freezeOnPlayerHit: 1
   lookAtComponent: {fileID: 8525566253742330748}

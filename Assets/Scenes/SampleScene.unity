@@ -322,8 +322,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202184839}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 20, z: 1}
+  m_LocalPosition: {x: -24.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 29, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1594485523}
@@ -813,8 +813,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 446952831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 20, z: 1}
+  m_LocalPosition: {x: 24.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 29, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1594485523}
@@ -1356,8 +1356,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136282580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.5, z: 0}
-  m_LocalScale: {x: 34, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 14, z: 0}
+  m_LocalScale: {x: 50, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1594485523}
@@ -1934,8 +1934,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406141781}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -9.5, z: 0}
-  m_LocalScale: {x: 34, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -14, z: 0}
+  m_LocalScale: {x: 50, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1594485523}
@@ -2958,6 +2958,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: arenaSize.x
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596457425445003145, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: arenaSize.y
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3024,20 +3032,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1499491130}
     - target: {fileID: 9105690685780486065, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
+      propertyPath: baseRefillSpeed
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 9105690685780486065, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
       propertyPath: dashEnergySlider
       value: 
       objectReference: {fileID: 1347400021}
     - target: {fileID: 9105690685780486065, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
-      propertyPath: attackRotations.Array.size
-      value: 2
+      propertyPath: maxDashTurnSpeed
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 9105690685780486065, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
-      propertyPath: attackRotations.Array.data[0]
-      value: 90
+      propertyPath: baseDashConsumption
+      value: 1.51516
       objectReference: {fileID: 0}
     - target: {fileID: 9105690685780486065, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
-      propertyPath: attackRotations.Array.data[1]
-      value: -90
+      propertyPath: attackMinLoadingTime
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
