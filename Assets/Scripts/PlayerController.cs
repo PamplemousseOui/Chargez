@@ -50,19 +50,25 @@ public class PlayerController : MonoBehaviour
     public Slider healthSlider;
     public Slider dashEnergySlider;
 
-    public static EventHandler OnPlayerAttackStart;
-    public static EventHandler OnPlayerAttackEnd;
-    public static EventHandler OnPlayerAttackLoadingStart;
-    public static EventHandler OnPlayerAttackLoadingCancel;
-    public static EventHandler OnPlayerAttackLoadingEnd;
-    public static EventHandler OnPlayerReceiveDamage;
+    //Attack Events
+    public static EventHandler OnAttackStart;
+    public static EventHandler OnAttackEnd;
+    public static EventHandler OnAttackLoadingStart;
+    public static EventHandler OnAttackLoadingCancel;
+    public static EventHandler OnAttackLoadingEnd;
+    public static Action OnAttackRecoveryStart;
+    public static Action OnAttackRecoveryEnd;
     public static EventHandler<EnemyType> OnEnemyKilled;
+
+    //Health Events
+    public static Action<float, float> OnDamageReceived;
+    public static Action OnDeath;
+
+    //Dash Events
     public static EventHandler OnDashStart;
     public static EventHandler OnDashStop;
     public static EventHandler<float> OnDashEnergyConsumption;
     public static EventHandler<float> OnDashEnergyRefill;
-    public delegate void OnPlayerHitEvent();
-    public static OnPlayerHitEvent OnPlayerHit;
 
     private float m_currentAttackLoading;
     private float m_currentAttackProgress;
@@ -102,7 +108,7 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         healthComponent.OnHealthUpdated += OnHealthUpdate;
-        healthComponent.OnDeath += OnDeath;
+        healthComponent.OnDeath += OnHealthComponentDeath;
         GameManager.OnGameRetry += OnGameRetry;
         WaveManager.OnStartNewWave += OnStartNewWave;
         WaveManager.OnEndWaveEvent += OnEndWave;
@@ -116,7 +122,7 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         healthComponent.OnHealthUpdated -= OnHealthUpdate;
-        healthComponent.OnDeath -= OnDeath;
+        healthComponent.OnDeath -= OnHealthComponentDeath;
         GameManager.OnGameRetry -= OnGameRetry;
         WaveManager.OnStartNewWave -= OnStartNewWave;
         WaveManager.OnEndWaveEvent -= OnEndWave;
@@ -140,18 +146,19 @@ public class PlayerController : MonoBehaviour
         StopAttack();
     }
 
-    private void OnHealthUpdate(object sender, float _healthRatio)
+    private void OnHealthUpdate(float _healthRatio, float _damage)
     {
         if (healthSlider.value > _healthRatio && _healthRatio != 0)
         {
-            OnPlayerHit?.Invoke();
+            OnDamageReceived?.Invoke(_healthRatio, _damage);
         }
         healthSlider.value = _healthRatio;
     }
 
-    private void OnDeath(object sender, EventArgs e)
+    private void OnHealthComponentDeath()
     {
         GameManager.OnPlayerDeath?.Invoke(this, null);
+        OnDeath?.Invoke();
         GameManager.gameIsPaused = true;
     }
 
@@ -218,7 +225,7 @@ public class PlayerController : MonoBehaviour
         if (m_isAttackRecovering || m_isAttacking ) return;
         else
         {
-            OnPlayerAttackLoadingStart?.Invoke(this, null);
+            OnAttackLoadingStart?.Invoke(this, null);
             m_isLoading = true;
             m_currentAttackLoading = 0f;
 
@@ -249,12 +256,12 @@ public class PlayerController : MonoBehaviour
         if (_maxTimeReached)
         {
             //Debug.Log("Attack loading end");
-            OnPlayerAttackLoadingEnd?.Invoke(this, null);
+            OnAttackLoadingEnd?.Invoke(this, null);
         }
         else
         {
             //Debug.Log("Attack loading canceled");
-            OnPlayerAttackLoadingCancel?.Invoke(this, null);
+            OnAttackLoadingCancel?.Invoke(this, null);
         }
 
         debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
@@ -264,7 +271,7 @@ public class PlayerController : MonoBehaviour
     private void FireAttack()
     {
         //Debug.Log("Firing attack");
-        OnPlayerAttackStart?.Invoke(this, null);
+        OnAttackStart?.Invoke(this, null);
         m_isAttacking = true;
         ResetAttack();
         foreach (var attackRot in attackRotations)
@@ -286,7 +293,7 @@ public class PlayerController : MonoBehaviour
     private void StopAttack()
     {
         //Debug.Log("Attack stopped");
-        OnPlayerAttackEnd?.Invoke(this, null);
+        OnAttackEnd?.Invoke(this, null);
         if (m_isAttacking)
         {
             m_isAttackRecovering = true;
@@ -299,8 +306,10 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator AttackRecoveryDelay()
     {
+        OnAttackRecoveryStart?.Invoke();
         yield return new WaitForSeconds(attackRecoveryTime);
         m_isAttackRecovering = false;
+        OnAttackRecoveryEnd?.Invoke();
     }
 
     private void ResetAttack()
@@ -444,6 +453,7 @@ public class PlayerController : MonoBehaviour
         {
             m_curDashDirection = transform.up.normalized;
             isDashing = true;
+            OnDashStart?.Invoke(this, null);
             if (isInvincibleDuringDash)
                 healthComponent.SetCanTakeDamage(false);
             ComputeDashProperties();
@@ -458,6 +468,7 @@ public class PlayerController : MonoBehaviour
             if (resetVelocityOnDashEnd)
                 m_rigidbody.velocity = transform.up.normalized * m_currentSpeed;
             isDashing = false;
+            OnDashStop?.Invoke(this, null);
             StartDashCooldown();
             healthComponent.SetCanTakeDamage(true);
             Debug.Log("Stop dash");

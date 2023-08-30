@@ -25,7 +25,7 @@ public class EnemyComponent : MonoBehaviour
         GameManager.OnGameRetry -= OnGameRetry;
     }
 
-    private void OnDeath(object sender, EventArgs e)
+    private void OnDeath()
     {
         Destroy(gameObject);
     }

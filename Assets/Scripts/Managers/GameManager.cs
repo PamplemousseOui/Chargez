@@ -20,23 +20,26 @@ public class GameManager : MonoBehaviour
     public static EventHandler OnGamePause;
     public static EventHandler OnGameResume;
     public static EventHandler OnGameRetry;
+    public static Action OnEnemiesFreezeStart;
+    public static Action OnEnemiesFreezeStop;
 
     private float m_curEnemiesFreezeTime;
 
     private void OnEnable()
     {
-        PlayerController.OnPlayerHit += OnPlayerHit;
+        PlayerController.OnDamageReceived += OnPlayerHit;
     }
 
     private void OnDisable()
     {
-        PlayerController.OnPlayerHit -= OnPlayerHit;
+        PlayerController.OnDamageReceived -= OnPlayerHit;
     }
 
-    private void OnPlayerHit()
+    private void OnPlayerHit(float _healthRatio, float _damage)
     {
         canUpdateEnemies = false;
         m_curEnemiesFreezeTime = 0;
+        OnEnemiesFreezeStart?.Invoke();
     }
 
     private void Awake()
@@ -65,6 +68,7 @@ public class GameManager : MonoBehaviour
         else if (!canUpdateEnemies)
         {
             canUpdateEnemies = true;
+            OnEnemiesFreezeStop?.Invoke();
         }
     }
 
