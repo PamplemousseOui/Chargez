@@ -457,7 +457,6 @@ public class PlayerController : MonoBehaviour
             if (isInvincibleDuringDash)
                 healthComponent.SetCanTakeDamage(false);
             ComputeDashProperties();
-            Debug.Log("Start dash");
         }
     }
     
@@ -471,7 +470,6 @@ public class PlayerController : MonoBehaviour
             OnDashStop?.Invoke(this, null);
             StartDashCooldown();
             healthComponent.SetCanTakeDamage(true);
-            Debug.Log("Stop dash");
         }
     }
 
@@ -516,6 +514,11 @@ public class PlayerController : MonoBehaviour
                 m_canDash = true;
             }
         }
+    }
+
+    public float GetCurrentDashSpeed()
+    {
+        return m_curDashSpeed;
     }
 
     private void OnGameRetry()

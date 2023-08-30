@@ -298,6 +298,8 @@ GameObject:
   - component: {fileID: 3809242312347741707}
   - component: {fileID: 3850433096186504612}
   - component: {fileID: 6993250933194112308}
+  - component: {fileID: 5410602717718486557}
+  - component: {fileID: 1556583975009605462}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -349,14 +351,14 @@ MonoBehaviour:
   maxTurnSpeed: 120
   maxDashTurnSpeed: 240
   turnInertia: 1
-  baseDashSpeed: 15
+  baseDashSpeed: 60
   baseDashConsumption: 1.51516
   baseRefillSpeed: 0.66
   canRotateWhileDashing: 1
   canDriftWhileDashing: 1
   canTurnWhileDashing: 0
   resetVelocityOnDashEnd: 1
-  isInvincibleDuringDash: 0
+  isInvincibleDuringDash: 1
   baseDashCooldown: 0
   baseGripFactor: 0.1
   LeftAttackTriggerPrefab: {fileID: 34802375284031903, guid: 20498be53557f884480f7fef821437ed, type: 3}
@@ -443,6 +445,45 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5410602717718486557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5752417969661420192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250986ddddd906642b7f52933d859075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1556583975009605462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5752417969661420192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488f839bc68249342be0de40f585431f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emitter: {fileID: 5410602717718486557}
+  playerController: {fileID: 9105690685780486065}
+  dashStartEvent:
+    Guid:
+      Data1: -843441383
+      Data2: 1259247115
+      Data3: 772053389
+      Data4: 147035636
+    Path: event:/Player/Sfx/Sfx_Player_DashStart
+  dashInvicibilityParam:
+    Name: DashInvicibility
+    Value: 0
+  dashSpeedParam:
+    Name: DashSpeed
+    Value: 0
 --- !u!1 &5815227195335721573
 GameObject:
   m_ObjectHideFlags: 0

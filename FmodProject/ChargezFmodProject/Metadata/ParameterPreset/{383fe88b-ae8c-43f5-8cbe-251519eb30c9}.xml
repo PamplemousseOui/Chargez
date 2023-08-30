@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{383fe88b-ae8c-43f5-8cbe-251519eb30c9}">
+		<property name="name">
+			<value>DashSpeed</value>
+		</property>
+		<relationship name="folder">
+			<destination>{098d220a-0175-4f03-9a8a-731f1d1256be}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{6599352b-f1c8-48cd-9b08-c2724b943e03}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{6599352b-f1c8-48cd-9b08-c2724b943e03}">
+		<property name="maximum">
+			<value>50</value>
+		</property>
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>
