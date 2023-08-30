@@ -35,8 +35,8 @@ public class EnemyComponent : MonoBehaviour
         if (collision.tag == Tag.Player.ToString() && GameManager.canUpdateEnemies)
         {
             if (collision.TryGetComponent(out HealthComponent healthComponent))
-            {
-                if (healthComponent.isAlive)
+            {   
+                if (healthComponent.isAlive && (healthComponent.GetCanTakeDamage() || (!GameManager.player.isDashing && type == EnemyType.Wall)))
                 {
                     healthComponent.ApplyDamage(contactDamage);
                 }

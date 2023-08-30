@@ -29,7 +29,7 @@ public class HealthComponent : MonoBehaviour
 
     public void ApplyDamage(float _damage)
     {
-        if (currentHealth > 0 && m_canTakeDamage)
+        if (currentHealth > 0)
         {
             currentHealth -= _damage;
             OnHealthUpdated?.Invoke(this, currentHealth / startHealth);
@@ -63,5 +63,10 @@ public class HealthComponent : MonoBehaviour
     public void SetCanTakeDamage(bool _canTakeDamage)
     {
         m_canTakeDamage = _canTakeDamage;
+    }
+
+    public bool GetCanTakeDamage()
+    {
+        return m_canTakeDamage;
     }
 }

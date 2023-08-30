@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public bool resetVelocityOnDashEnd;
     public bool isInvincibleDuringDash;
     public float baseDashCooldown;
+
     public float baseGripFactor;
 
     public GameObject LeftAttackTriggerPrefab;
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     private bool m_isLoading;
     private bool m_isAttacking;
-    private bool m_isDashing;
+    public bool isDashing { get; private set; }
     private List<GameObject> m_enemiesWithinMaxRange;
     private float m_currentSpeed;
     private float m_currentTurnSpeed;
@@ -169,10 +170,11 @@ public class PlayerController : MonoBehaviour
 
         m_currentSpeed = baseSpeed;
         m_isAttackRecovering = false;
-        StopCoroutine(AttackRecoveryCoroutine);
 
         m_curDashEnergyRatio = 1;
         InitDashProperties();
+        if (AttackRecoveryCoroutine != null)
+            StopCoroutine(AttackRecoveryCoroutine);
     }
 
     private void Update()
@@ -367,7 +369,7 @@ public class PlayerController : MonoBehaviour
     {
         m_currentSpeed = baseSpeed;
 
-        if (!m_isDashing || canRotateWhileDashing)
+        if (!isDashing || canRotateWhileDashing)
         {
             if (InputManager.isLeft)
             {
@@ -382,14 +384,14 @@ public class PlayerController : MonoBehaviour
             else
                 m_targetTurnSpeed = 0;
 
-            m_targetTurnSpeed *= m_isDashing ? maxDashTurnSpeed : maxTurnSpeed;
+            m_targetTurnSpeed *= isDashing ? maxDashTurnSpeed : maxTurnSpeed;
             m_targetTurnSpeed *= Time.deltaTime;
 
             m_currentTurnSpeed = Mathf.Lerp(m_currentTurnSpeed, m_targetTurnSpeed, turnInertia);
             gameObject.transform.Rotate(transform.forward, m_currentTurnSpeed);
         }
 
-        if (m_isDashing)
+        if (isDashing)
         {
             if (canDriftWhileDashing)
             {
@@ -441,7 +443,7 @@ public class PlayerController : MonoBehaviour
         if (m_canDash)
         {
             m_curDashDirection = transform.up.normalized;
-            m_isDashing = true;
+            isDashing = true;
             if (isInvincibleDuringDash)
                 healthComponent.SetCanTakeDamage(false);
             ComputeDashProperties();
@@ -451,11 +453,11 @@ public class PlayerController : MonoBehaviour
     
     private void StopDash()
     {
-        if (m_isDashing)
+        if (isDashing)
         {
             if (resetVelocityOnDashEnd)
                 m_rigidbody.velocity = transform.up.normalized * m_currentSpeed;
-            m_isDashing = false;
+            isDashing = false;
             StartDashCooldown();
             healthComponent.SetCanTakeDamage(true);
             Debug.Log("Stop dash");
@@ -464,7 +466,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateDash()
     {
-        if (m_isDashing)
+        if (isDashing)
         {
             if (m_curDashEnergyRatio > 0)
             {
