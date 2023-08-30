@@ -61,14 +61,14 @@ public class PlayerController : MonoBehaviour
     public static EventHandler<EnemyType> OnEnemyKilled;
 
     //Health Events
-    public static Action<float, float> OnDamageReceived;
+    public static Action<float, float> OnDamageReceived; //new health ratio, damages
     public static Action OnDeath;
 
     //Dash Events
     public static EventHandler OnDashStart;
     public static EventHandler OnDashStop;
-    public static EventHandler<float> OnDashEnergyConsumption;
-    public static EventHandler<float> OnDashEnergyRefill;
+    public static EventHandler<float> OnDashEnergyConsumption; //new ratio
+    public static EventHandler<float> OnDashEnergyRefill; //new ratio
 
     private float m_currentAttackLoading;
     private float m_currentAttackProgress;

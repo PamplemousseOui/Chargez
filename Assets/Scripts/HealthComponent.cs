@@ -9,7 +9,7 @@ public class HealthComponent : MonoBehaviour
     public float currentHealth;
     public bool isAlive;
 
-    public Action<float,float> OnHealthUpdated;
+    public Action<float,float> OnHealthUpdated; //new ratio, damages
     public Action OnDeath;
 
     private bool m_canTakeDamage;
