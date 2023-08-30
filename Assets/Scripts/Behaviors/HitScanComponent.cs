@@ -23,9 +23,11 @@ public class HitScanComponent : MonoBehaviour
     public Transform rayTransform;
     public SpriteRenderer raySprite;
 
-    public EventHandler<float> OnLoadingRatioUpdate;
-    public EventHandler OnShootActivate;
-    public EventHandler OnShootDeactivate;
+    public Action OnLoadingStart;
+    public Action OnLoadingEnd;
+    public Action<float> OnLoadingRatioUpdate; //current ratio
+    public Action OnShootStart;
+    public Action OnShootEnd;
 
     private float m_curShootDuration;
     private float m_curLoadingTime;
@@ -76,6 +78,7 @@ public class HitScanComponent : MonoBehaviour
     private void StartLoading()
     {
         m_isLoading = true;
+        OnLoadingStart?.Invoke();
         m_curShootLength = baseShootLength;
 
         m_curLoadingTimerValue = 0;
@@ -91,7 +94,8 @@ public class HitScanComponent : MonoBehaviour
         if (m_isLoading)
         {
             m_curLoadingTimerValue += Time.deltaTime;
-            if(m_curLoadingTimerValue > m_curLoadingTime - m_curStopRotationBeforeShootTime)
+            OnLoadingRatioUpdate?.Invoke(m_curLoadingTimerValue / m_curLoadingTime);
+            if (m_curLoadingTimerValue > m_curLoadingTime - m_curStopRotationBeforeShootTime)
                 lookAtComponent.SetCanRotate(false);
                 
             if (m_curLoadingTimerValue > m_curLoadingTime)
@@ -105,6 +109,7 @@ public class HitScanComponent : MonoBehaviour
     private void StopLoading()
     {
         m_isLoading = false;
+        OnLoadingEnd?.Invoke();
     }
 
     private void StartShoot()
@@ -113,6 +118,7 @@ public class HitScanComponent : MonoBehaviour
         m_canHitPlayer = true;
         m_curshootDurationTimerValue = 0; 
         m_curShootDuration = baseShootDuration;
+        OnShootStart?.Invoke();
 
         raySprite.color = shootingColor;
     }
@@ -132,6 +138,7 @@ public class HitScanComponent : MonoBehaviour
     private void StopShoot()
     {
         isShooting = false;
+        OnShootEnd?.Invoke();
         DeactivateRay();
         ReinitShoot();
     }

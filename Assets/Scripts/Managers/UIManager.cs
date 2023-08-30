@@ -35,14 +35,14 @@ public class UIManager : MonoBehaviour
         retryButton.onClick.RemoveListener(OnRetryButtonPressed);
     }
 
-    private void OnPlayerDeath(object sender, EventArgs e)
+    private void OnPlayerDeath()
     {
         deathText.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(true);
     }
 
 
-    private void OnGameStart(object sender, EventArgs e)
+    private void OnGameStart()
     {
         retryButton.gameObject.SetActive(false);
         startButton.gameObject.SetActive(false);

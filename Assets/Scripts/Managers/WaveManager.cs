@@ -44,7 +44,7 @@ public class WaveManager : MonoBehaviour
         UIBonus.OnSelectBonus -= OnSelectBonus;
     }
 
-    private void OnGameStart(object sender, EventArgs e)
+    private void OnGameStart()
     {
         if (waves.Count == 0) Debug.LogError("No wave in data");
         else

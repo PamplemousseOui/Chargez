@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnHealthComponentDeath()
     {
-        GameManager.OnPlayerDeath?.Invoke(this, null);
+        GameManager.OnPlayerDeath?.Invoke();
         OnDeath?.Invoke();
         GameManager.gameIsPaused = true;
     }
@@ -518,7 +518,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnGameRetry(object sender, EventArgs e)
+    private void OnGameRetry()
     {
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.Euler(Vector3.zero);

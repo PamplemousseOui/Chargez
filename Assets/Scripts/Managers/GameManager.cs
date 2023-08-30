@@ -15,11 +15,11 @@ public class GameManager : MonoBehaviour
     public WaveManager waveManager;
     public ScoreManager scoreManager;
 
-    public static EventHandler OnPlayerDeath;
-    public static EventHandler OnGameStart;
-    public static EventHandler OnGamePause;
-    public static EventHandler OnGameResume;
-    public static EventHandler OnGameRetry;
+    public static Action OnPlayerDeath;
+    public static Action OnGameStart;
+    public static Action OnGamePause;
+    public static Action OnGameResume;
+    public static Action OnGameRetry;
     public static Action OnEnemiesFreezeStart;
     public static Action OnEnemiesFreezeStop;
 
@@ -74,25 +74,25 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        OnGameStart?.Invoke(this, null);
+        OnGameStart?.Invoke();
         gameIsPaused = false;
     }
 
     public void RetryGame()
     {
         gameIsPaused = true;
-        OnGameRetry?.Invoke(this, null);
+        OnGameRetry?.Invoke();
     }
 
     public void PauseGame()
     {
         gameIsPaused = true;
-        OnGamePause?.Invoke(this, null);
+        OnGamePause?.Invoke();
     }
 
     public void ResumeGame()
     {
         gameIsPaused = false;
-        OnGameResume?.Invoke(this, null);
+        OnGameResume?.Invoke();
     }
 }

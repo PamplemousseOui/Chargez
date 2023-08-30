@@ -44,7 +44,7 @@ public class EnemyComponent : MonoBehaviour
         }
     }
 
-    private void OnGameRetry(object sender, EventArgs e)
+    private void OnGameRetry()
     {
         Destroy(gameObject);
     }

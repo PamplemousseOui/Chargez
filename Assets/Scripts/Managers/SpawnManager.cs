@@ -15,7 +15,7 @@ public class SpawnManager : MonoBehaviour
     public Vector2 arenaSize;
     public List<EnemySpawnData> enemiesSpawnData;
 
-    public static EventHandler<EnemyType> OnEnemySpawn;
+    public static Action<EnemyType> OnEnemySpawned;
 
     public static SpawnManager instance;
     public List<EnemyComponent> enemies;
@@ -43,7 +43,7 @@ public class SpawnManager : MonoBehaviour
         GameManager.OnGameRetry -= OnGameStart;
     }
     
-    private void OnGameStart(object sender, EventArgs e)
+    private void OnGameStart()
     {
         enemies = new List<EnemyComponent>();
     }
@@ -135,6 +135,7 @@ public class SpawnManager : MonoBehaviour
         pos = new Vector3(x, y, 0);
         spawnedEnemy.transform.position = pos;
         enemies.Add(spawnedEnemy.GetComponent<EnemyComponent>());
+        OnEnemySpawned.Invoke(enemySpawnData.type);
     }
 
     private void OnGameRetry()
