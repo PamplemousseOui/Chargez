@@ -28,6 +28,6 @@ public class PlayerSound : MonoBehaviour
         if (playerController.isInvincibleDuringDash)
             dashInvicibilityParamValue = 1;
 
-        FMODUnity.RuntimeManager.PlayOneShotAttached(dashStartEvent, gameObject);
+        emitter.Play(dashStartEvent);
     }
 }

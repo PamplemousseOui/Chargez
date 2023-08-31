@@ -53,7 +53,6 @@ public class PlayerController : MonoBehaviour
     [Header("Fmod parameters")]
     [FMODUnity.ParamRef] public FMODUnity.ParamRef dashInvicibilityParam;
     [FMODUnity.ParamRef] public FMODUnity.ParamRef dashSpeedParam;
-    public FMODUnity.EventReference dashStartEvent;
 
     //Attack Events
     public static EventHandler OnAttackStart;
@@ -464,7 +463,6 @@ public class PlayerController : MonoBehaviour
         {
             m_curDashDirection = transform.up.normalized;
             isDashing = true;
-            //FMODUnity.RuntimeManager.PlayOneShotAttached(dashStartEvent, gameObject);
             OnDashStart?.Invoke(this, null);
             if (isInvincibleDuringDash)
                 healthComponent.SetCanTakeDamage(false);
