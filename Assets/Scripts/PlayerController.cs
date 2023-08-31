@@ -50,6 +50,11 @@ public class PlayerController : MonoBehaviour
     public Slider healthSlider;
     public Slider dashEnergySlider;
 
+    [Header("Fmod parameters")]
+    [FMODUnity.ParamRef] public FMODUnity.ParamRef dashInvicibilityParam;
+    [FMODUnity.ParamRef] public FMODUnity.ParamRef dashSpeedParam;
+    public FMODUnity.EventReference dashStartEvent;
+
     //Attack Events
     public static EventHandler OnAttackStart;
     public static EventHandler OnAttackEnd;
@@ -445,6 +450,12 @@ public class PlayerController : MonoBehaviour
         m_curDashConsumption = baseDashConsumption;
         m_curDashRefillSpeed = baseRefillSpeed;
         m_curDashCooldown = baseDashCooldown;
+
+        //Setting global fmod parameters
+        float invicibilityParam = 0;
+        if (isInvincibleDuringDash) invicibilityParam = 1;
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName(dashInvicibilityParam.Name, invicibilityParam);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName(dashSpeedParam.Name, m_curDashSpeed);
     }
 
     private void StartDash()
@@ -453,6 +464,7 @@ public class PlayerController : MonoBehaviour
         {
             m_curDashDirection = transform.up.normalized;
             isDashing = true;
+            //FMODUnity.RuntimeManager.PlayOneShotAttached(dashStartEvent, gameObject);
             OnDashStart?.Invoke(this, null);
             if (isInvincibleDuringDash)
                 healthComponent.SetCanTakeDamage(false);
