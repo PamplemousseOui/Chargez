@@ -9,7 +9,8 @@ public enum Tag
     Enemy,
     Projectile,
     Trigger,
-    Arena
+    Arena,
+    Garbage
 }
 
 [Serializable]
