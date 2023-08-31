@@ -135,7 +135,7 @@ public class SpawnManager : MonoBehaviour
         pos = new Vector3(x, y, 0);
         spawnedEnemy.transform.position = pos;
         enemies.Add(spawnedEnemy.GetComponent<EnemyComponent>());
-        OnEnemySpawned.Invoke(enemySpawnData.type);
+        OnEnemySpawned?.Invoke(enemySpawnData.type);
     }
 
     private void OnGameRetry()
