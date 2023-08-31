@@ -369,7 +369,7 @@ public class PlayerController : MonoBehaviour
             }   
         }
 
-        for (int i = 0; i < killedEnemies.Count; ++i)
+        for (int i = killedEnemies.Count - 1; i >= 0; --i)
         {
             EnemyComponent enemy = killedEnemies[i];
             enemy.healthComponent.InstantKill();
