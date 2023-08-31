@@ -106,7 +106,7 @@ public class SpawnManager : MonoBehaviour
                 {
                     case 0:
                         spawnedEnemy.transform.localScale = new Vector3(arenaSize.x, 1, 1);
-                        spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0,0,0));
+                        spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0,0,-180));
                         x = 0;
                         y = arenaSize.y / 2 + 2;
                         break;
