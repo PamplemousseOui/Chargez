@@ -13,7 +13,8 @@ public class WaveData
         public float minCooldown = 0.0f;
         public float maxCooldown = 5.0f;
     }
-    
+
+    public string friendlyName;
     public float startCooldown = 5.0f;
     public List<NumberOfEnemyByType> numberOfEnemyByTypes;
 

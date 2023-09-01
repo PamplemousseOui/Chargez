@@ -355,7 +355,7 @@ public class PlayerController : MonoBehaviour
             EnemyComponent enemy = killedEnemies[i];
             enemy.healthComponent.InstantKill();
             OnEnemyKilled?.Invoke(this, enemy.type);
-            Debug.Log($"Destroying enemy {enemy.name}");
+            //Debug.Log($"Destroying enemy {enemy.name}");
         }
     }
 
@@ -442,7 +442,7 @@ public class PlayerController : MonoBehaviour
             if (isInvincibleDuringDash)
                 healthComponent.SetCanTakeDamage(false);
             ComputeDashProperties();
-            Debug.Log("Start dash");
+            //Debug.Log("Start dash");
         }
     }
     
@@ -456,7 +456,7 @@ public class PlayerController : MonoBehaviour
             OnDashStop?.Invoke(this, null);
             StartDashCooldown();
             healthComponent.SetCanTakeDamage(true);
-            Debug.Log("Stop dash");
+            //Debug.Log("Stop dash");
         }
     }
 
