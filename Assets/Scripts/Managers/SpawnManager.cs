@@ -80,18 +80,18 @@ public class SpawnManager : MonoBehaviour
                 {
                     case 0:
                         x = UnityEngine.Random.Range(0, arenaSize.x) - (arenaSize.x / 2);
-                        y = arenaSize.y / 2;
+                        y = arenaSize.y / 2 - 1;
                         break;
                     case 1:
-                        x = arenaSize.x / 2;
+                        x = arenaSize.x / 2 - 1;
                         y = UnityEngine.Random.Range(0, arenaSize.y) - (arenaSize.y / 2);
                         break;
                     case 2:
                         x = UnityEngine.Random.Range(0, arenaSize.x) - (arenaSize.x / 2);
-                        y = -arenaSize.y / 2;
+                        y = -arenaSize.y / 2 + 1;
                         break;
                     case 3:
-                        x = -arenaSize.x / 2;
+                        x = -arenaSize.x / 2 + 1;
                         y = UnityEngine.Random.Range(0, arenaSize.y) - (arenaSize.y / 2);
                         break;
                 }

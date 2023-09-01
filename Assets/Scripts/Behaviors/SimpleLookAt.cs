@@ -15,6 +15,7 @@ public class SimpleLookAt : MonoBehaviour
     {
         m_curRotSpeed = baseRotationSpeed;
         m_canRotate = true;
+        transform.up = GameManager.player.transform.position - transform.position;
     }
 
     private void FixedUpdate()
