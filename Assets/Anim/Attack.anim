@@ -40,6 +40,8 @@ AnimationClip:
       value: {fileID: 956958096, guid: 3806c9ff88cf7a14e895e0763abd147c, type: 3}
     - time: 1
       value: {fileID: 1797401195, guid: 3806c9ff88cf7a14e895e0763abd147c, type: 3}
+    - time: 1.1166667
+      value: {fileID: 1797401195, guid: 3806c9ff88cf7a14e895e0763abd147c, type: 3}
     attribute: m_Sprite
     path: Sprite atk
     classID: 212
@@ -72,12 +74,13 @@ AnimationClip:
     - {fileID: 1964563860, guid: 3806c9ff88cf7a14e895e0763abd147c, type: 3}
     - {fileID: 956958096, guid: 3806c9ff88cf7a14e895e0763abd147c, type: 3}
     - {fileID: 1797401195, guid: 3806c9ff88cf7a14e895e0763abd147c, type: 3}
+    - {fileID: 1797401195, guid: 3806c9ff88cf7a14e895e0763abd147c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.0166667
+    m_StopTime: 1.1333333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -96,4 +99,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 1.1166667
+    functionName: ResquestDestroy
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

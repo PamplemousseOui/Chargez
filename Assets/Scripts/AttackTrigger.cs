@@ -47,4 +47,9 @@ public class AttackTrigger : MonoBehaviour
             }
         }
     }
+
+    public void ResquestDestroy()
+    {
+        Destroy(gameObject);
+    }
 }
