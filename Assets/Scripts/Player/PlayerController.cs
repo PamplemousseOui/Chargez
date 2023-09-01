@@ -44,8 +44,6 @@ public class PlayerController : MonoBehaviour
     public bool reinitHealthOnNewWave;
 
     [Header("Setup data")]
-    public GameObject debugAttackMinLoadingFeedback;
-    public GameObject debugAttackMaxLoadingFeedback;
     public HealthComponent healthComponent;
     public Slider healthSlider;
     public Slider dashEnergySlider;
@@ -231,9 +229,6 @@ public class PlayerController : MonoBehaviour
             OnAttackLoadingStart?.Invoke(this, null);
             m_isAttackLoading = true;
             m_currentAttackLoading = 0f;
-
-            debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
-            debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
         }
     }
 
@@ -267,9 +262,6 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("Attack loading canceled");
             OnAttackLoadingCancel?.Invoke(this, null);
         }
-
-        debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
-        debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
     }
 
     private void StartAttack()
@@ -289,9 +281,6 @@ public class PlayerController : MonoBehaviour
         m_currentAttackProgress = 0f;
         m_curAttackTime = attackTime;
         m_currentAttackRange = attackRange;
-
-        debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
-        debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
     }
 
     private void StopAttack()
@@ -322,33 +311,12 @@ public class PlayerController : MonoBehaviour
 
     private void ResetAttackTriggers()
     {
-        foreach (var attack in m_curAttacks)
-        {
-            Destroy(attack.gameObject);
-        }
-
         m_curAttacks = new List<AttackTrigger>();
     }
 
     private void UpdateAttackLoading()
     {
         m_currentAttackLoading += Time.deltaTime;
-
-        if (m_currentAttackLoading < attackMinLoadingTime)
-        {
-            float minLoadingTimeCompletion = Mathf.Clamp(Mathf.Abs((attackMinLoadingTime - m_currentAttackLoading) / attackMinLoadingTime - 1), 0, 1);
-            debugAttackMinLoadingFeedback.transform.localScale = new Vector3(0.1f, 1 * minLoadingTimeCompletion, 1);
-            debugAttackMinLoadingFeedback.transform.localPosition = new Vector3(0, -0.5f + minLoadingTimeCompletion / 2f, 0);
-        }
-        else
-        {
-            debugAttackMinLoadingFeedback.transform.localScale = new Vector3(0.1f, 1, 1);
-            debugAttackMinLoadingFeedback.transform.localPosition = new Vector3(0, 0, 0);
-
-            float maxLoadingTimeCompletion = Mathf.Clamp(Mathf.Abs(ExtensionMethods.MapValueRange(m_currentAttackLoading, attackMinLoadingTime, attackMaxLoadingTime,0,1)), 0, 1);
-            debugAttackMaxLoadingFeedback.transform.localScale = new Vector3(0.1f, 1 * maxLoadingTimeCompletion, 1);
-            debugAttackMaxLoadingFeedback.transform.localPosition = new Vector3(0, -0.5f + maxLoadingTimeCompletion / 2f, 0);
-        }
     }
 
     private void UpdateAttackProgress()
@@ -369,9 +337,6 @@ public class PlayerController : MonoBehaviour
         m_isAttackLoading = false;
         m_curAttackTime = 0;
         m_currentAttackLoading = 0;
-
-        debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
-        debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
     }
 
     private void CheckEnemyWithinMaxRange()

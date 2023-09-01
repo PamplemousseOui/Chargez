@@ -30,7 +30,7 @@ public class AttackTrigger : MonoBehaviour
     {
         if (collision.CompareTag(tagToCheck.ToString()))
         {
-            if (collision.TryGetComponent<EnemyComponent>(out var enemy))
+            if (collision.TryGetComponent<EnemyComponent>(out var enemy) && collision.TryGetComponent(out HealthComponent healthComponent))
             {
                 m_enemiesInRange.Add(enemy);
             }
@@ -41,10 +41,15 @@ public class AttackTrigger : MonoBehaviour
     {
         if (collision.CompareTag(tagToCheck.ToString()))
         {
-            if (collision.TryGetComponent<EnemyComponent>(out var enemy))
+            if (collision.TryGetComponent<EnemyComponent>(out var enemy) && collision.TryGetComponent(out HealthComponent healthComponent))
             {
                 m_enemiesInRange.Remove(enemy);
             }
         }
+    }
+
+    public void ResquestDestroy()
+    {
+        Destroy(gameObject);
     }
 }
