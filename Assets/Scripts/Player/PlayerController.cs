@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
     private float m_curAttackTime;
     private bool m_isAttackRecovering;
     private IEnumerator AttackRecoveryCoroutine;
-    private bool m_isPressingAttackInput;
+    private bool m_isPressingNewAttackInput;
 
     private bool m_isAttackLoading;
     private bool m_isAttacking;
@@ -221,11 +221,13 @@ public class PlayerController : MonoBehaviour
 
     private void StartAttackLoading()
     {
-        m_isPressingAttackInput = true;
+        if (!m_isPressingNewAttackInput)
+            m_isPressingNewAttackInput = true;
         //Debug.Log("Attack loading start");
         if (m_isAttackRecovering || m_isAttacking || GameManager.gameIsPaused || !healthComponent.isAlive) return;
         else
         {
+            m_isPressingNewAttackInput = false;
             OnAttackLoadingStart?.Invoke(this, null);
             m_isAttackLoading = true;
             m_currentAttackLoading = 0f;
@@ -237,7 +239,7 @@ public class PlayerController : MonoBehaviour
 
     private void ReleaseAttack()
     {
-        m_isPressingAttackInput = false;
+        m_isPressingNewAttackInput = false;
         if (m_isAttackLoading && !(GameManager.gameIsPaused || !healthComponent.isAlive))
         {
             if (m_currentAttackLoading > attackMinLoadingTime)
@@ -312,6 +314,10 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(attackRecoveryTime);
         m_isAttackRecovering = false;
         OnAttackRecoveryEnd?.Invoke();
+        if (m_isPressingNewAttackInput)
+        {
+            StartAttackLoading();
+        }
     }
 
     private void ResetAttackTriggers()
