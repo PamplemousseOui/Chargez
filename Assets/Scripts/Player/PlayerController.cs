@@ -76,8 +76,9 @@ public class PlayerController : MonoBehaviour
     private float m_curAttackTime;
     private bool m_isAttackRecovering;
     private IEnumerator AttackRecoveryCoroutine;
+    private bool m_isPressingAttackInput;
 
-    private bool m_isLoading;
+    private bool m_isAttackLoading;
     private bool m_isAttacking;
     public bool isDashing { get; private set; }
     private List<GameObject> m_enemiesWithinMaxRange;
@@ -172,11 +173,10 @@ public class PlayerController : MonoBehaviour
     private void Init()
     {
         m_curAttacks = new List<AttackTrigger>();
-        debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
-        debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
 
         m_currentSpeed = baseSpeed;
-        m_isAttackRecovering = false;
+
+        ResetAttack();
 
         m_curDashEnergyRatio = 1;
         InitDashProperties();
@@ -190,14 +190,14 @@ public class PlayerController : MonoBehaviour
         {
             UpdateDashCooldown();
 
-            if (m_isLoading)
+            if (m_isAttackLoading)
             {
                 UpdateAttackLoading();
                 if (m_currentAttackLoading > attackMaxLoadingTime)
                 {
                     if (attackAutoReleaseOnLoadingEnd)
                     {
-                        FireAttack();
+                        StartAttack();
                     }
                     
                     StopAttackLoading(true);
@@ -221,12 +221,13 @@ public class PlayerController : MonoBehaviour
 
     private void StartAttackLoading()
     {
+        m_isPressingAttackInput = true;
         //Debug.Log("Attack loading start");
-        if (m_isAttackRecovering || m_isAttacking ) return;
+        if (m_isAttackRecovering || m_isAttacking || GameManager.gameIsPaused || !healthComponent.isAlive) return;
         else
         {
             OnAttackLoadingStart?.Invoke(this, null);
-            m_isLoading = true;
+            m_isAttackLoading = true;
             m_currentAttackLoading = 0f;
 
             debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
@@ -236,23 +237,24 @@ public class PlayerController : MonoBehaviour
 
     private void ReleaseAttack()
     {
-        if (m_isLoading)
+        m_isPressingAttackInput = false;
+        if (m_isAttackLoading && !(GameManager.gameIsPaused || !healthComponent.isAlive))
         {
             if (m_currentAttackLoading > attackMinLoadingTime)
             {
-                FireAttack();
+                StartAttack();
             }
             else
             {
                 StopAttackLoading(false);
             }
-            m_isLoading = false;
+            m_isAttackLoading = false;
         }
     }
 
     private void StopAttackLoading(bool _maxTimeReached)
     {
-        m_isLoading = false;
+        m_isAttackLoading = false;
         if (_maxTimeReached)
         {
             //Debug.Log("Attack loading end");
@@ -268,12 +270,12 @@ public class PlayerController : MonoBehaviour
         debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
     }
 
-    private void FireAttack()
+    private void StartAttack()
     {
         //Debug.Log("Firing attack");
         OnAttackStart?.Invoke(this, null);
         m_isAttacking = true;
-        ResetAttack();
+        ResetAttackTriggers();
         foreach (var attackRot in attackRotations)
         {
             GameObject curAttack = Instantiate(LeftAttackTriggerPrefab, transform);
@@ -301,7 +303,7 @@ public class PlayerController : MonoBehaviour
             AttackRecoveryCoroutine = AttackRecoveryDelay();
             StartCoroutine(AttackRecoveryCoroutine);
         }
-        ResetAttack();
+        ResetAttackTriggers();
     }
 
     private IEnumerator AttackRecoveryDelay()
@@ -312,7 +314,7 @@ public class PlayerController : MonoBehaviour
         OnAttackRecoveryEnd?.Invoke();
     }
 
-    private void ResetAttack()
+    private void ResetAttackTriggers()
     {
         foreach (var attack in m_curAttacks)
         {
@@ -352,6 +354,18 @@ public class PlayerController : MonoBehaviour
         {
             CheckEnemyWithinMaxRange();
         }
+    }
+
+    private void ResetAttack()
+    {
+        m_isAttackRecovering = false;
+        m_isAttacking = false;
+        m_isAttackLoading = false;
+        m_curAttackTime = 0;
+        m_currentAttackLoading = 0;
+
+        debugAttackMinLoadingFeedback.transform.localScale = Vector3.zero;
+        debugAttackMaxLoadingFeedback.transform.localScale = Vector3.zero;
     }
 
     private void CheckEnemyWithinMaxRange()

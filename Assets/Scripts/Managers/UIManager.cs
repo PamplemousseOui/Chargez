@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     {
         deathText.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
+        startButton.gameObject.SetActive(false);
     }
 
     private void OnEnable()
