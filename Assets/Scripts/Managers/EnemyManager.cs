@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static int nbEnemies = 0;
+    [SerializeField] public int m_nbEnemies = 0;
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        m_nbEnemies = nbEnemies;
     }
 }

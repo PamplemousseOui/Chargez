@@ -102,33 +102,36 @@ public class SpawnManager : MonoBehaviour
                 break;
             case EnemyType.Wall:
                 pickedWallIndex = UnityEngine.Random.Range(0, 4); //0 = upper then clockwise;
+                float size = 0.0f;
                 switch (pickedWallIndex)
                 {
                     case 0:
-                        spawnedEnemy.transform.localScale = new Vector3(arenaSize.x, 1, 1);
+                        size = arenaSize.x;
                         spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0,0,-180));
                         x = 0;
                         y = arenaSize.y / 2 + 2;
                         break;
                     case 1:
-                        spawnedEnemy.transform.localScale = new Vector3(arenaSize.y, 1, 1);
+                        size = arenaSize.y;
                         spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
                         x = arenaSize.x / 2 + 2;
                         y = 0;
                         break;
                     case 2:
-                        spawnedEnemy.transform.localScale = new Vector3(arenaSize.x, 1, 1);
+                        size = arenaSize.x;
                         spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
                         x = 0;
                         y = -arenaSize.y / 2 - 2;
                         break;
                     case 3:
-                        spawnedEnemy.transform.localScale = new Vector3(arenaSize.y, 1, 1);
+                        size = arenaSize.y;
                         spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -90));
                         x = -arenaSize.x / 2 - 2;
                         y = 0;
                         break;
                 }
+                spawnedEnemy.GetComponent<WallController>().SetSize(size);
+                
                 break;
         }
 

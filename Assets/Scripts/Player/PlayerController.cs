@@ -205,6 +205,7 @@ public class PlayerController : MonoBehaviour
     private void Init()
     {
         pike.gameObject.SetActive(false);
+        EnablePike();
         m_curAttacks = new List<AttackTrigger>();
         modifiers = new List<Modifier>();
         m_shields = new List<ShieldController>();

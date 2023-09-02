@@ -25,6 +25,16 @@ public class EnemyComponent : MonoBehaviour
         GameManager.OnGameRetry -= OnGameRetry;
     }
 
+    private void Start()
+    {
+        EnemyManager.nbEnemies++;
+    }
+
+    private void OnDestroy()
+    {
+        EnemyManager.nbEnemies--;
+    }
+
     private void OnDeath()
     {
         GetComponent<Animator>().SetTrigger("Death");

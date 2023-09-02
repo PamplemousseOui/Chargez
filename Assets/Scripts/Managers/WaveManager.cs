@@ -64,7 +64,7 @@ public class WaveManager : MonoBehaviour
     {
         if (currentWaveData == null || GameManager.gameIsPaused) return;
         
-        if (remainingEnemiesInWave.Count == 0 && SpawnManager.instance.enemies.Count == 0)
+        if (remainingEnemiesInWave.Count == 0 && EnemyManager.nbEnemies <= 0)
         {
             EndOfWave();
         }
