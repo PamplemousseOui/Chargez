@@ -10,7 +10,7 @@ public class CavController : MonoBehaviour
     private CavController m_right;
     private Animator m_animator;
 
-    public bool main = false;
+    public bool main = true;
     public void SetLeft(CavController _left)
     {
         m_left = _left;
