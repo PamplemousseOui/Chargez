@@ -389,6 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitscan: {fileID: 8216656555719093075}
+  health: {fileID: 0}
   emitter: {fileID: -9001628086043144555}
   loadStartEvent:
     Guid:
@@ -490,7 +491,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 0284911ed9c6c8b448c9f4391d4556e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
