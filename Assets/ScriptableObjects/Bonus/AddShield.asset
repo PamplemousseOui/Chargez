@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd36edc6a28f75488f971651a82e382, type: 3}
+  m_Name: AddShield
+  m_EditorClassIdentifier: 
+  name: Shield
+  sprite: {fileID: 21300000, guid: 8da54c17fe2d3b64ea017f93347a6711, type: 3}
+  description: A shield that orbits around character. Protects you from laser.
+  number: 3

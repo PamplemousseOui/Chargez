@@ -314,7 +314,7 @@ MonoBehaviour:
   baseShootMaxRate: 2
   baseShootLength: 2000
   baseDamage: 1
-  baseLaserWeight: 0.2
+  baseLaserWeight: 0.5
   freezeOnPlayerHit: 1
   loadingLineWeight: 0.1
   shootingLineWeight: 0.5
