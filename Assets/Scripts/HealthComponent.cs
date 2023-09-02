@@ -69,4 +69,10 @@ public class HealthComponent : MonoBehaviour
     {
         return m_canTakeDamage;
     }
+
+    public void Heal(int _value)
+    {
+        currentHealth = Math.Min(currentHealth + _value, startHealth);
+        OnHealthUpdated?.Invoke(currentHealth / startHealth, 0);
+    }
 }
