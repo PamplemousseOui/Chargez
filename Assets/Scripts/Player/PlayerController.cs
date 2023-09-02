@@ -13,7 +13,6 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class PlayerController : MonoBehaviour
 {
     [Header("Controller data")]
-    public float attackRange = 2f;
     public float attackTime = 2f;
     public float attackMinLoadingTime = 1f;
     public float attackMaxLoadingTime = 5f;
@@ -21,6 +20,11 @@ public class PlayerController : MonoBehaviour
     public float attackRecoveryTime;
     public List<float> attackRotations;
     public List<Modifier> modifiers = new List<Modifier>();
+    private float GetModifierValue(string _name)
+    {
+        var modifier = modifiers.Find(x => x.name == _name);
+        return modifier?.value ?? 0.0f;
+    }
 
     public float baseSpeed = 0.1f;
     public float maxTurnSpeed = 1f;
@@ -76,7 +80,6 @@ public class PlayerController : MonoBehaviour
 
     private float m_currentAttackLoading;
     private float m_currentAttackProgress;
-    private float m_currentAttackRange;
     private float m_curAttackTime;
     private bool m_isAttackRecovering;
     private IEnumerator AttackRecoveryCoroutine;
@@ -88,14 +91,16 @@ public class PlayerController : MonoBehaviour
     private bool m_isAttacking;
     public bool isDashing { get; private set; }
     private List<GameObject> m_enemiesWithinMaxRange;
-    private float m_currentSpeed;
+    private float m_currentSpeed => baseSpeed * (1.0f + GetModifierValue("character_speed"));
+
+
     private float m_currentTurnSpeed;
     private float m_targetTurnSpeed;
 
     //Dash
-    private float m_curDashSpeed;
+    private float m_curDashSpeed => baseDashSpeed * (1.0f + GetModifierValue("character_speed"));
     private float m_curDashConsumption;
-    private float m_curDashRefillSpeed;
+    private float m_curDashRefillSpeed => baseRefillSpeed * (1.0f + GetModifierValue("energy_regeneration"));
     private float m_curDashEnergyRatio;
     private float m_curDashCooldown;
     private float m_dashCooldownValue;
@@ -142,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnStartNewWave(WaveData _waveData)
     {
-        ReinitPos();
+        //ReinitPos();
         if (reinitHealthOnNewWave)
             healthComponent.Init();
     }
@@ -179,9 +184,7 @@ public class PlayerController : MonoBehaviour
     private void Init()
     {
         m_curAttacks = new List<AttackTrigger>();
-
-        m_currentSpeed = baseSpeed;
-
+        modifiers = new List<Modifier>();
         ResetAttack();
 
         m_curDashEnergyRatio = 1;
@@ -279,17 +282,19 @@ public class PlayerController : MonoBehaviour
         m_isAttacking = true;
         m_isAttackReleasable = false;
         ResetAttackTriggers();
+        
         foreach (var attackRot in attackRotations)
         {
             GameObject curAttack = Instantiate(LeftAttackTriggerPrefab, transform);
             curAttack.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, attackRot);
             AttackTrigger attackTrigger = curAttack.GetComponent<AttackTrigger>();
+            attackTrigger.ApplyAreaModifier(GetModifierValue("attack_area"));
+            attackTrigger.ApplyDurationModifier(GetModifierValue("attack_duration"));
             m_curAttacks.Add(attackTrigger);    
         }
         
         m_currentAttackProgress = 0f;
-        m_curAttackTime = attackTime;
-        m_currentAttackRange = attackRange;
+        m_curAttackTime = attackTime + GetModifierValue("attack_duration");
     }
 
     private void StopAttack()
@@ -385,8 +390,6 @@ public class PlayerController : MonoBehaviour
 
     private void UpdatePosition()
     {
-        m_currentSpeed = baseSpeed;
-
         if (!isDashing || canRotateWhileDashing)
         {
             if (InputManager.isLeft)
@@ -450,9 +453,7 @@ public class PlayerController : MonoBehaviour
 
     public void ComputeDashProperties()
     {
-        m_curDashSpeed = baseDashSpeed;
         m_curDashConsumption = baseDashConsumption;
-        m_curDashRefillSpeed = baseRefillSpeed;
         m_curDashCooldown = baseDashCooldown;
 
         //Setting global fmod parameters
