@@ -97,8 +97,8 @@ public class SpawnManager : MonoBehaviour
                 }
                 break;
             case EnemyType.Archer:
-                x = UnityEngine.Random.Range(0, arenaSize.x) - (arenaSize.x / 2 - 5);
-                y = UnityEngine.Random.Range(0, arenaSize.y) - (arenaSize.y / 2 - 5);
+                x = UnityEngine.Random.Range(2, arenaSize.x - 2) - (arenaSize.x / 2);
+                y = UnityEngine.Random.Range(2, arenaSize.y - 2) - (arenaSize.y / 2);
                 break;
             case EnemyType.Wall:
                 pickedWallIndex = UnityEngine.Random.Range(0, 4); //0 = upper then clockwise;
@@ -141,5 +141,13 @@ public class SpawnManager : MonoBehaviour
     private void OnGameRetry()
     {
         enemies = new List<EnemyComponent>();
+    }
+
+    public void DestroyAllEnemies()
+    {
+        foreach (EnemyComponent enemy in enemies)
+        {
+            enemy.healthComponent.InstantKill();
+        }
     }
 }

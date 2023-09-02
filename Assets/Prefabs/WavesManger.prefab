@@ -67,6 +67,195 @@ MonoBehaviour:
     - type: 0
       minCooldown: 0
       maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
   bonuses:
   - {fileID: 11400000, guid: 081ec7983988b1a42b50b8b1c44dc136, type: 2}
   - {fileID: 11400000, guid: c1f7c1f93a39f944abacbf6d75f3a964, type: 2}
@@ -75,6 +264,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 911c9dd2a2196db44b25e369d46b0d66, type: 2}
   - {fileID: 11400000, guid: 8064c7e75b6794e4fb83918f62c1ca71, type: 2}
   - {fileID: 11400000, guid: 89040ba8b2d4cb54f97a62a83d5e049f, type: 2}
+  - {fileID: 11400000, guid: 15428895b596c564ca9e68f1d62393ce, type: 2}
   menuManager: {fileID: 184284324361109787}
 --- !u!1 &1990366792461702583
 GameObject:

@@ -174,6 +174,7 @@ public class PlayerController : MonoBehaviour
     {
         if (healthSlider.value > _healthRatio && _healthRatio != 0)
         {
+            if(GetModifierValue("explosion") > 0.1f) GameManager.instance.spawnManager.DestroyAllEnemies();
             OnDamageReceived?.Invoke(_healthRatio, _damage); //J'AI MAAAAAAAAAAAAAAAAAAAAAAAL
         }
         healthSlider.value = _healthRatio;
