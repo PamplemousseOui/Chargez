@@ -26,7 +26,8 @@ public class PlayerAnimator : MonoBehaviour
         PlayerController.OnAttackLoadingEnd += OnAttackLoadingEnd;
         PlayerController.OnAttackRecoveryStart += OnAttackRecoveryStart;
         PlayerController.OnAttackRecoveryEnd += OnAttackRecoveryEnd;
-        WaveManager.OnEndWaveEvent += OnEndWave;
+        WaveManager.OnEndWaveEvent += CompletelyResetAnim;
+        PlayerController.OnDeath += CompletelyResetAnim;
     }
 
     private void OnDisable()
@@ -40,10 +41,11 @@ public class PlayerAnimator : MonoBehaviour
         PlayerController.OnAttackLoadingEnd -= OnAttackLoadingEnd;
         PlayerController.OnAttackRecoveryStart -= OnAttackRecoveryStart;
         PlayerController.OnAttackRecoveryEnd -= OnAttackRecoveryEnd;
-        WaveManager.OnEndWaveEvent -= OnEndWave;
+        WaveManager.OnEndWaveEvent -= CompletelyResetAnim;
+        PlayerController.OnDeath -= CompletelyResetAnim;
     }
 
-    private void OnEndWave()
+    private void CompletelyResetAnim()
     {
         m_animator.ResetTrigger("ReleaseAttack");
         m_animator.ResetTrigger("StopAttack");
