@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4210138577445745936}
   - component: {fileID: 4600895818777391526}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3346927514094791555}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -95,7 +95,8 @@ GameObject:
   - component: {fileID: 5605600857583589794}
   - component: {fileID: 7211846276558504836}
   - component: {fileID: 7135855015040041185}
-  m_Layer: 0
+  - component: {fileID: 8885240598050254514}
+  m_Layer: 11
   m_Name: Cav
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +170,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -185,6 +186,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2.53}
   m_EdgeRadius: 0
+--- !u!114 &8885240598050254514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6591036053522093205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2caf38a93ea53cb45a642f86062379b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  contactDamage: 1
+  healthComponent: {fileID: 0}
 --- !u!1 &7781758030710126875
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +212,7 @@ GameObject:
   - component: {fileID: 5267252601086155615}
   - component: {fileID: 8954554160610297058}
   - component: {fileID: 6369979041542793856}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +227,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7781758030710126875}
   m_LocalRotation: {x: -1, y: -0, z: -0, w: -0.00000005960465}
-  m_LocalPosition: {x: 0.03999999, y: -0.57, z: 0.05}
+  m_LocalPosition: {x: 0.03999999, y: -0.763, z: 0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
