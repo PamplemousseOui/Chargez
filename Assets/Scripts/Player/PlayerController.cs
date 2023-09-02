@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public float maxDashTurnSpeed = 1f;
     public float turnInertia = 0.1f;
 
+    public PikeController pike;
     public float baseDashSpeed;
     public float baseDashConsumption;
     public float baseRefillSpeed;
@@ -123,6 +124,11 @@ public class PlayerController : MonoBehaviour
             m_shields[i].SetRotation(i / (float)m_shields.Count * 360.0f);
         }
     }
+
+    public void EnablePike()
+    {
+        pike.gameObject.SetActive(true);
+    }
     private void Awake()
     {
         GameManager.player = this;
@@ -198,6 +204,7 @@ public class PlayerController : MonoBehaviour
 
     private void Init()
     {
+        pike.gameObject.SetActive(false);
         m_curAttacks = new List<AttackTrigger>();
         modifiers = new List<Modifier>();
         m_shields = new List<ShieldController>();
