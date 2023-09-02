@@ -48,6 +48,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private void OnAttackEnd(object sender, EventArgs e)
     {
+        m_animator.SetTrigger("StopAttack");
         
     }
 
