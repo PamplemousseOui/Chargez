@@ -46,60 +46,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - startCooldown: 5
+  - friendlyName: Vague 1
+    startCooldown: 5
     numberOfEnemyByTypes:
     - type: 0
-      minCooldown: 9
-      maxCooldown: 10
+      minCooldown: 6
+      maxCooldown: 8
     - type: 0
-      minCooldown: 4
-      maxCooldown: 5
+      minCooldown: 3
+      maxCooldown: 4
     - type: 0
-      minCooldown: 4
-      maxCooldown: 5
+      minCooldown: 3
+      maxCooldown: 4
     - type: 0
-      minCooldown: 4
-      maxCooldown: 5
+      minCooldown: 3
+      maxCooldown: 4
     - type: 0
       minCooldown: 0
       maxCooldown: 0
     - type: 0
       minCooldown: 0
       maxCooldown: 0
-    - type: 0
-      minCooldown: 0
-      maxCooldown: 0
-  - startCooldown: 5
-    numberOfEnemyByTypes:
-    - type: 1
-      minCooldown: 5
-      maxCooldown: 5
-    - type: 1
-      minCooldown: 5
-      maxCooldown: 5
-    - type: 1
-      minCooldown: 5
-      maxCooldown: 5
-    - type: 1
-      minCooldown: 5
-      maxCooldown: 5
-    - type: 1
-      minCooldown: 5
-      maxCooldown: 5
-  - startCooldown: 5
-    numberOfEnemyByTypes:
-    - type: 2
-      minCooldown: 5
-      maxCooldown: 5
-    - type: 2
-      minCooldown: 5
-      maxCooldown: 5
-    - type: 2
-      minCooldown: 5
-      maxCooldown: 5
-    - type: 2
-      minCooldown: 5
-      maxCooldown: 5
   bonuses:
   - {fileID: 11400000, guid: 656c7b2797c8b8d4e9011778ea3fbfe0, type: 2}
   - {fileID: 11400000, guid: eb41c2afbcc1df84daf2d9026fb8350c, type: 2}
