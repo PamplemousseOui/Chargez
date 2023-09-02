@@ -17,6 +17,10 @@ public class PlayerSound : MonoBehaviour
     public FMODUnity.EventReference attackLoadEndEvent;
     public FMODUnity.EventReference attackStartEvent;
     public FMODUnity.EventReference attackEndingEvent;
+    public EventReference hitEvent;
+    public EventReference deathEvent;
+
+    public ParamRef healthParam;
 
     private void OnEnable()
     {
@@ -28,6 +32,9 @@ public class PlayerSound : MonoBehaviour
         PlayerController.OnAttackReleasable += OnAttackReleasable;
         PlayerController.OnAttackStart += OnAttackStart;
         PlayerController.OnAttackEnding += OnAttackEnding;
+
+        PlayerController.OnDamageReceived += OnDamageReceived;
+        PlayerController.OnDeath += OnDeath;
     }
 
     private void OnDisable()
@@ -40,6 +47,9 @@ public class PlayerSound : MonoBehaviour
         PlayerController.OnAttackReleasable -= OnAttackReleasable;
         PlayerController.OnAttackStart -= OnAttackStart;
         PlayerController.OnAttackEnding -= OnAttackEnding;
+
+        PlayerController.OnDamageReceived -= OnDamageReceived;
+        PlayerController.OnDeath -= OnDeath;
     }
 
     private void OnDashStart(object sender, EventArgs e)
@@ -84,5 +94,16 @@ public class PlayerSound : MonoBehaviour
     private void StopLoadingLoop()
     {
         emitter.Stop(attackLoadLoopEvent);
+    }
+
+    private void OnDamageReceived(float _newHealthRatio, float _damage)
+    {
+        emitter.SetParameter(healthParam, _newHealthRatio);
+        emitter.PlayAndForget(hitEvent);
+    }
+
+    private void OnDeath()
+    {
+        emitter.PlayOneShot(deathEvent);
     }
 }

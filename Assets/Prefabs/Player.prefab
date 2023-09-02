@@ -5103,6 +5103,23 @@ MonoBehaviour:
       Data3: -2045149765
       Data4: 1281727429
     Path: event:/Player/Sfx/Atk/Sfx_Player_Atk_Ending
+  hitEvent:
+    Guid:
+      Data1: -109935402
+      Data2: 1257016019
+      Data3: -1523279991
+      Data4: 1813508853
+    Path: event:/Player/Sfx/Sfx_Player_Hit
+  deathEvent:
+    Guid:
+      Data1: 1018458179
+      Data2: 1340645867
+      Data3: 1385409955
+      Data4: -1267534292
+    Path: event:/Player/Sfx/Sfx_Player_Death
+  healthParam:
+    Name: HealthRatio
+    Value: 1
 --- !u!114 &8253425486302003313
 MonoBehaviour:
   m_ObjectHideFlags: 0

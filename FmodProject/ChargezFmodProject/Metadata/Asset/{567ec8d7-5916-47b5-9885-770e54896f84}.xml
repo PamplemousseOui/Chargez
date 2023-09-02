@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{567ec8d7-5916-47b5-9885-770e54896f84}">
+		<property name="assetPath">
+			<value>Sfx/Player/Health/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{aae51dc7-8cca-43b6-a95f-a211c0022913}</destination>
+		</relationship>
+	</object>
+</objects>

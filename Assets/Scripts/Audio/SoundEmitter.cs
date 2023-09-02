@@ -32,6 +32,11 @@ public class SoundEmitter : MonoBehaviour
         SoundCallbackGetter.AddCallback(eventInstance, _type, _callbackAction);
     }
 
+    public void PlayAndForget(FMODUnity.EventReference _fmodEvent)
+    {
+        CreateAndPlayInstance(_fmodEvent).release();
+    }
+
     public void PlayOneShot(FMODUnity.EventReference _fmodEvent)
     {
         FMODUnity.RuntimeManager.PlayOneShotAttached(_fmodEvent, gameObject);
@@ -53,8 +58,7 @@ public class SoundEmitter : MonoBehaviour
     {
         if (m_localParameters.ContainsKey(_param))
         {
-            m_localParameters.Remove(_param);
-            m_localParameters.Add(_param, _value);
+            m_localParameters[_param] = _value;
         }
         else
         {
@@ -65,7 +69,7 @@ public class SoundEmitter : MonoBehaviour
         {
             foreach (EventInstance instance in eventInstances)
             {
-                instance.setParameterByName(_param.ToString(), _value, _ignoreseekspeed);
+                instance.setParameterByName(_param.Name, _value, _ignoreseekspeed);
             }
         }
     }
@@ -121,7 +125,7 @@ public class SoundEmitter : MonoBehaviour
         {
             float value;
             m_localParameters.TryGetValue(param, out value);
-            _eventInstance.setParameterByName(param.ToString(), value);
+            _eventInstance.setParameterByName(param.Name, value);
         }
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(_eventInstance, gameObject.transform);
         _eventInstance.start();
