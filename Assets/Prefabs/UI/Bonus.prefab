@@ -33,9 +33,9 @@ RectTransform:
   m_Father: {fileID: 3877451891764251070}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 404, y: -47.84314}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -119, y: 31}
   m_SizeDelta: {x: 431.8684, y: 57.686295}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6982840433588273021
@@ -95,13 +95,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a450605ffdae04f852e506caa21c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusDataData: {fileID: 0}
+  bonusData: {fileID: 0}
   name: {fileID: 3043138971062592191}
   image: {fileID: 870372289165399278}
   description: {fileID: 6957709429402614225}
@@ -323,10 +323,10 @@ RectTransform:
   m_Father: {fileID: 3877451891764251070}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 94.69641, y: -92.303604}
-  m_SizeDelta: {x: 148.6071, y: 148.6071}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -419, y: -0.30361938}
+  m_SizeDelta: {x: 119.786804, y: 119.7868}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2325115731466546611
 CanvasRenderer:
@@ -399,10 +399,10 @@ RectTransform:
   m_Father: {fileID: 3877451891764251070}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 598.1919, y: -127.09656}
-  m_SizeDelta: {x: 820.2519, y: 101.2652}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 75.191895, y: -45.22255}
+  m_SizeDelta: {x: 820.25195, y: 81.0132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &379161760519114314
 CanvasRenderer:
@@ -432,9 +432,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac leo nibh.
-    Sed mattis erat mauris, nec lacinia velit ornare a. Nam tempus ipsum sit amet
-    massa volutpat, id porta metus facilisis. '
+  m_text: Augments area of attacks by 10%.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -461,8 +459,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
