@@ -282,8 +282,11 @@ public class PlayerController : MonoBehaviour
         m_isAttacking = true;
         m_isAttackReleasable = false;
         ResetAttackTriggers();
+
+        List<float> attacks = new List<float>(attackRotations);
+        if(GetModifierValue("backward_attack") > 0.1f) attacks.Add(180.0f);
         
-        foreach (var attackRot in attackRotations)
+        foreach (var attackRot in attacks)
         {
             GameObject curAttack = Instantiate(LeftAttackTriggerPrefab, transform);
             curAttack.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, attackRot);
