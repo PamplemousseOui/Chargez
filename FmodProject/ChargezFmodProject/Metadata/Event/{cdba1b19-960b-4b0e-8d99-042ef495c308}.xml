@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{cdba1b19-960b-4b0e-8d99-042ef495c308}">
 		<property name="name">
-			<value>Sfx_Player_DashStart</value>
+			<value>Sfx_Player_Dash_Start</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -490,7 +490,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>-7</value>
+			<value>-4</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{7cd76669-a0a4-4a77-b09d-90f0f985e2be}">
@@ -498,7 +498,7 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>-10</value>
+			<value>-6</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{0d5192f3-236b-417c-b76c-b347f92907db}">
@@ -514,7 +514,7 @@
 			<value>14.942528735632184</value>
 		</property>
 		<property name="value">
-			<value>-10</value>
+			<value>-4</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{4766ea63-209a-4924-94f4-1bf41f9f351f}">
@@ -530,7 +530,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>-80</value>
+			<value>-12</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{d0156cfe-64bc-4d66-b528-f89ed365efb8}">
@@ -538,7 +538,7 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>-8</value>
+			<value>-6</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{1287790d-beea-4efd-82ab-db1c093bf9ba}">
@@ -554,7 +554,7 @@
 			<value>15.065681444991789</value>
 		</property>
 		<property name="value">
-			<value>-8</value>
+			<value>-5</value>
 		</property>
 	</object>
 	<object class="AutomationCurve" id="{5ce2da76-b2b5-496d-b27a-e65cf42174d0}">
@@ -580,7 +580,7 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>-10</value>
+			<value>-6</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{62690cc9-1a4a-4541-9065-f93f2023d7f4}">
@@ -588,7 +588,7 @@
 			<value>15</value>
 		</property>
 		<property name="value">
-			<value>-10</value>
+			<value>-6</value>
 		</property>
 		<property name="curveShape">
 			<value>-0.475179493</value>

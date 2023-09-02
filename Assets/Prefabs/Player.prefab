@@ -4910,12 +4910,9 @@ MonoBehaviour:
   healthComponent: {fileID: 3850433096186504612}
   healthSlider: {fileID: 0}
   dashEnergySlider: {fileID: 0}
-  dashInvicibilityParam:
-    Name: 
-    Value: 0
-  dashSpeedParam:
-    Name: 
-    Value: 0
+  dashInvicibilityParam: DashInvicibility
+  dashSpeedParam: DashSpeed
+  attackLoadingRatioParam: AttackLoadingRatio
 --- !u!114 &1546227680206470810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5056,7 +5053,21 @@ MonoBehaviour:
       Data2: 1259247115
       Data3: 772053389
       Data4: 147035636
-    Path: event:/Player/Sfx/Sfx_Player_DashStart
+    Path: event:/Player/Sfx/Sfx_Player_Dash_Start
+  dashLoopEvent:
+    Guid:
+      Data1: 1834076274
+      Data2: 1289394517
+      Data3: 409568177
+      Data4: -767273567
+    Path: event:/Player/Sfx/Sfx_Player_Dash_Lp
+  dashStopEvent:
+    Guid:
+      Data1: 1177345034
+      Data2: 1108297110
+      Data3: -413518658
+      Data4: -1267040114
+    Path: event:/Player/Sfx/Sfx_Player_Dash_End
   attackLoadStartEvent:
     Guid:
       Data1: -1235982828

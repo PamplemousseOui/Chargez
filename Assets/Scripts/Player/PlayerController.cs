@@ -53,8 +53,9 @@ public class PlayerController : MonoBehaviour
     public Slider dashEnergySlider;
 
     [Header("Fmod parameters")]
-    [FMODUnity.ParamRef] public FMODUnity.ParamRef dashInvicibilityParam;
-    [FMODUnity.ParamRef] public FMODUnity.ParamRef dashSpeedParam;
+    public string dashInvicibilityParam;
+    public string dashSpeedParam;
+    public string attackLoadingRatioParam;
 
     //Attack Events
     public static EventHandler OnAttackStart;
@@ -340,6 +341,7 @@ public class PlayerController : MonoBehaviour
             m_isAttackReleasable = true;
             OnAttackReleasable?.Invoke();
         }
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName(attackLoadingRatioParam, m_currentAttackLoading / attackMaxLoadingTime);
     }
 
     private void UpdateAttackProgress()
@@ -462,8 +464,8 @@ public class PlayerController : MonoBehaviour
         //Setting global fmod parameters
         float invicibilityParam = 0;
         if (isInvincibleDuringDash) invicibilityParam = 1;
-        FMODUnity.RuntimeManager.StudioSystem.setParameterByName(dashInvicibilityParam.Name, invicibilityParam);
-        FMODUnity.RuntimeManager.StudioSystem.setParameterByName(dashSpeedParam.Name, m_curDashSpeed);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName(dashInvicibilityParam, invicibilityParam);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName(dashSpeedParam, m_curDashSpeed);
     }
 
     private void StartDash()
