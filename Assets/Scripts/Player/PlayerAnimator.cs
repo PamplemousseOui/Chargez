@@ -51,6 +51,7 @@ public class PlayerAnimator : MonoBehaviour
         m_animator.ResetTrigger("CancelAttack");
         m_animator.ResetTrigger("StartDash");
         m_animator.ResetTrigger("StopDash");
+        m_animator.SetTrigger("Reset");
     }
 
     private void OnAttackStart(object sender, EventArgs e)
