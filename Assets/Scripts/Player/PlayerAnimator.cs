@@ -55,26 +55,38 @@ public class PlayerAnimator : MonoBehaviour
 
     private void OnAttackStart(object sender, EventArgs e)
     {
+        ResetTrigger();
         m_animator.SetTrigger("ReleaseAttack");
     }
 
     private void OnAttackEnd(object sender, EventArgs e)
     {
+        ResetTrigger();
         m_animator.SetTrigger("StopAttack");
         
     }
 
     private void OnAttackLoadingStart(object sender, EventArgs e)
     {
+        ResetTrigger();
         m_animator.SetTrigger("ChargeAttack");
         
     }
 
     private void OnAttackLoadingCancel(object sender, EventArgs e)
     {
+        ResetTrigger();
         m_animator.SetTrigger("CancelAttack");
     }
-
+    
+    private void ResetTrigger()
+    {
+        m_animator.ResetTrigger("ReleaseAttack");
+        m_animator.ResetTrigger("StopAttack");
+        m_animator.ResetTrigger("ChargeAttack");
+        m_animator.ResetTrigger("CancelAttack");
+    }
+    
     private void OnAttackLoadingEnd()
     {
         

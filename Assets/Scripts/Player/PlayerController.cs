@@ -464,6 +464,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D _other)
+    {
+        Debug.Log("HitWall");
+    }
+
     private void ReinitPos()
     {
         transform.position = new Vector3(0, 0, 0);
