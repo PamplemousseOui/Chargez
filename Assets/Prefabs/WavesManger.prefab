@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 4542150438670146261}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6081396733877322039
 MonoBehaviour:
@@ -67,11 +67,83 @@ MonoBehaviour:
     - type: 0
       minCooldown: 0
       maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 1
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+  - friendlyName: Vague 1
+    startCooldown: 1
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+  - friendlyName: Vague 1
+    startCooldown: 1
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+  - friendlyName: Vague 1
+    startCooldown: 1
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+  - friendlyName: Vague 1
+    startCooldown: 1
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+  - friendlyName: Vague 1
+    startCooldown: 1
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
   bonuses:
-  - {fileID: 11400000, guid: 656c7b2797c8b8d4e9011778ea3fbfe0, type: 2}
-  - {fileID: 11400000, guid: eb41c2afbcc1df84daf2d9026fb8350c, type: 2}
-  - {fileID: 11400000, guid: e41946d6f2d4e804abca29f767d7394c, type: 2}
-  - {fileID: 11400000, guid: 28316b5f4fadb1a4e9adbd3136a68463, type: 2}
+  - {fileID: 11400000, guid: 42681ccfe64649047b817f2fbc10898d, type: 2}
+  - {fileID: 11400000, guid: 7b86224556663e646a2f807f7832d7c3, type: 2}
+  - {fileID: 11400000, guid: 911c9dd2a2196db44b25e369d46b0d66, type: 2}
+  - {fileID: 11400000, guid: 8064c7e75b6794e4fb83918f62c1ca71, type: 2}
   menuManager: {fileID: 184284324361109787}
 --- !u!1 &1990366792461702583
 GameObject:
@@ -363,7 +435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5692791185715325289, guid: f4669343c5e6f804fa399fd7256f5741, type: 3}
       propertyPath: m_Name
-      value: Bonus (1)
+      value: Bonus 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -480,7 +552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5692791185715325289, guid: f4669343c5e6f804fa399fd7256f5741, type: 3}
       propertyPath: m_Name
-      value: Bonus (2)
+      value: Bonus 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -597,7 +669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5692791185715325289, guid: f4669343c5e6f804fa399fd7256f5741, type: 3}
       propertyPath: m_Name
-      value: Bonus
+      value: Bonus 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

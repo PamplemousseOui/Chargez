@@ -52,4 +52,20 @@ public class AttackTrigger : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    public void ApplyAreaModifier(float _areaModifier)
+    {
+        transform.localScale *= (1.0f + _areaModifier);
+    }
+
+    public void ApplyDurationModifier(float _durationModifier)
+    {
+        StartCoroutine(StopAttackCoroutine(_durationModifier));
+    }
+
+    public IEnumerator StopAttackCoroutine(float _overTime)
+    {
+        yield return new WaitForSeconds(_overTime);
+        GetComponent<Animator>().SetTrigger("Cancel");
+    }
 }
