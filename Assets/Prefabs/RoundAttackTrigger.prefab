@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3399944736248150420}
   - component: {fileID: 2546087291863158377}
   - component: {fileID: 6215161059965688512}
-  m_Layer: 2
+  m_Layer: 3
   m_Name: RoundAttackTrigger
   m_TagString: Trigger
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3850467905194724140}
   - component: {fileID: 4910555500048466160}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite atk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
