@@ -10,6 +10,8 @@ public class PlayerSound : MonoBehaviour
     public SoundEmitter emitter;
     public PlayerController playerController;
     public FMODUnity.EventReference dashStartEvent;
+    public FMODUnity.EventReference dashLoopEvent;
+    public FMODUnity.EventReference dashStopEvent;
     public FMODUnity.EventReference attackLoadStartEvent;
     public FMODUnity.EventReference attackLoadLoopEvent;
     public FMODUnity.EventReference attackLoadEndEvent;
@@ -19,6 +21,8 @@ public class PlayerSound : MonoBehaviour
     private void OnEnable()
     {
         PlayerController.OnDashStart += OnDashStart;
+        PlayerController.OnDashStop += OnDashStop;
+
         PlayerController.OnAttackLoadingStart += OnAttackLoadingStart;
         PlayerController.OnAttackLoadingCancel += OnAttackLoadingCancel;
         PlayerController.OnAttackReleasable += OnAttackReleasable;
@@ -29,6 +33,8 @@ public class PlayerSound : MonoBehaviour
     private void OnDisable()
     {
         PlayerController.OnDashStart -= OnDashStart;
+        PlayerController.OnDashStop -= OnDashStop;
+
         PlayerController.OnAttackLoadingStart -= OnAttackLoadingStart;
         PlayerController.OnAttackLoadingCancel -= OnAttackLoadingCancel;
         PlayerController.OnAttackReleasable -= OnAttackReleasable;
@@ -39,6 +45,13 @@ public class PlayerSound : MonoBehaviour
     private void OnDashStart(object sender, EventArgs e)
     {
         emitter.PlayOneShot(dashStartEvent);
+        emitter.Play(dashLoopEvent);
+    }
+
+    private void OnDashStop(object sender, EventArgs e)
+    {
+        emitter.PlayOneShot(dashStopEvent);
+        emitter.Stop(dashLoopEvent);
     }
 
     private void OnAttackLoadingStart(object sender, EventArgs e)

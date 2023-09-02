@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{1d149be4-6f47-4bfc-a402-1ea9900c165a}">
+		<property name="name">
+			<value>AttackLoadingRatio</value>
+		</property>
+		<relationship name="folder">
+			<destination>{098d220a-0175-4f03-9a8a-731f1d1256be}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{13fe4f18-ac82-4807-ab91-475cee8ec0f8}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{13fe4f18-ac82-4807-ab91-475cee8ec0f8}">
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>
