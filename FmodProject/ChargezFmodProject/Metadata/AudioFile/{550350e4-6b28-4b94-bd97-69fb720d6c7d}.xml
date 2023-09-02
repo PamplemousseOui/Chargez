@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{550350e4-6b28-4b94-bd97-69fb720d6c7d}">
+		<property name="assetPath">
+			<value>Sfx/Enemy/Sfx_Enemy_Death_01.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1.5483333333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{aae51dc7-8cca-43b6-a95f-a211c0022913}</destination>
+		</relationship>
+	</object>
+</objects>
