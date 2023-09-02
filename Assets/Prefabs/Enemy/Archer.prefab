@@ -100,6 +100,9 @@ GameObject:
   - component: {fileID: 4043143177436533345}
   - component: {fileID: 8216656555719093075}
   - component: {fileID: 6014860815134657748}
+  - component: {fileID: -620667825144033042}
+  - component: {fileID: -9001628086043144555}
+  - component: {fileID: -2509527451137873778}
   m_Layer: 6
   m_Name: Archer
   m_TagString: Enemy
@@ -339,6 +342,82 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-620667825144033042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2404172852184435263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b122198589d225419c2cb88f1eaf703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emitter: {fileID: -9001628086043144555}
+  health: {fileID: 4043143177436533345}
+  enemy: {fileID: 1846917121418555223}
+  deathEvent:
+    Guid:
+      Data1: -1943178126
+      Data2: 1094173241
+      Data3: -272844865
+      Data4: 1532399920
+    Path: event:/Enemy/Sfx_Enemy_Death
+--- !u!114 &-9001628086043144555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2404172852184435263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250986ddddd906642b7f52933d859075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2509527451137873778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2404172852184435263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99582eb982d8cc94b824ea14b4f5a674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitscan: {fileID: 8216656555719093075}
+  emitter: {fileID: -9001628086043144555}
+  loadStartEvent:
+    Guid:
+      Data1: -295192445
+      Data2: 1085918740
+      Data3: 678577830
+      Data4: 1698134215
+    Path: event:/Enemy/Sfx_Enemy_Hitscan_Load_Start
+  loadEndEvent:
+    Guid:
+      Data1: 478941278
+      Data2: 1310777087
+      Data3: -930179914
+      Data4: -1060670390
+    Path: event:/Enemy/Sfx_Enemy_Hitscan_Load_End
+  shootStartEvent:
+    Guid:
+      Data1: -688696750
+      Data2: 1210974527
+      Data3: 424828606
+      Data4: 1451110300
+    Path: event:/Enemy/Sfx_Enemy_Hitscan_Shoot_Start
+  shootLoopEvent:
+    Guid:
+      Data1: 56682128
+      Data2: 1130888752
+      Data3: 465217666
+      Data4: 1551152427
+    Path: event:/Enemy/Sfx_Enemy_Hitscan_Shoot_Lp
 --- !u!1 &3177201735460621794
 GameObject:
   m_ObjectHideFlags: 0

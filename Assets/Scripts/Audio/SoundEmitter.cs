@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -50,6 +51,20 @@ public class SoundEmitter : MonoBehaviour
             foreach (EventInstance eventInstance in instancesToStop)
             {
                 StopAndClear(eventInstance);
+            }
+        }
+    }
+
+    public void StopAll()
+    {
+        foreach (EventReference eventRef in m_playingEventsDict.Keys)
+        {
+            if (m_playingEventsDict.TryGetValue(eventRef, out List<EventInstance> instancesToStop))
+            {
+                foreach (EventInstance eventInstance in instancesToStop)
+                {
+                    StopAndClear(eventInstance);
+                }
             }
         }
     }
@@ -160,7 +175,7 @@ public class SoundEmitter : MonoBehaviour
 
     private void StopAndClear(EventInstance _eventInstance)
     {
-        _eventInstance.stop(STOP_MODE.ALLOWFADEOUT);
+        _eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         _eventInstance.release();
         SoundCallbackGetter.RemoveCallback(_eventInstance);
     }

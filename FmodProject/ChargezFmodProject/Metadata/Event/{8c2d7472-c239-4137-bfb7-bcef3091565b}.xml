@@ -108,6 +108,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{9609e90e-88ea-43bb-b16e-323dba13db21}" />
 	<object class="MultiSound" id="{e3439428-b331-4348-a54a-dea7715d1dae}">
+		<property name="volume">
+			<value>3</value>
+		</property>
 		<relationship name="modulators">
 			<destination>{887c7bd6-1c87-4a2f-b3e5-f36657e08bb9}</destination>
 		</relationship>
@@ -126,6 +129,15 @@
 		</property>
 		<property name="maximumDistance">
 			<value>40</value>
+		</property>
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>5.5</value>
+		</property>
+		<property name="minimumExtent">
+			<value>164</value>
 		</property>
 	</object>
 	<object class="RandomizerModulator" id="{887c7bd6-1c87-4a2f-b3e5-f36657e08bb9}">

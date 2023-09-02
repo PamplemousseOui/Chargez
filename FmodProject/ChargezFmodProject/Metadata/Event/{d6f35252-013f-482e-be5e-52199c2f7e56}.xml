@@ -99,6 +99,9 @@
 		<property name="length">
 			<value>0.65793749999999995</value>
 		</property>
+		<property name="pitch">
+			<value>-3</value>
+		</property>
 		<relationship name="sounds">
 			<destination>{c06f2769-13e8-4f84-8cf1-d1e610be8950}</destination>
 			<destination>{3064397e-644c-4833-8fcc-02adf3afde97}</destination>
@@ -106,6 +109,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{43158b83-28c1-4376-885d-ba1443910379}">
+		<property name="volume">
+			<value>-1</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
