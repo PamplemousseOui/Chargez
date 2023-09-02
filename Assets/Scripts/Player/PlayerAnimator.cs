@@ -6,6 +6,9 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     private Animator m_animator;
+
+    [SerializeField] private GameObject m_dashFart;
+    [SerializeField] private GameObject m_dashGhost;
     // Start is called before the first frame update
     void Awake()
     {
@@ -16,6 +19,8 @@ public class PlayerAnimator : MonoBehaviour
     {
         PlayerController.OnAttackStart += OnAttackStart;
         PlayerController.OnAttackEnd += OnAttackEnd;
+        PlayerController.OnDashStart += OnDashStart;
+        PlayerController.OnDashStop += OnDashStop;
         PlayerController.OnAttackLoadingStart += OnAttackLoadingStart;
         PlayerController.OnAttackLoadingCancel += OnAttackLoadingCancel;
         PlayerController.OnAttackLoadingEnd += OnAttackLoadingEnd;
@@ -27,6 +32,8 @@ public class PlayerAnimator : MonoBehaviour
     {
         PlayerController.OnAttackStart -= OnAttackStart;
         PlayerController.OnAttackEnd -= OnAttackEnd;
+        PlayerController.OnDashStart -= OnDashStart;
+        PlayerController.OnDashStop -= OnDashStop;
         PlayerController.OnAttackLoadingStart -= OnAttackLoadingStart;
         PlayerController.OnAttackLoadingCancel -= OnAttackLoadingCancel;
         PlayerController.OnAttackLoadingEnd -= OnAttackLoadingEnd;
@@ -68,5 +75,35 @@ public class PlayerAnimator : MonoBehaviour
     private void OnAttackRecoveryEnd()
     {
         
+    }
+
+    private void OnDashStart(object sender, EventArgs e)
+    {
+        m_animator.SetTrigger("StartDash");
+        SpawnFart();
+    }
+
+    private void OnDashStop(object sender, EventArgs e)
+    {
+        m_animator.SetTrigger("StopDash");
+    }
+
+    public void SpawnFart()
+    {
+        if (!m_dashFart) return;
+        var ghost = Instantiate(m_dashFart, transform.position, transform.rotation);
+    }
+    
+
+    public void SpawnGhost()
+    {
+        if (!m_dashGhost) return;
+        var sprites = GetComponentsInChildren<SpriteRenderer>();
+        foreach (var sprite in sprites)
+        {
+            var ghost = Instantiate(m_dashGhost, sprite.transform.position, sprite.transform.rotation);
+            ghost.transform.localScale = sprite.transform.lossyScale;
+            ghost.GetComponent<SpriteRenderer>().sprite = sprite.sprite;
+        }
     }
 }
