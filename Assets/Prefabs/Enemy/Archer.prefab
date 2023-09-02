@@ -247,66 +247,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  loadingColor:
-    serializedVersion: 2
-    key0: {r: 1, g: 0.95442104, b: 0.6367924, a: 0.46666667}
-    key1: {r: 1, g: 0.9529412, b: 0.63529414, a: 0.46666667}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
-  shootingColor:
-    serializedVersion: 2
-    key0: {r: 1, g: 0.6273488, b: 0, a: 1}
-    key1: {r: 1, g: 0.627451, b: 0, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
+  loadingColor: {fileID: 2100000, guid: 87b8d3c44abecf14c9c42adb8f4fa351, type: 2}
+  shootingColor: {fileID: 2100000, guid: b6f2d55aedc4a604796fc5d9bc5d48cf, type: 2}
   baseShootDuration: 1
   baseLoadingTime: 2
   baseStopRotationBeforeShootTime: 0.28
@@ -316,8 +258,8 @@ MonoBehaviour:
   baseDamage: 1
   baseLaserWeight: 0.5
   freezeOnPlayerHit: 1
-  loadingLineWeight: 0.1
-  shootingLineWeight: 0.5
+  loadingLineWeight: 0.8
+  shootingLineWeight: 0.8
   m_lineRenderer: {fileID: 6791631957793088813}
   lookAtComponent: {fileID: 8525566253742330748}
   rayTransform: {fileID: 8914152295775151898}
@@ -556,7 +498,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 87b8d3c44abecf14c9c42adb8f4fa351, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -578,11 +520,11 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0.78, z: 0}
   - {x: 0, y: 10, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.5
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -631,7 +573,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0

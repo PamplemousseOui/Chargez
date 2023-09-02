@@ -8,8 +8,8 @@ public class HitScanComponent : MonoBehaviour
 {
     [Header("If no object specified, target = player")]
     public GameObject target;
-    public Gradient loadingColor;
-    public Gradient shootingColor;
+    public Material loadingColor;
+    public Material shootingColor;
     public float baseShootDuration;
     public float baseLoadingTime;
     public float baseStopRotationBeforeShootTime;
@@ -93,7 +93,7 @@ public class HitScanComponent : MonoBehaviour
         
         m_lineRenderer.startWidth = loadingLineWeight;
         m_lineRenderer.endWidth = loadingLineWeight;
-        m_lineRenderer.colorGradient = loadingColor;
+        m_lineRenderer.material = loadingColor;
     }
 
     private void UpdateLoading()
@@ -139,7 +139,7 @@ public class HitScanComponent : MonoBehaviour
         
         m_lineRenderer.startWidth = shootingLineWeight;
         m_lineRenderer.endWidth = shootingLineWeight;
-        m_lineRenderer.colorGradient = shootingColor;
+        m_lineRenderer.material = shootingColor;
     }
 
     private void UpdateShoot()

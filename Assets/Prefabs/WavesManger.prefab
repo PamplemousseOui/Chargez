@@ -49,22 +49,22 @@ MonoBehaviour:
   - friendlyName: Vague 1
     startCooldown: 5
     numberOfEnemyByTypes:
-    - type: 2
+    - type: 0
       minCooldown: 6
       maxCooldown: 8
-    - type: 2
+    - type: 1
       minCooldown: 3
       maxCooldown: 4
-    - type: 2
+    - type: 0
       minCooldown: 3
       maxCooldown: 4
-    - type: 2
+    - type: 1
       minCooldown: 3
       maxCooldown: 4
-    - type: 2
+    - type: 0
       minCooldown: 0
       maxCooldown: 0
-    - type: 2
+    - type: 0
       minCooldown: 0
       maxCooldown: 0
   - friendlyName: Vague 1
