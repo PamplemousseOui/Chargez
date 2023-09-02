@@ -55,7 +55,7 @@ public class PlayerAnimator : MonoBehaviour
         m_animator.SetTrigger("CancelAttack");
     }
 
-    private void OnAttackLoadingEnd(object sender, EventArgs e)
+    private void OnAttackLoadingEnd()
     {
         
     }

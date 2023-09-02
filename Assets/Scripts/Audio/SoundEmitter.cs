@@ -32,6 +32,11 @@ public class SoundEmitter : MonoBehaviour
         SoundCallbackGetter.AddCallback(eventInstance, _type, _callbackAction);
     }
 
+    public void PlayOneShot(FMODUnity.EventReference _fmodEvent)
+    {
+        FMODUnity.RuntimeManager.PlayOneShotAttached(_fmodEvent, gameObject);
+    }
+
     public void Stop(FMODUnity.EventReference _fmodEvent)
     {
         List<EventInstance> instancesToStop;

@@ -57,9 +57,11 @@ public class PlayerController : MonoBehaviour
     public static EventHandler OnAttackEnd;
     public static EventHandler OnAttackLoadingStart;
     public static EventHandler OnAttackLoadingCancel;
-    public static EventHandler OnAttackLoadingEnd;
+    public static Action OnAttackLoadingEnd;
     public static Action OnAttackRecoveryStart;
     public static Action OnAttackRecoveryEnd;
+    public static Action OnAttackReleasable;
+    public static Action OnAttackEnding; //reach 0.6s
     public static EventHandler<EnemyType> OnEnemyKilled;
 
     //Health Events
@@ -79,6 +81,8 @@ public class PlayerController : MonoBehaviour
     private bool m_isAttackRecovering;
     private IEnumerator AttackRecoveryCoroutine;
     private bool m_isPressingNewAttackInput;
+    private bool m_isAttackReleasable;
+    private bool m_isAttackEnding;
 
     private bool m_isAttackLoading;
     private bool m_isAttacking;
@@ -259,7 +263,7 @@ public class PlayerController : MonoBehaviour
         if (_maxTimeReached)
         {
             //Debug.Log("Attack loading end");
-            OnAttackLoadingEnd?.Invoke(this, null);
+            OnAttackLoadingEnd?.Invoke();
         }
         else
         {
@@ -273,6 +277,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("Firing attack");
         OnAttackStart?.Invoke(this, null);
         m_isAttacking = true;
+        m_isAttackReleasable = false;
         ResetAttackTriggers();
         foreach (var attackRot in attackRotations)
         {
@@ -295,6 +300,7 @@ public class PlayerController : MonoBehaviour
         {
             m_isAttackRecovering = true;
             m_isAttacking = false;
+            m_isAttackEnding = false;
             AttackRecoveryCoroutine = AttackRecoveryDelay();
             StartCoroutine(AttackRecoveryCoroutine);
         }
@@ -321,11 +327,23 @@ public class PlayerController : MonoBehaviour
     private void UpdateAttackLoading()
     {
         m_currentAttackLoading += Time.deltaTime;
+        if (m_currentAttackLoading > attackMinLoadingTime && !m_isAttackReleasable)
+        {
+            m_isAttackReleasable = true;
+            OnAttackReleasable?.Invoke();
+        }
     }
 
     private void UpdateAttackProgress()
     {
         m_currentAttackProgress += Time.deltaTime;
+
+        if (m_curAttackTime - m_currentAttackProgress < 0.6f && !m_isAttackEnding)
+        {
+            m_isAttackEnding = true;
+            OnAttackEnding?.Invoke();
+        }
+
         if (m_currentAttackProgress > m_curAttackTime)
             StopAttack();
         else
@@ -339,6 +357,8 @@ public class PlayerController : MonoBehaviour
         m_isAttackRecovering = false;
         m_isAttacking = false;
         m_isAttackLoading = false;
+        m_isAttackReleasable = false;
+        m_isAttackEnding = false;
         m_curAttackTime = 0;
         m_currentAttackLoading = 0;
     }

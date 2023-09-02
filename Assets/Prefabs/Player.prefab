@@ -4843,6 +4843,8 @@ GameObject:
   - component: {fileID: 7180067293770173169}
   - component: {fileID: 6993250933194112308}
   - component: {fileID: 3314591521923591232}
+  - component: {fileID: 5652606691032990255}
+  - component: {fileID: 8253425486302003313}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -4909,6 +4911,12 @@ MonoBehaviour:
   healthComponent: {fileID: 3850433096186504612}
   healthSlider: {fileID: 0}
   dashEnergySlider: {fileID: 0}
+  dashInvicibilityParam:
+    Name: 
+    Value: 0
+  dashSpeedParam:
+    Name: 
+    Value: 0
 --- !u!114 &1546227680206470810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5029,6 +5037,74 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5652606691032990255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5752417969661420192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488f839bc68249342be0de40f585431f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emitter: {fileID: 8253425486302003313}
+  playerController: {fileID: 9105690685780486065}
+  dashStartEvent:
+    Guid:
+      Data1: -843441383
+      Data2: 1259247115
+      Data3: 772053389
+      Data4: 147035636
+    Path: event:/Player/Sfx/Sfx_Player_DashStart
+  attackLoadStartEvent:
+    Guid:
+      Data1: -1235982828
+      Data2: 1280049408
+      Data3: 1991672975
+      Data4: -1392593578
+    Path: event:/Player/Sfx/Atk/Sfx_Player_Atk_Load_Start
+  attackLoadLoopEvent:
+    Guid:
+      Data1: -31444290
+      Data2: 1287604958
+      Data3: 82218662
+      Data4: 43876888
+    Path: event:/Player/Sfx/Atk/Sfx_Player_Atk_Load_Lp
+  attackLoadEndEvent:
+    Guid:
+      Data1: 681336097
+      Data2: 1255511214
+      Data3: 1151464622
+      Data4: 245438040
+    Path: event:/Player/Sfx/Atk/Sfx_Player_Atk_Load_End
+  attackStartEvent:
+    Guid:
+      Data1: 650615103
+      Data2: 1262271677
+      Data3: -1336010591
+      Data4: -1946098476
+    Path: event:/Player/Sfx/Atk/Sfx_Player_Atk_Start
+  attackEndingEvent:
+    Guid:
+      Data1: 1880398088
+      Data2: 1120443793
+      Data3: -2045149765
+      Data4: 1281727429
+    Path: event:/Player/Sfx/Atk/Sfx_Player_Atk_Ending
+--- !u!114 &8253425486302003313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5752417969661420192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250986ddddd906642b7f52933d859075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8585328195343019647
 GameObject:
   m_ObjectHideFlags: 0
