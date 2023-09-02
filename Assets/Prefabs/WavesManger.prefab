@@ -52,13 +52,13 @@ MonoBehaviour:
     - type: 0
       minCooldown: 6
       maxCooldown: 8
-    - type: 0
+    - type: 1
       minCooldown: 3
       maxCooldown: 4
     - type: 0
       minCooldown: 3
       maxCooldown: 4
-    - type: 0
+    - type: 1
       minCooldown: 3
       maxCooldown: 4
     - type: 0

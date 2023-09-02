@@ -27,11 +27,13 @@ public class EnemyComponent : MonoBehaviour
 
     private void OnDeath()
     {
-        Destroy(gameObject);
+        GetComponent<Animator>().SetTrigger("Death");
+        enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!enabled) return;
         if (collision.tag == Tag.Player.ToString() && GameManager.canUpdateEnemies)
         {
             if (collision.TryGetComponent(out HealthComponent healthComponent))
@@ -45,6 +47,11 @@ public class EnemyComponent : MonoBehaviour
     }
 
     private void OnGameRetry()
+    {
+        Destroy(gameObject);
+    }
+
+    public void ResquestDestroy()
     {
         Destroy(gameObject);
     }

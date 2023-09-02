@@ -99,8 +99,11 @@ public class HitScanComponent : MonoBehaviour
         {
             m_curLoadingTimerValue += Time.deltaTime;
             OnLoadingRatioUpdate?.Invoke(m_curLoadingTimerValue / m_curLoadingTime);
-            if (m_curLoadingTimerValue > m_curLoadingTime - m_curStopRotationBeforeShootTime)
+            if (m_curLoadingTimerValue > m_curLoadingTime - m_curStopRotationBeforeShootTime && lookAtComponent.canRotate)
+            {
+                GetComponent<Animator>().SetTrigger("Attack");
                 lookAtComponent.SetCanRotate(false);
+            }
                 
             if (m_curLoadingTimerValue > m_curLoadingTime)
             {
@@ -206,7 +209,7 @@ public class HitScanComponent : MonoBehaviour
 
         m_hitPoint = hit.point + (Vector2)up * 0.2f;
         
-        Vector3[] points = {transform.position, m_hitPoint};
+        Vector3[] points = {m_lineRenderer.transform.position, m_hitPoint};
         if (m_isLoading)
         {
             m_lineRenderer.enabled = true;

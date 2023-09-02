@@ -10,6 +10,7 @@ public class SimpleLookAt : MonoBehaviour
 
     private float m_curRotSpeed;
     private bool m_canRotate;
+    public bool canRotate => m_canRotate;
 
     private void Start()
     {
