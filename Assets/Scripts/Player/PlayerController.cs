@@ -415,6 +415,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public AnimationCurve m_hitSpeedOverTime;
+    public float m_hitSpeed;
+    private Vector2 m_currentVelocity = Vector2.zero;
+    private Vector2 m_hitNormal = Vector2.zero;
+    private float m_hitTimer = 0.0f; 
     private void UpdatePosition()
     {
         if (!isDashing || canRotateWhileDashing)
@@ -439,34 +444,46 @@ public class PlayerController : MonoBehaviour
             gameObject.transform.Rotate(transform.forward, m_currentTurnSpeed);
         }
 
+        Vector2 desiredVelocity = Vector2.zero;
         if (isDashing)
         {
             if (canDriftWhileDashing)
             {
                 if (canTurnWhileDashing)
                 {
-                    m_rigidbody.velocity = Vector2.Lerp(m_rigidbody.velocity.normalized, gameObject.transform.up.normalized, baseGripFactor) * m_curDashSpeed;
+                    desiredVelocity = Vector2.Lerp(m_currentVelocity.normalized, gameObject.transform.up.normalized, baseGripFactor) * m_curDashSpeed;
                 }
                 else
-                    m_rigidbody.velocity = Vector2.Lerp(m_rigidbody.velocity.normalized, m_curDashDirection.normalized, baseGripFactor) * m_curDashSpeed;
+                    desiredVelocity = Vector2.Lerp(m_currentVelocity.normalized, m_curDashDirection.normalized, baseGripFactor) * m_curDashSpeed;
             }
             else
             {
                 if (canTurnWhileDashing)
-                    m_rigidbody.velocity = gameObject.transform.up.normalized * m_curDashSpeed;
+                    desiredVelocity = gameObject.transform.up.normalized * m_curDashSpeed;
                 else
-                    m_rigidbody.velocity = m_curDashDirection.normalized * m_curDashSpeed;
+                    desiredVelocity = m_curDashDirection.normalized * m_curDashSpeed;
             }
         }
         else
         {
-            m_rigidbody.velocity = Vector2.Lerp(m_rigidbody.velocity.normalized, gameObject.transform.up.normalized, baseGripFactor) * m_currentSpeed;
+            desiredVelocity = Vector2.Lerp(m_currentVelocity.normalized, gameObject.transform.up.normalized, baseGripFactor) * m_currentSpeed;
         }
+
+        float ratio = m_hitSpeedOverTime.Evaluate(m_hitTimer);
+        Vector2 additionnalVelocity = m_hitNormal * ratio * m_hitSpeed;
+        m_hitTimer += Time.deltaTime;
+        
+        Vector2 right = m_hitNormal.Perpendicular2();
+        
+        
+        m_rigidbody.velocity = Vector2.Lerp(desiredVelocity, right * Vector2.Dot(right, desiredVelocity), ratio) + additionnalVelocity;
+        m_currentVelocity = desiredVelocity;
     }
 
     private void OnCollisionEnter2D(Collision2D _other)
     {
-        Debug.Log("HitWall");
+        m_hitNormal = _other.contacts[0].normal;
+        m_hitTimer = 0.0f;
     }
 
     private void ReinitPos()
@@ -513,7 +530,7 @@ public class PlayerController : MonoBehaviour
         if (isDashing)
         {
             if (resetVelocityOnDashEnd)
-                m_rigidbody.velocity = transform.up.normalized * m_currentSpeed;
+                m_currentVelocity = transform.up.normalized * m_currentSpeed;
             isDashing = false;
             OnDashStop?.Invoke(this, null);
             StartDashCooldown();
