@@ -163,7 +163,7 @@ public class PlayerController : MonoBehaviour
     {
         if (healthSlider.value > _healthRatio && _healthRatio != 0)
         {
-            OnDamageReceived?.Invoke(_healthRatio, _damage);
+            OnDamageReceived?.Invoke(_healthRatio, _damage); //J'AI MAAAAAAAAAAAAAAAAAAAAAAAL
         }
         healthSlider.value = _healthRatio;
     }
