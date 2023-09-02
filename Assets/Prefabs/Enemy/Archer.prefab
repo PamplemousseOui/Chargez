@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitscan: {fileID: 8216656555719093075}
-  health: {fileID: 0}
+  health: {fileID: 4043143177436533345}
   emitter: {fileID: -9001628086043144555}
   loadStartEvent:
     Guid:
