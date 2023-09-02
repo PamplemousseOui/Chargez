@@ -52,7 +52,7 @@ public class HealthComponent : MonoBehaviour
 
     private void Kill()
     {
-        if (m_canTakeDamage)
+        if (m_canTakeDamage && isAlive)
         {
             isAlive = false;
             Debug.Log($"Character {gameObject.name} is dead. Cheh.");

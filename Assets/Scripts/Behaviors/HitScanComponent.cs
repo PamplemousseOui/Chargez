@@ -29,6 +29,7 @@ public class HitScanComponent : MonoBehaviour
 
     public Action OnLoadingStart;
     public Action OnLoadingEnd;
+    public Action OnLoadingEnding; //at most 1s before the end
     public Action<float> OnLoadingRatioUpdate; //current ratio
     public Action OnShootStart;
     public Action OnShootEnd;
@@ -46,6 +47,7 @@ public class HitScanComponent : MonoBehaviour
     
     private bool m_isLoading;
     private bool m_canHitPlayer;
+    private bool m_isLoadingEnding;
 
     private Vector2 m_hitPoint;
 
@@ -65,6 +67,7 @@ public class HitScanComponent : MonoBehaviour
                 if (m_curRateTimerValue <= m_curRate)
                 {
                     m_curRateTimerValue += Time.deltaTime;
+
                     if (m_curRateTimerValue > m_curRate)
                     {
                         StartLoading();
@@ -104,7 +107,13 @@ public class HitScanComponent : MonoBehaviour
                 GetComponent<Animator>().SetTrigger("Attack");
                 lookAtComponent.SetCanRotate(false);
             }
-                
+
+            if (m_curLoadingTime - m_curLoadingTimerValue < 1f && !m_isLoadingEnding)
+            {
+                OnLoadingEnding?.Invoke();
+                m_isLoadingEnding = true;
+            }
+
             if (m_curLoadingTimerValue > m_curLoadingTime)
             {
                 StopLoading();
@@ -116,6 +125,7 @@ public class HitScanComponent : MonoBehaviour
     private void StopLoading()
     {
         m_isLoading = false;
+        m_isLoadingEnding = false;
         OnLoadingEnd?.Invoke();
     }
 
