@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14d2a178703281444b90532489319567, type: 3}
-  m_Name: Expand
+  m_Script: {fileID: 11500000, guid: 1fd36edc6a28f75488f971651a82e382, type: 3}
+  m_Name: AddShield
   m_EditorClassIdentifier: 
-  name: Expands
+  name: Shield
   sprite: {fileID: 21300000, guid: 8da54c17fe2d3b64ea017f93347a6711, type: 3}
-  description: Augments area of attacks by 10%.
-  number: 5
-  modifier:
-    name: attack_area
-    value: 0.1
+  description: A shield that orbits around character. Protects you from laser.
+  number: 3

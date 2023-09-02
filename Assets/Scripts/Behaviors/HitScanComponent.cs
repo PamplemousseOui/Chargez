@@ -164,7 +164,7 @@ public class HitScanComponent : MonoBehaviour
         {
             var position = transform.position;
             var up = transform.up;
-            LayerMask mask = LayerMask.GetMask(new []{"Player", "Default", "Wall"});
+            LayerMask mask = LayerMask.GetMask(new []{"Player", "Default", "Wall", "Shield"});
             RaycastHit2D hit = Physics2D.Raycast(position + up, up, m_curShootLength, mask);
             RaycastHit2D hitLeft = Physics2D.Raycast(position + up + transform.right * m_currLaserWeight  / 2.0f, up, m_curShootLength, mask);
             RaycastHit2D hitRight = Physics2D.Raycast(position + up - transform.right * m_currLaserWeight  / 2.0f, up, m_curShootLength, mask);
@@ -199,7 +199,7 @@ public class HitScanComponent : MonoBehaviour
         var position = transform.position;
         var up = transform.up;
         m_hitPoint = Vector2.zero;
-        LayerMask mask = LayerMask.GetMask(new []{"Player", "Default", "Wall"});
+        LayerMask mask = LayerMask.GetMask(new []{"Wall", "Shield"});
         RaycastHit2D hit = Physics2D.Raycast(position + up, up, m_curShootLength, mask);
         if (!hit.collider)
         {

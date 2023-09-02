@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public float baseGripFactor;
 
     public GameObject LeftAttackTriggerPrefab;
+    public GameObject shieldPrefab;
 
     public bool reinitHealthOnNewWave;
 
@@ -91,7 +92,6 @@ public class PlayerController : MonoBehaviour
     private bool m_isAttackLoading;
     private bool m_isAttacking;
     public bool isDashing { get; private set; }
-    private List<GameObject> m_enemiesWithinMaxRange;
     private float m_currentSpeed => baseSpeed * (1.0f + GetModifierValue("character_speed"));
 
 
@@ -111,7 +111,18 @@ public class PlayerController : MonoBehaviour
 
     //Attack
     private List<AttackTrigger> m_curAttacks;
+    private List<ShieldController> m_shields;
 
+    public void AddShield()
+    {
+        if (m_shields == null) m_shields = new List<ShieldController>();
+        GameObject shieldInstance = Instantiate(shieldPrefab, transform);
+        m_shields.Add(shieldInstance.GetComponent<ShieldController>());
+        for (int i = 0; i < m_shields.Count; ++i)
+        {
+            m_shields[i].SetRotation(i / (float)m_shields.Count * 360.0f);
+        }
+    }
     private void Awake()
     {
         GameManager.player = this;
@@ -172,6 +183,8 @@ public class PlayerController : MonoBehaviour
     {
         GameManager.OnPlayerDeath?.Invoke();
         OnDeath?.Invoke();
+        foreach(var shield in m_shields) Destroy(shield.gameObject);
+        
         GameManager.gameIsPaused = true;
     }
 
@@ -186,6 +199,7 @@ public class PlayerController : MonoBehaviour
     {
         m_curAttacks = new List<AttackTrigger>();
         modifiers = new List<Modifier>();
+        m_shields = new List<ShieldController>();
         ResetAttack();
 
         m_curDashEnergyRatio = 1;
@@ -536,12 +550,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-    public float GetCurrentDashSpeed()
-    {
-        return m_curDashSpeed;
-    }
-
+    
     private void OnGameRetry()
     {
         transform.position = Vector3.zero;
