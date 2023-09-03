@@ -83,12 +83,11 @@ MonoBehaviour:
   arenaSize: {x: 36, y: 20}
   enemiesSpawnData:
   - type: 0
-    enemyPrefab: {fileID: 2210985187186924065, guid: 5b95652b09f8c1445b5c36f24ba355ea, type: 3}
+    enemyPrefab: {fileID: 5989835170416868714, guid: 98b44901df0fba44f8e01add97ebf5ff, type: 3}
   - type: 1
-    enemyPrefab: {fileID: 2404172852184435263, guid: b7bc618d48a8e5144aeaefce90b61d75, type: 3}
+    enemyPrefab: {fileID: 3784894385745261108, guid: 0e00a3aa85410ab488d69294c89c32f1, type: 3}
   - type: 2
     enemyPrefab: {fileID: 5993396035862707313, guid: 39442a79bcaf48044ac8e019cb60f522, type: 3}
-  enemies: []
 --- !u!114 &1173454092065505742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +196,46 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: eed07718-3768-4b5d-b02e-39bb6d5955b3
     m_ActionName: Basic/Dash[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f53f8850-6326-414d-b157-3173df3a3156
+    m_ActionName: UI/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f79a225e-7365-4298-a79b-be35a553fa69
+    m_ActionName: UI/Submit[/Keyboard/enter,/XInputControllerWindows/buttonSouth,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a5db3c1e-d14e-434c-8310-5200374d2a57
+    m_ActionName: UI/Cancel[/Keyboard/escape,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bfd6effc-0f1d-4953-8ed5-9853402a213e
+    m_ActionName: UI/Point[/Mouse/position,/Pen/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 73864ba2-7a8e-4029-9cb5-72900ec6e3b5
+    m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6830a42c-c073-42bc-99d5-93286c363ca3
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 18818f17-0abd-42c9-b55c-4eee77e9deb3
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 858e60d7-c588-492e-90a9-0b707b0c7fa5
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bbac6dd0-4981-481d-b811-d0816766593f
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ed9527f4-9ce1-4afd-8e8a-d9201b4d61e0
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Basic
