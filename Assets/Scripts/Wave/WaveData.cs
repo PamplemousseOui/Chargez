@@ -27,6 +27,7 @@ public class WaveData
 
     public string friendlyName = "Wave 0";
     public float startCooldown = 5.0f;
+    public int maxEnemiesInArena = 5;
     public List<NumberOfEnemyByType> numberOfEnemyByTypes;
 
     

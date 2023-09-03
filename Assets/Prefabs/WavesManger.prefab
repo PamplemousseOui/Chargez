@@ -164,20 +164,10 @@ MonoBehaviour:
   waves:
   - friendlyName: Wave 1
     startCooldown: 5
+    maxEnemiesInArena: 1
     numberOfEnemyByTypes:
     - type: 0
       number: 3
-      minCooldown: 4
-      maxCooldown: 5
-    - type: 1
-      number: 1
-      minCooldown: 4
-      maxCooldown: 5
-  - friendlyName: Wave 1.5
-    startCooldown: 5
-    numberOfEnemyByTypes:
-    - type: 0
-      number: 5
       minCooldown: 4
       maxCooldown: 5
     - type: 1
@@ -185,7 +175,20 @@ MonoBehaviour:
       minCooldown: 4
       maxCooldown: 5
   - friendlyName: Wave 2
+    startCooldown: 5
+    maxEnemiesInArena: 1
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 5
+      minCooldown: 4
+      maxCooldown: 5
+    - type: 1
+      number: 1
+      minCooldown: 4
+      maxCooldown: 5
+  - friendlyName: Wave 3
     startCooldown: 3
+    maxEnemiesInArena: 2
     numberOfEnemyByTypes:
     - type: 0
       number: 5
@@ -197,28 +200,30 @@ MonoBehaviour:
       maxCooldown: 5
     - type: 0
       number: 1
-      minCooldown: 1
-      maxCooldown: 2
-  - friendlyName: Wave 3
-    startCooldown: 3
-    numberOfEnemyByTypes:
-    - type: 0
-      number: 3
-      minCooldown: 4
-      maxCooldown: 5
-    - type: 1
-      number: 2
-      minCooldown: 2
-      maxCooldown: 3
-    - type: 0
-      number: 3
       minCooldown: 1
       maxCooldown: 2
   - friendlyName: Wave 4
     startCooldown: 3
+    maxEnemiesInArena: 3
     numberOfEnemyByTypes:
     - type: 0
-      number: 5
+      number: 3
+      minCooldown: 4
+      maxCooldown: 5
+    - type: 1
+      number: 1
+      minCooldown: 2
+      maxCooldown: 3
+    - type: 0
+      number: 3
+      minCooldown: 1
+      maxCooldown: 2
+  - friendlyName: Wave 5
+    startCooldown: 3
+    maxEnemiesInArena: 3
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 3
       minCooldown: 4
       maxCooldown: 5
     - type: 1
@@ -229,42 +234,20 @@ MonoBehaviour:
       number: 3
       minCooldown: 1
       maxCooldown: 2
-    - type: 1
-      number: 1
-      minCooldown: 1
-      maxCooldown: 2
-  - friendlyName: Wave 5
-    startCooldown: 3
-    numberOfEnemyByTypes:
-    - type: 0
-      number: 4
-      minCooldown: 4
-      maxCooldown: 5
-    - type: 1
-      number: 3
-      minCooldown: 2
-      maxCooldown: 3
     - type: 2
       number: 1
-      minCooldown: 4
-      maxCooldown: 5
-    - type: 0
-      number: 3
-      minCooldown: 1
-      maxCooldown: 2
-    - type: 1
-      number: 1
-      minCooldown: 1
-      maxCooldown: 2
+      minCooldown: 7
+      maxCooldown: 8
   - friendlyName: Wave 6
     startCooldown: 3
+    maxEnemiesInArena: 4
     numberOfEnemyByTypes:
     - type: 0
-      number: 4
+      number: 3
       minCooldown: 4
       maxCooldown: 5
     - type: 1
-      number: 3
+      number: 2
       minCooldown: 2
       maxCooldown: 3
     - type: 2
@@ -277,6 +260,266 @@ MonoBehaviour:
       maxCooldown: 2
     - type: 1
       number: 1
+      minCooldown: 1
+      maxCooldown: 2
+  - friendlyName: Wave 7
+    startCooldown: 3
+    maxEnemiesInArena: 4
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 4
+      minCooldown: 4
+      maxCooldown: 5
+    - type: 1
+      number: 3
+      minCooldown: 2
+      maxCooldown: 3
+    - type: 2
+      number: 2
+      minCooldown: 4
+      maxCooldown: 5
+    - type: 0
+      number: 3
+      minCooldown: 1
+      maxCooldown: 2
+    - type: 1
+      number: 1
+      minCooldown: 1
+      maxCooldown: 2
+  - friendlyName: Wave 8
+    startCooldown: 3
+    maxEnemiesInArena: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 5
+      minCooldown: 3.5
+      maxCooldown: 4.5
+    - type: 1
+      number: 3
+      minCooldown: 2
+      maxCooldown: 3
+    - type: 2
+      number: 2
+      minCooldown: 4
+      maxCooldown: 5
+    - type: 0
+      number: 3
+      minCooldown: 1
+      maxCooldown: 2
+    - type: 1
+      number: 1
+      minCooldown: 1
+      maxCooldown: 2
+  - friendlyName: Wave 9
+    startCooldown: 3
+    maxEnemiesInArena: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 5
+      minCooldown: 3.5
+      maxCooldown: 4.5
+    - type: 1
+      number: 3
+      minCooldown: 2
+      maxCooldown: 3
+    - type: 2
+      number: 4
+      minCooldown: 4
+      maxCooldown: 5
+    - type: 0
+      number: 3
+      minCooldown: 1
+      maxCooldown: 2
+    - type: 1
+      number: 1
+      minCooldown: 1
+      maxCooldown: 2
+  - friendlyName: Wave 10
+    startCooldown: 3
+    maxEnemiesInArena: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 5
+      minCooldown: 3.5
+      maxCooldown: 4.5
+    - type: 1
+      number: 3
+      minCooldown: 2
+      maxCooldown: 3
+    - type: 2
+      number: 4
+      minCooldown: 4
+      maxCooldown: 5
+    - type: 0
+      number: 3
+      minCooldown: 0.5
+      maxCooldown: 1
+    - type: 1
+      number: 3
+      minCooldown: 1
+      maxCooldown: 2
+  - friendlyName: Wave 11
+    startCooldown: 3
+    maxEnemiesInArena: 3
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 10
+      minCooldown: 1
+      maxCooldown: 2
+    - type: 1
+      number: 3
+      minCooldown: 1
+      maxCooldown: 2
+    - type: 2
+      number: 4
+      minCooldown: 2
+      maxCooldown: 3
+  - friendlyName: Wave 12
+    startCooldown: 3
+    maxEnemiesInArena: 4
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 15
+      minCooldown: 1
+      maxCooldown: 2
+    - type: 1
+      number: 5
+      minCooldown: 1
+      maxCooldown: 2
+    - type: 2
+      number: 4
+      minCooldown: 2
+      maxCooldown: 3
+  - friendlyName: Wave 13
+    startCooldown: 3
+    maxEnemiesInArena: 4
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 15
+      minCooldown: 1
+      maxCooldown: 2
+    - type: 1
+      number: 7
+      minCooldown: 0.5
+      maxCooldown: 1
+    - type: 2
+      number: 6
+      minCooldown: 2
+      maxCooldown: 3
+  - friendlyName: Wave 14
+    startCooldown: 3
+    maxEnemiesInArena: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 15
+      minCooldown: 1
+      maxCooldown: 2
+    - type: 1
+      number: 7
+      minCooldown: 1
+      maxCooldown: 2
+    - type: 2
+      number: 6
+      minCooldown: 2
+      maxCooldown: 3
+  - friendlyName: Wave 15
+    startCooldown: 3
+    maxEnemiesInArena: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 15
+      minCooldown: 1
+      maxCooldown: 2
+    - type: 1
+      number: 7
+      minCooldown: 1
+      maxCooldown: 2
+    - type: 2
+      number: 6
+      minCooldown: 2
+      maxCooldown: 3
+    - type: 0
+      number: 5
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Wave 16
+    startCooldown: 3
+    maxEnemiesInArena: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 20
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 1
+      number: 8
+      minCooldown: 0.5
+      maxCooldown: 1
+    - type: 2
+      number: 6
+      minCooldown: 2
+      maxCooldown: 3
+  - friendlyName: Wave 17
+    startCooldown: 3
+    maxEnemiesInArena: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 20
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 1
+      number: 8
+      minCooldown: 0.5
+      maxCooldown: 1
+    - type: 2
+      number: 10
+      minCooldown: 2
+      maxCooldown: 3
+  - friendlyName: Wave 18
+    startCooldown: 3
+    maxEnemiesInArena: 6
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 20
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 1
+      number: 10
+      minCooldown: 0
+      maxCooldown: 0.5
+    - type: 2
+      number: 10
+      minCooldown: 1
+      maxCooldown: 2
+  - friendlyName: Wave 19
+    startCooldown: 3
+    maxEnemiesInArena: 6
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 25
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 1
+      number: 12
+      minCooldown: 0
+      maxCooldown: 0.5
+    - type: 2
+      number: 10
+      minCooldown: 1
+      maxCooldown: 2
+  - friendlyName: Wave 20
+    startCooldown: 3
+    maxEnemiesInArena: 8
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 30
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 1
+      number: 12
+      minCooldown: 0
+      maxCooldown: 0.5
+    - type: 2
+      number: 10
       minCooldown: 1
       maxCooldown: 2
   bonuses:
