@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 4704752783085974224}
   - component: {fileID: 5644604706565798027}
   - component: {fileID: 465198943142714639}
+  - component: {fileID: 800884252114296120}
   m_Layer: 0
   m_Name: SpawnArcher
   m_TagString: Untagged
@@ -177,5 +178,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb22c3262d8a61e419d4ec064ecd146c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &800884252114296120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3784894385745261108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e38a8df042c2e245b48705b6da4463c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

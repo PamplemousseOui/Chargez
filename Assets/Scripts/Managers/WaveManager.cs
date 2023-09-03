@@ -72,7 +72,7 @@ public class WaveManager : MonoBehaviour
         else if(remainingEnemiesInWave.Count > 0)
         {
             timerBeforeSpawn -= Time.deltaTime;
-            if (timerBeforeSpawn <= 0.0f && EnemyManager.nbEnemies < currentWaveData.maxEnemiesInArena)
+            if (timerBeforeSpawn <= 0.0f && EnemyManager.nbRealEnemies < currentWaveData.maxEnemiesInArena)
             {
                 SpawnEnemy();
             }
