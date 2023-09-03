@@ -8,6 +8,7 @@ public class EnemyComponent : MonoBehaviour
     public EnemyType type;
     public float contactDamage;
     public HealthComponent healthComponent;
+    public string deathAnimTrigger = "Death";
 
     private void OnEnable()
     {
@@ -37,7 +38,7 @@ public class EnemyComponent : MonoBehaviour
 
     private void OnDeath()
     {
-        GetComponent<Animator>().SetTrigger("Death");
+        if(deathAnimTrigger.Length > 0) GetComponent<Animator>().SetTrigger(deathAnimTrigger);
         enabled = false;
     }
 

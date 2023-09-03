@@ -10,7 +10,7 @@ public class CavController : MonoBehaviour
     private CavController m_right;
     private Animator m_animator;
 
-    public bool main = true;
+    private bool m_main = true;
     public void SetLeft(CavController _left)
     {
         m_left = _left;
@@ -42,7 +42,7 @@ public class CavController : MonoBehaviour
 
     private void PlayKillAnimation()
     {
-        if(main) m_animator.SetTrigger("DeathMain");
+        if(m_main) m_animator.SetTrigger("DeathMain");
         else m_animator.SetTrigger("Death");
     }
 
@@ -57,7 +57,8 @@ public class CavController : MonoBehaviour
     }
     public void Kill()
     {
-        main = false;
+        if (!m_enemy.healthComponent.isAlive) return;
+        m_main = false;
         m_enemy.healthComponent.InstantKill();
     }
 }

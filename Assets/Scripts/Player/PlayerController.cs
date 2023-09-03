@@ -197,8 +197,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        //debugAttackProgressObject.SetActive(false);
-        //debugMaxRangeObject.transform.localScale = Vector2.one + Vector2.one * attackRange;
         Init();
     }
 
@@ -583,8 +581,6 @@ public class PlayerController : MonoBehaviour
     
     private void OnGameRetry()
     {
-        transform.position = Vector3.zero;
-        transform.rotation = Quaternion.Euler(Vector3.zero);
         healthComponent.Init();
         Init();
     }

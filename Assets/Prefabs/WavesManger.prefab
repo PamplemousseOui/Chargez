@@ -70,6 +70,462 @@ MonoBehaviour:
     - type: 0
       minCooldown: 0
       maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+  - friendlyName: Vague 1
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
+      minCooldown: 6
+      maxCooldown: 8
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 2
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 1
+      minCooldown: 3
+      maxCooldown: 4
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
+    - type: 0
+      minCooldown: 0
+      maxCooldown: 0
   bonuses:
   - {fileID: 11400000, guid: 081ec7983988b1a42b50b8b1c44dc136, type: 2}
   - {fileID: 11400000, guid: c1f7c1f93a39f944abacbf6d75f3a964, type: 2}
