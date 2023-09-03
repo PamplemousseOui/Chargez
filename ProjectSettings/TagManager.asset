@@ -13,15 +13,15 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Attack
   - Water
   - UI
   - Enemy
   - Wall
   - Player
-  - 
-  - 
-  - 
+  - Shield
+  - Pike
+  - WallEnemy
   - 
   - 
   - 

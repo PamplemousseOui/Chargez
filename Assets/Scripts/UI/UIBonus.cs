@@ -50,6 +50,8 @@ public class UIBonus : MonoBehaviour
         name.text = bonusData.name;
         description.text = bonusData.description;
         image.sprite = bonusData.sprite;
+        m_animator.SetTrigger("Appears");
+        
     }
 
     public void Select()
