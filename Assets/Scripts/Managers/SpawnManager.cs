@@ -18,14 +18,12 @@ public class SpawnManager : MonoBehaviour
     public static Action<EnemyType> OnEnemySpawned;
 
     public static SpawnManager instance;
-    public List<EnemyComponent> enemies;
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            enemies = new List<EnemyComponent>();
         }
         else
             Destroy(this);
@@ -45,12 +43,7 @@ public class SpawnManager : MonoBehaviour
     
     private void OnGameStart()
     {
-        enemies = new List<EnemyComponent>();
-    }
-
-    private void Update()
-    {
-        enemies.RemoveAll(x => x == null);
+        
     }
 
     public void SpawnEnemyType(EnemyType _type)
@@ -80,18 +73,18 @@ public class SpawnManager : MonoBehaviour
                 {
                     case 0:
                         x = UnityEngine.Random.Range(0, arenaSize.x) - (arenaSize.x / 2);
-                        y = arenaSize.y / 2 + 1;
+                        y = arenaSize.y / 2 + 2;
                         break;
                     case 1:
-                        x = arenaSize.x / 2 + 1;
+                        x = arenaSize.x / 2 + 2;
                         y = UnityEngine.Random.Range(0, arenaSize.y) - (arenaSize.y / 2);
                         break;
                     case 2:
                         x = UnityEngine.Random.Range(0, arenaSize.x) - (arenaSize.x / 2);
-                        y = -arenaSize.y / 2 - 1;
+                        y = -arenaSize.y / 2 - 2;
                         break;
                     case 3:
-                        x = -arenaSize.x / 2 - 1;
+                        x = -arenaSize.x / 2 - 2;
                         y = UnityEngine.Random.Range(0, arenaSize.y) - (arenaSize.y / 2);
                         break;
                 }
@@ -137,18 +130,12 @@ public class SpawnManager : MonoBehaviour
 
         pos = new Vector3(x, y, 0);
         spawnedEnemy.transform.position = pos;
-        enemies.Add(spawnedEnemy.GetComponent<EnemyComponent>());
         OnEnemySpawned?.Invoke(enemySpawnData.type);
-    }
-
-    private void OnGameRetry()
-    {
-        enemies = new List<EnemyComponent>();
     }
 
     public void DestroyAllEnemies()
     {
-        foreach (EnemyComponent enemy in enemies)
+        foreach (EnemyComponent enemy in FindObjectsOfType<EnemyComponent>())
         {
             enemy.healthComponent.InstantKill();
         }
