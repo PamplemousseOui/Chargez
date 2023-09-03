@@ -43,13 +43,17 @@ public class WallController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(transform.childCount == 0) Destroy(gameObject);
+    }
+    
     public void DestroyWall()
     {
         if (m_isDestroyed) return;
-        else
-        {
-            m_isDestroyed = true;
-            OnWallDestroyed?.Invoke();
-        }
+        
+        m_isDestroyed = true;
+        OnWallDestroyed?.Invoke();
+        
     }
 }

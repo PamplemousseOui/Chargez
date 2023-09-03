@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1662667768361305171}
   - component: {fileID: 7860861901670443524}
   - component: {fileID: 11032980441281367}
+  - component: {fileID: 8271407532672980016}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Enemy
@@ -189,6 +190,18 @@ MonoBehaviour:
   dopplerParam:
     Name: Doppler
     Value: 0
+--- !u!114 &8271407532672980016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5993396035862707313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e38a8df042c2e245b48705b6da4463c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8993406943485763844
 GameObject:
   m_ObjectHideFlags: 0
