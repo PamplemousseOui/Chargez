@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 8954554160610297058}
   - component: {fileID: 6369979041542793856}
   m_Layer: 11
-  m_Name: Particle System
+  m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1572,7 +1572,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 1
+    enabled: 0
     gradient:
       serializedVersion: 2
       minMaxState: 1
