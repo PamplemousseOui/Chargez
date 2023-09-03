@@ -24,6 +24,5 @@ public class EnemySound : MonoBehaviour
     public virtual void OnDeath()
     {
         emitter.PlayOneShot(deathEvent);
-        Debug.Log("Enemykilled");
     }
 }
