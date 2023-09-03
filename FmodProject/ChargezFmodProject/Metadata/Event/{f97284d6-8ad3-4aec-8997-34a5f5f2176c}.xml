@@ -253,7 +253,7 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>-2</value>
+			<value>-1</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{da10b0d8-2319-4fb0-acf4-3e4d56e5dbc7}">
@@ -261,7 +261,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>-8</value>
+			<value>-6</value>
 		</property>
 	</object>
 </objects>
