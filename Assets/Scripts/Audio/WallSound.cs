@@ -39,8 +39,6 @@ public class WallSound : MonoBehaviour
     {
         float distance = (GameManager.player.transform.position - emitterObject.transform.position).magnitude;
         float relativeSpeed = (distance - previousDist) / Time.deltaTime;
-        Debug.Log("Distance = " + distance);
-        Debug.Log("Relative speed = " + relativeSpeed);
         emitter.SetParameter(distanceParam, distance);
         emitter.SetParameter(dopplerParam, relativeSpeed);
 

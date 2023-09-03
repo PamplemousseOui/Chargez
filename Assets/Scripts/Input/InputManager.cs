@@ -11,6 +11,8 @@ public class InputManager : MonoBehaviour
     
     public static event SimpleEvent OnDashPress;
     public static event SimpleEvent OnDashRelease;
+    
+    public static event SimpleEvent OnPausePress;
 
     private bool m_leftInputPress = false;
     private bool m_rightInputPress = false;
@@ -27,6 +29,15 @@ public class InputManager : MonoBehaviour
             Destroy(this);
     }
     
+    public void ReadPauseInput(InputAction.CallbackContext _context)
+    {
+        Debug.Log("Pause input");
+        if (_context.performed)
+        {
+            OnPausePress?.Invoke();
+        }
+    }
+
     public void ReadLeftInput(InputAction.CallbackContext _context)
     {
         if (_context.performed)

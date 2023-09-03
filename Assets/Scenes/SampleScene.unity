@@ -833,6 +833,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627081777}
   m_CullTransparentMesh: 1
+--- !u!114 &808878215 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8707717832081445901, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+  m_PrefabInstance: {fileID: 663707450339423437}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f31cb27b7b5e87e439a8db04720c43c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &962647751
 GameObject:
   m_ObjectHideFlags: 0
@@ -2272,7 +2283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5807007494156560372, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5807007494156560372, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_ActionId
@@ -2354,61 +2365,29 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[13].m_ActionName
       value: UI/TrackedDeviceOrientation
       objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.size
-      value: 20
+    - target: {fileID: 5807007494156560372, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.size
-      value: 7
+    - target: {fileID: 5807007494156560372, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 808878215}
+    - target: {fileID: 5807007494156560372, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReadPauseInput
       objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].type
-      value: 1
+    - target: {fileID: 5807007494156560372, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InputManager, Assembly-CSharp
       objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[2].type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[4].type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[0].maxCooldown
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[0].minCooldown
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].maxCooldown
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].minCooldown
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[3].maxCooldown
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[3].minCooldown
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[4].maxCooldown
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[4].minCooldown
-      value: 3
+    - target: {fileID: 5807007494156560372, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7389281809262310415, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 1660944383
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

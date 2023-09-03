@@ -13,6 +13,7 @@ public class MenuManager : MonoBehaviour
     public List<UIBonus> bonuses;
     public GameObject retryWinGame;
     public GameObject retryLooseGame;
+    public GameObject resumeGame;
     public TextMeshProUGUI waveNumber;
     public TextMeshProUGUI gameOverScore;
     
@@ -24,11 +25,15 @@ public class MenuManager : MonoBehaviour
     public void OnEnable()
     {
         GameManager.OnPlayerDeath += LooseGame;
+        GameManager.OnGameResume += ResumeGame;
+        InputManager.OnPausePress += PauseGame;
     }
 
     public void OnDisable()
     {
         GameManager.OnPlayerDeath -= LooseGame;
+        GameManager.OnGameResume -= ResumeGame;
+        InputManager.OnPausePress -= PauseGame;
     }
 
     public void DrawBonus(List<IBonusData> _bonuses)
@@ -83,7 +88,39 @@ public class MenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(retryLooseGame);
     }
 
-    public void RestartGame()
+    private bool pause = false;
+    public void PauseGame()
+    {
+        Debug.Log("escape input");
+
+        if (!pause)
+        {
+            if (GameManager.gameIsPaused) return;
+            pause = true;
+            GameManager.instance.PauseGame();
+            m_animator.SetTrigger("GamePause");
+            EventSystem.current.SetSelectedGameObject(resumeGame);
+        }
+        else
+        {
+            GameManager.instance.ResumeGame();
+            pause = false;
+        }
+    }
+
+    private void ResumeGame()
+    {
+        if (!pause) return;
+        m_animator.SetTrigger("GameResume");
+        pause = false;
+    }
+
+    public void OnResumeGameButtonPress()
+    {
+        GameManager.instance.ResumeGame();
+    }
+    
+    public void OnRestartGameButtonPress()
     {
         GameManager.instance.RetryGame();
     }

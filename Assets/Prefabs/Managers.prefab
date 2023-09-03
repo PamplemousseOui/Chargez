@@ -236,6 +236,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ed9527f4-9ce1-4afd-8e8a-d9201b4d61e0
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8707717832081445901}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: ReadPauseInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7093d8d1-93d3-41a9-8bf8-d0614fa0ae83
+    m_ActionName: Basic/Pause[/Keyboard/escape,/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Basic
@@ -278,21 +294,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: WavesManger
       objectReference: {fileID: 0}
-    - target: {fileID: 1528865816666735271, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 1617736865594588832, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnRestartGameButtonPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619218903195816603, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619218903195816603, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619218903195816603, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
       propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.size
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[2].type
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
       propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[4].type
@@ -329,6 +349,10 @@ PrefabInstance:
     - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
       propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[4].minCooldown
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095957756408922588, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnResumeGameButtonPress
       objectReference: {fileID: 0}
     - target: {fileID: 8006719355509399282, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
       propertyPath: m_RootOrder
