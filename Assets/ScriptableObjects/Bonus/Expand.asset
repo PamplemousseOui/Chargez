@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Expands
   sprite: {fileID: 21300000, guid: 8da54c17fe2d3b64ea017f93347a6711, type: 3}
-  description: Augments area of attacks by 10%.
+  description: Augments <color=#7EFF91>area of attacks</color> by 10%.
   number: 5
   modifier:
     name: attack_area

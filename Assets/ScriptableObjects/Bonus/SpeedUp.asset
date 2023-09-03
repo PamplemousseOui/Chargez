@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Speed up
   sprite: {fileID: 21300000, guid: 8da54c17fe2d3b64ea017f93347a6711, type: 3}
-  description: Character moves 10% faster
+  description: Character moves <color=#7EFF91>10% faster</color>.
   number: 3
   modifier:
     name: character_speed

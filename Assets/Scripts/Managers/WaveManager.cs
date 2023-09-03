@@ -103,6 +103,7 @@ public class WaveManager : MonoBehaviour
         currentWaveData = null;
         SelectBonuses();
         OnEndWaveEvent?.Invoke();
+        menuManager.EndWave();
         GameManager.instance.PauseGame();
     }
     

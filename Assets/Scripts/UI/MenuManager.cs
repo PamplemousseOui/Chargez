@@ -48,4 +48,9 @@ public class MenuManager : MonoBehaviour
         m_animator.SetTrigger("BeginWave");
         
     }
+
+    public void EndWave()
+    {
+        m_animator.SetTrigger("EndWave");
+    }
 }
