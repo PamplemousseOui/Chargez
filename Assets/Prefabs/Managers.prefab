@@ -278,6 +278,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WavesManger
       objectReference: {fileID: 0}
+    - target: {fileID: 1528865816666735271, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
       propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.size
       value: 7

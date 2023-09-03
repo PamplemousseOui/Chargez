@@ -11,6 +11,8 @@ public class MenuManager : MonoBehaviour
 {
     private Animator m_animator;
     public List<UIBonus> bonuses;
+    public GameObject retryWinGame;
+    public GameObject retryLooseGame;
     public TextMeshProUGUI waveNumber;
     public TextMeshProUGUI gameOverScore;
     
@@ -70,6 +72,7 @@ public class MenuManager : MonoBehaviour
     {
         m_animator.SetTrigger("EndWave");
         m_animator.SetTrigger("GameWin");
+        EventSystem.current.SetSelectedGameObject(retryWinGame);
     }
 
     public void LooseGame()
@@ -77,6 +80,7 @@ public class MenuManager : MonoBehaviour
         gameOverScore.text = waveNumber.text;
         m_animator.SetTrigger("EndWave");
         m_animator.SetTrigger("GameOver");
+        EventSystem.current.SetSelectedGameObject(retryLooseGame);
     }
 
     public void RestartGame()
