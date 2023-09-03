@@ -409,7 +409,6 @@ public class PlayerController : MonoBehaviour
         {
             foreach (EnemyComponent enemy in attack.enemiesInRange)
             {
-                Debug.Log("Find enemy "+ enemy.gameObject);
                 killedEnemies.Add(enemy);
             }   
         }

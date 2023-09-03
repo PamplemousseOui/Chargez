@@ -166,14 +166,74 @@ MonoBehaviour:
     startCooldown: 5
     numberOfEnemyByTypes:
     - type: 0
+      number: 3
+      minCooldown: 4
+      maxCooldown: 5
+    - type: 1
+      number: 1
+      minCooldown: 4
+      maxCooldown: 5
+  - friendlyName: Wave 1.5
+    startCooldown: 5
+    numberOfEnemyByTypes:
+    - type: 0
       number: 5
       minCooldown: 4
       maxCooldown: 5
     - type: 1
       number: 1
-      minCooldown: 3
-      maxCooldown: 4
+      minCooldown: 4
+      maxCooldown: 5
   - friendlyName: Wave 2
+    startCooldown: 3
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 5
+      minCooldown: 4
+      maxCooldown: 5
+    - type: 1
+      number: 1
+      minCooldown: 4
+      maxCooldown: 5
+    - type: 0
+      number: 1
+      minCooldown: 1
+      maxCooldown: 2
+  - friendlyName: Wave 3
+    startCooldown: 3
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 3
+      minCooldown: 4
+      maxCooldown: 5
+    - type: 1
+      number: 2
+      minCooldown: 2
+      maxCooldown: 3
+    - type: 0
+      number: 3
+      minCooldown: 1
+      maxCooldown: 2
+  - friendlyName: Wave 4
+    startCooldown: 3
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 5
+      minCooldown: 4
+      maxCooldown: 5
+    - type: 1
+      number: 2
+      minCooldown: 2
+      maxCooldown: 3
+    - type: 0
+      number: 3
+      minCooldown: 1
+      maxCooldown: 2
+    - type: 1
+      number: 1
+      minCooldown: 1
+      maxCooldown: 2
+  - friendlyName: Wave 5
     startCooldown: 3
     numberOfEnemyByTypes:
     - type: 0
@@ -181,13 +241,44 @@ MonoBehaviour:
       minCooldown: 4
       maxCooldown: 5
     - type: 1
-      number: 2
-      minCooldown: 3
-      maxCooldown: 4
+      number: 3
+      minCooldown: 2
+      maxCooldown: 3
+    - type: 2
+      number: 1
+      minCooldown: 4
+      maxCooldown: 5
     - type: 0
       number: 3
-      minCooldown: 0
-      maxCooldown: 0
+      minCooldown: 1
+      maxCooldown: 2
+    - type: 1
+      number: 1
+      minCooldown: 1
+      maxCooldown: 2
+  - friendlyName: Wave 6
+    startCooldown: 3
+    numberOfEnemyByTypes:
+    - type: 0
+      number: 4
+      minCooldown: 4
+      maxCooldown: 5
+    - type: 1
+      number: 3
+      minCooldown: 2
+      maxCooldown: 3
+    - type: 2
+      number: 1
+      minCooldown: 4
+      maxCooldown: 5
+    - type: 0
+      number: 3
+      minCooldown: 1
+      maxCooldown: 2
+    - type: 1
+      number: 1
+      minCooldown: 1
+      maxCooldown: 2
   bonuses:
   - {fileID: 11400000, guid: 081ec7983988b1a42b50b8b1c44dc136, type: 2}
   - {fileID: 11400000, guid: c1f7c1f93a39f944abacbf6d75f3a964, type: 2}

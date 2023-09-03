@@ -511,46 +511,6 @@ PrefabInstance:
       propertyPath: m_BlocksRaycasts
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[4].type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[0].maxCooldown
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[0].minCooldown
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].maxCooldown
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].minCooldown
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[3].maxCooldown
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[3].minCooldown
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[4].maxCooldown
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[4].minCooldown
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 7095957756408922588, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnResumeGameButtonPress
@@ -638,10 +598,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3343673161932450057, guid: 9ee457becf639e84ab3b552aaf01c537, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3343673161932450057, guid: 9ee457becf639e84ab3b552aaf01c537, type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3343673161932450057, guid: 9ee457becf639e84ab3b552aaf01c537, type: 3}
