@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{6af02913-248f-49fa-95e5-35cc02036ddb}">
+		<property name="assetPath">
+			<value>ToIntegrate/Sfx_Enemy_Wall_Move_01.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>17.333333333333332</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{aae51dc7-8cca-43b6-a95f-a211c0022913}</destination>
+		</relationship>
+	</object>
+</objects>

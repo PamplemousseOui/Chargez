@@ -427,14 +427,19 @@ public class PlayerController : MonoBehaviour
             {
                 //Debug.Log("Turning left");
                 m_targetTurnSpeed = 1.0f;
+                FMODUnity.RuntimeManager.StudioSystem.setParameterByName("IsTurning", 1);
             }
             else if (InputManager.isRight)
             {
                 //Debug.Log("Turning left");
                 m_targetTurnSpeed = -1.0f;
+                FMODUnity.RuntimeManager.StudioSystem.setParameterByName("IsTurning", 1);
             }
             else
+            {
                 m_targetTurnSpeed = 0;
+                FMODUnity.RuntimeManager.StudioSystem.setParameterByName("IsTurning", 0);
+            }
 
             m_targetTurnSpeed *= isDashing ? maxDashTurnSpeed : maxTurnSpeed;
             m_targetTurnSpeed *= Time.deltaTime;

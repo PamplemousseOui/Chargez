@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using FMODUnity;
 using JetBrains.Annotations;
 using System;
@@ -19,8 +20,12 @@ public class PlayerSound : MonoBehaviour
     public FMODUnity.EventReference attackEndingEvent;
     public EventReference hitEvent;
     public EventReference deathEvent;
+    public EventReference moveEvent;
+    public EventReference doinkEvent;
 
     public ParamRef healthParam;
+
+    private bool m_isMoveLoopPlaying;
 
     private void OnEnable()
     {
@@ -35,6 +40,13 @@ public class PlayerSound : MonoBehaviour
 
         PlayerController.OnDamageReceived += OnDamageReceived;
         PlayerController.OnDeath += OnDeath;
+
+        PlayerController.OnPlayerHitWall += OnPlayerHitWall;
+
+        GameManager.OnGameStart += OnGameStart;
+        GameManager.OnGameRetry += OnGameRetry;
+        GameManager.OnGameResume += OnGameResume;
+        GameManager.OnGamePause += OnGamePause;
     }
 
     private void OnDisable()
@@ -50,18 +62,47 @@ public class PlayerSound : MonoBehaviour
 
         PlayerController.OnDamageReceived -= OnDamageReceived;
         PlayerController.OnDeath -= OnDeath;
+
+        PlayerController.OnPlayerHitWall -= OnPlayerHitWall;
+
+        GameManager.OnGameStart -= OnGameStart;
+        GameManager.OnGameRetry -= OnGameRetry;
+        GameManager.OnGameResume -= OnGameResume;
+        GameManager.OnGamePause -= OnGamePause;
+    }
+
+    private void OnGameStart()
+    {
+        emitter.Play(moveEvent);
+    }
+
+    private void OnGameRetry()
+    {
+        emitter.Play(moveEvent);
+    }
+
+    private void OnGameResume()
+    {
+        emitter.Play(moveEvent);
+    }
+
+    private void OnGamePause()
+    {
+        emitter.Stop(moveEvent);
     }
 
     private void OnDashStart(object sender, EventArgs e)
     {
         emitter.PlayOneShot(dashStartEvent);
         emitter.Play(dashLoopEvent);
+        emitter.Stop(moveEvent);
     }
 
     private void OnDashStop(object sender, EventArgs e)
     {
         emitter.PlayOneShot(dashStopEvent);
         emitter.Stop(dashLoopEvent);
+        emitter.Play(moveEvent);
     }
 
     private void OnAttackLoadingStart(object sender, EventArgs e)
@@ -102,8 +143,16 @@ public class PlayerSound : MonoBehaviour
         emitter.PlayAndForget(hitEvent);
     }
 
+    private void OnPlayerHitWall(Vector2 vector1, Vector2 vector2)
+    {
+        emitter.PlayOneShot(doinkEvent);
+    }
+
     private void OnDeath()
     {
+        FMODUnity.RuntimeManager.StudioSystem.getBus("bus:/", out Bus bus);
+        bus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         emitter.PlayOneShot(deathEvent);
+        emitter.Stop(moveEvent);
     }
 }
