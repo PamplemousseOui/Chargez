@@ -442,6 +442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1115565930}
   - component: {fileID: 1115565931}
+  - component: {fileID: 1115565932}
   m_Layer: 0
   m_Name: VirtualCamera
   m_TagString: Untagged
@@ -504,6 +505,22 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1170318579}
+--- !u!114 &1115565932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115565929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8bbda40f389dd245b0c51d002c2bc15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensity: 5
+  sustain: 0.1
+  release: 0.2
+  virtualCamera: {fileID: 1115565931}
 --- !u!1 &1170318578
 GameObject:
   m_ObjectHideFlags: 3
@@ -515,6 +532,7 @@ GameObject:
   - component: {fileID: 1170318579}
   - component: {fileID: 1170318580}
   - component: {fileID: 1170318581}
+  - component: {fileID: 1170318582}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -592,6 +610,23 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!114 &1170318582
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170318578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1347400019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1802,6 +1837,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3850433096186504612, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
+      propertyPath: startHealth
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5752417969661420192, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1855,9 +1894,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9105690685780486065, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1115565931}
+    - target: {fileID: 9105690685780486065, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1499491130}
+    - target: {fileID: 9105690685780486065, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
+      propertyPath: screenShaker
+      value: 
+      objectReference: {fileID: 1115565932}
     - target: {fileID: 9105690685780486065, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
       propertyPath: dashEnergySlider
       value: 

@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public GameObject shieldPrefab;
 
     public bool reinitHealthOnNewWave;
+    public float hitTimeFreezeDuration = 0.2f;
 
     [Header("Setup data")]
     public HealthComponent healthComponent;
@@ -109,6 +111,8 @@ public class PlayerController : MonoBehaviour
     //Attack
     private List<AttackTrigger> m_curAttacks;
     private List<ShieldController> m_shields;
+
+    public ScreenShaker screenShaker;
 
     public void AddShield()
     {
@@ -178,8 +182,17 @@ public class PlayerController : MonoBehaviour
         {
             if(GetModifierValue("explosion") > 0.1f) GameManager.instance.spawnManager.DestroyAllEnemies();
             OnDamageReceived?.Invoke(_healthRatio, _damage); //J'AI MAAAAAAAAAAAAAAAAAAAAAAAL
+            StartCoroutine(FreezeTime());
+            StartCoroutine(screenShaker.ScreenShake());
         }
         healthSlider.value = _healthRatio;
+    }
+
+    private IEnumerator FreezeTime()
+    {
+        Time.timeScale = 0.01f;
+        yield return new WaitForSeconds(hitTimeFreezeDuration * Time.timeScale); ;
+        Time.timeScale = 1f;
     }
 
     private void OnHealthComponentDeath()

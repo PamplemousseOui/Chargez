@@ -4995,6 +4995,7 @@ MonoBehaviour:
   LeftAttackTriggerPrefab: {fileID: 34802375284031903, guid: 20498be53557f884480f7fef821437ed, type: 3}
   shieldPrefab: {fileID: 4472677897321614971, guid: 6f07ea6ca1d19ba47b5da1ef9127fa19, type: 3}
   reinitHealthOnNewWave: 0
+  hitTimeFreezeDuration: 0.2
   healthComponent: {fileID: 3850433096186504612}
   healthSlider: {fileID: 0}
   dashEnergySlider: {fileID: 0}
