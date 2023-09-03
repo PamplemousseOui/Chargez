@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,6 +10,7 @@ public class MenuManager : MonoBehaviour
 {
     private Animator m_animator;
     public List<UIBonus> bonuses;
+    public TextMeshProUGUI waveNumber;
     
     public void Awake()
     {
@@ -38,5 +40,12 @@ public class MenuManager : MonoBehaviour
         {
             if(bonus.gameObject.activeSelf && _selected != bonus.bonusData) bonus.animator.SetTrigger("UnChoose");
         }
+    }
+
+    public void BeginWave(int _waveNumber)
+    {
+        waveNumber.text = (_waveNumber < 10 ? "0" : "") + _waveNumber;
+        m_animator.SetTrigger("BeginWave");
+        
     }
 }

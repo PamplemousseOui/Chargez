@@ -92,6 +92,7 @@ public class WaveManager : MonoBehaviour
         }
         currentWaveNumber++;
         timerBeforeSpawn = currentWaveData.startCooldown;
+        menuManager.BeginWave(currentWaveNumber);
         OnStartNewWave?.Invoke(currentWaveData);
         GameManager.instance.ResumeGame();
         Debug.Log("Start wave " + currentWaveNumber);
