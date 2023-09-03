@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnHealthUpdate(float _healthRatio, float _damage)
     {
-        if (healthSlider.value > _healthRatio && _healthRatio != 0)
+        if (healthSlider.value >= _healthRatio)
         {
             if(GetModifierValue("explosion") > 0.1f) GameManager.instance.spawnManager.DestroyAllEnemies();
             OnDamageReceived?.Invoke(_healthRatio, _damage); //J'AI MAAAAAAAAAAAAAAAAAAAAAAAL
@@ -409,6 +409,7 @@ public class PlayerController : MonoBehaviour
         {
             foreach (EnemyComponent enemy in attack.enemiesInRange)
             {
+                Debug.Log("Find enemy "+ enemy.gameObject);
                 killedEnemies.Add(enemy);
             }   
         }

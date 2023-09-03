@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
@@ -17,17 +18,29 @@ public class TutoManager : MonoBehaviour
         }
         tutorials[0].gameObject.SetActive(true);
     }
-    
+
+    public void OnEnable()
+    {
+        InputManager.OnPausePress += StartGame;
+    }
+
+    public void OnDisable()
+    {
+        
+        InputManager.OnPausePress -= StartGame;
+    }
+
     public void StartGame()
     {
         GameManager.instance.waveManager.gameObject.SetActive(true);
         GameManager.instance.StartGame();
         camera.Priority = 0;
+        gameObject.SetActive(false);
     }
 
     public void NextTuto()
     {
-        tutorials[currentTutoriel].gameObject.SetActive(false);
+        Destroy(tutorials[currentTutoriel].gameObject);
         ++currentTutoriel;
         if (currentTutoriel == tutorials.Count)
         {
