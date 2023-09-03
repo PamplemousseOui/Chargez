@@ -2295,6 +2295,62 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: waves.Array.size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[2].type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[4].type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[0].maxCooldown
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[0].minCooldown
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].maxCooldown
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].minCooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[3].maxCooldown
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[3].minCooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[4].maxCooldown
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[4].minCooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7389281809262310415, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 1660944383
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
