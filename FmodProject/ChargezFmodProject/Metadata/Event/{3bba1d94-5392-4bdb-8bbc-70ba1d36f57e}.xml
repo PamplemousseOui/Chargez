@@ -69,7 +69,7 @@
 			<value>true</value>
 		</property>
 		<property name="minimumDistance">
-			<value>2</value>
+			<value>4</value>
 		</property>
 		<property name="maximumDistance">
 			<value>65</value>
@@ -212,11 +212,7 @@
 			<destination>{2ba4703f-d9f8-483c-8d7c-f3275072c37e}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{9bd94d5b-6234-468b-9727-45bd9b8248be}">
-		<property name="surroundPanExtent">
-			<value>355.434021</value>
-		</property>
-	</object>
+	<object class="MixerBusPanner" id="{9bd94d5b-6234-468b-9727-45bd9b8248be}" />
 	<object class="MixerBusFader" id="{43c2d5e1-b012-4a5b-b8a0-4c781c92cd2a}" />
 	<object class="Automator" id="{f03c93c3-0db7-4ab9-806c-c59bc2c9b6b8}">
 		<property name="nameOfPropertyBeingAutomated">
@@ -248,7 +244,7 @@
 			<value>3</value>
 		</property>
 		<property name="minimumDistance">
-			<value>2</value>
+			<value>4</value>
 		</property>
 		<property name="maximumDistance">
 			<value>65</value>
@@ -257,10 +253,10 @@
 			<value>1</value>
 		</property>
 		<property name="soundSize">
-			<value>10</value>
+			<value>20</value>
 		</property>
 		<property name="minimumExtent">
-			<value>40</value>
+			<value>140</value>
 		</property>
 	</object>
 	<object class="AutomationCurve" id="{89a16802-8817-4520-8960-792d935521c5}">
@@ -278,7 +274,7 @@
 	<object class="MixerBusFader" id="{bc9de9ac-bd53-4f95-b214-7599ca654c05}" />
 	<object class="SpatialiserEffect" id="{65926c27-967f-43f8-8679-7d1fa3aa74cd}">
 		<property name="minimumDistance">
-			<value>2</value>
+			<value>4</value>
 		</property>
 		<property name="maximumDistance">
 			<value>65</value>
