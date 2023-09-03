@@ -8,6 +8,15 @@ public class TutoManager : MonoBehaviour
     public List<GameObject> tutorials;
     public int currentTutoriel;
     public CinemachineVirtualCamera camera;
+
+    public void Awake()
+    {
+        foreach (var gameObject in tutorials)
+        {
+            gameObject.SetActive(false);
+        }
+        tutorials[0].gameObject.SetActive(true);
+    }
     
     public void StartGame()
     {
