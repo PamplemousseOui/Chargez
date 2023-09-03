@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class WallController : MonoBehaviour
     [SerializeField] private float m_idleDuration = 1.0f;
 
     private float m_size;
+    private bool m_isDestroyed;
+
+    public Action OnWallDestroyed;
     
     public void SetSize(float _size)
     {
@@ -25,7 +29,8 @@ public class WallController : MonoBehaviour
             cavInstance.transform.localPosition = Vector3.right * i;
 
             CavController cav = cavInstance.GetComponent<CavController>();
-            if(previous)
+            cav.wallController = this;
+            if (previous)
             {
                 cav.SetRight(previous);
                 previous.SetLeft(cav);
@@ -35,6 +40,16 @@ public class WallController : MonoBehaviour
             waitingTime += 0.1f;
             waitingTime %= m_idleDuration;
             previous = cav;
+        }
+    }
+
+    public void DestroyWall()
+    {
+        if (m_isDestroyed) return;
+        else
+        {
+            m_isDestroyed = true;
+            OnWallDestroyed?.Invoke();
         }
     }
 }

@@ -5188,6 +5188,20 @@ MonoBehaviour:
       Data3: 1385409955
       Data4: -1267534292
     Path: event:/Player/Sfx/Sfx_Player_Death
+  moveEvent:
+    Guid:
+      Data1: 2117529620
+      Data2: 1088836796
+      Data3: 1242735021
+      Data4: -681499373
+    Path: event:/Player/Sfx/Sfx_Player_Move_Lp
+  doinkEvent:
+    Guid:
+      Data1: -1393759751
+      Data2: 1328996100
+      Data3: 1016073370
+      Data4: -1231553588
+    Path: event:/Player/Sfx/Sfx_Player_Doink
   healthParam:
     Name: HealthRatio
     Value: 1

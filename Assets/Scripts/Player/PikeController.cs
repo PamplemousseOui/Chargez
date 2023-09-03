@@ -53,6 +53,10 @@ public class PikeController : MonoBehaviour
     {
         if (collision.TryGetComponent<EnemyComponent>(out var enemy))
         {
+            if (enemy.TryGetComponent(out CavController cavController))
+            {
+                cavController.wallController.DestroyWall();
+            }
             if(enemy.healthComponent.isAlive) enemy.healthComponent.InstantKill();
         }
     }

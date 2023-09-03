@@ -21,7 +21,7 @@ public class EnemySound : MonoBehaviour
         health.OnDeath -= OnDeath;
     }
 
-    private void OnDeath()
+    public virtual void OnDeath()
     {
         emitter.PlayOneShot(deathEvent);
         Debug.Log("Enemykilled");

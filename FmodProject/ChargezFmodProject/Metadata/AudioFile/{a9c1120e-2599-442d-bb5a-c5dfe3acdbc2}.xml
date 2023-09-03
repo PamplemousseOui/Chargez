@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{a9c1120e-2599-442d-bb5a-c5dfe3acdbc2}">
+		<property name="assetPath">
+			<value>Sfx/Enemy/Sfx_Enemy_Hitscan_Shoot_Lp_01.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>5</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{aae51dc7-8cca-43b6-a95f-a211c0022913}</destination>
+		</relationship>
+	</object>
+</objects>

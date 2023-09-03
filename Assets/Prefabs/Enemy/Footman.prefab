@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 4186231191954206546}
   - component: {fileID: 1889680713839211354}
   - component: {fileID: 6120691324478982880}
+  - component: {fileID: 3977597772641260707}
   - component: {fileID: -7524432092935420797}
-  - component: {fileID: -1943715035302163638}
   m_Layer: 6
   m_Name: Footman
   m_TagString: Enemy
@@ -184,7 +184,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-7524432092935420797
+--- !u!114 &3977597772641260707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,19 +193,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2210985187186924065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 250986ddddd906642b7f52933d859075, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-1943715035302163638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2210985187186924065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b122198589d225419c2cb88f1eaf703, type: 3}
+  m_Script: {fileID: 11500000, guid: 7373ee29990b86c4c95f182a6956aff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   emitter: {fileID: -7524432092935420797}
@@ -218,6 +206,25 @@ MonoBehaviour:
       Data3: -272844865
       Data4: 1532399920
     Path: event:/Enemy/Sfx_Enemy_Death
+  moveEvent:
+    Guid:
+      Data1: 329064552
+      Data2: 1281742471
+      Data3: -262840912
+      Data4: 296316849
+    Path: event:/Enemy/Sfx_Enemy_Footman_Move_Lp
+--- !u!114 &-7524432092935420797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2210985187186924065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250986ddddd906642b7f52933d859075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3782458131366448370
 GameObject:
   m_ObjectHideFlags: 0

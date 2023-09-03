@@ -108,7 +108,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{87a1a262-9d96-47a0-ab28-78baf1e81853}">
 		<property name="volume">
-			<value>-2</value>
+			<value>-3</value>
 		</property>
 		<property name="name">
 			<value>Audio 1</value>
@@ -126,7 +126,7 @@
 	<object class="MixerBusEffectChain" id="{2c48c418-82fc-4572-b967-fd3627f3c1f3}">
 		<relationship name="effects">
 			<destination>{25c24042-c904-457b-80e4-061661016f67}</destination>
-			<destination>{81f85bee-374a-4c0a-86d8-5a8be7c28f81}</destination>
+			<destination>{fea72fdd-a347-4249-b8bf-d0ba9337bfdd}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{7862d10a-fca0-4a34-8959-7f7d6634bf8c}" />
@@ -138,12 +138,21 @@
 	</object>
 	<object class="MixerBusPanner" id="{3df6cda5-d917-46fa-a0e6-301fd9974865}" />
 	<object class="MixerBusFader" id="{25c24042-c904-457b-80e4-061661016f67}" />
-	<object class="SpatialiserEffect" id="{81f85bee-374a-4c0a-86d8-5a8be7c28f81}">
+	<object class="SpatialiserEffect" id="{fea72fdd-a347-4249-b8bf-d0ba9337bfdd}">
 		<property name="minimumDistance">
 			<value>20</value>
 		</property>
 		<property name="maximumDistance">
 			<value>40</value>
+		</property>
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>10</value>
+		</property>
+		<property name="minimumExtent">
+			<value>80</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{7ea4c72c-d736-47b9-840d-370e10d75d3d}" />

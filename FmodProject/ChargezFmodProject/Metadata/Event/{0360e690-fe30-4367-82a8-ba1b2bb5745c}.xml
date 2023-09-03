@@ -118,12 +118,12 @@
 			<destination>{60eef799-3d56-4e63-9529-06d90e42fdb7}</destination>
 		</relationship>
 		<relationship name="audioFile">
-			<destination>{8dabf774-ead9-4b27-aaea-3fa799d8ffe9}</destination>
+			<destination>{a9c1120e-2599-442d-bb5a-c5dfe3acdbc2}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{2107ee91-e6c6-4ba4-a9e8-41713e038b28}">
 		<property name="volume">
-			<value>-2</value>
+			<value>-4</value>
 		</property>
 		<property name="name">
 			<value>Audio 1</value>
@@ -201,6 +201,15 @@
 		</property>
 		<property name="maximumDistance">
 			<value>40</value>
+		</property>
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>10</value>
+		</property>
+		<property name="minimumExtent">
+			<value>80</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{a53c72d8-eaeb-4df7-b71a-14d0a9c689bd}" />
