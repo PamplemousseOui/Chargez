@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,12 +12,23 @@ public class MenuManager : MonoBehaviour
     private Animator m_animator;
     public List<UIBonus> bonuses;
     public TextMeshProUGUI waveNumber;
+    public TextMeshProUGUI gameOverScore;
     
     public void Awake()
     {
         m_animator = GetComponent<Animator>();
     }
-    
+
+    public void OnEnable()
+    {
+        GameManager.OnPlayerDeath += LooseGame;
+    }
+
+    public void OnDisable()
+    {
+        GameManager.OnPlayerDeath -= LooseGame;
+    }
+
     public void DrawBonus(List<IBonusData> _bonuses)
     {
         foreach (UIBonus bonus in bonuses)
@@ -52,5 +64,23 @@ public class MenuManager : MonoBehaviour
     public void EndWave()
     {
         m_animator.SetTrigger("EndWave");
+    }
+
+    public void WinGame()
+    {
+        m_animator.SetTrigger("EndWave");
+        m_animator.SetTrigger("GameWin");
+    }
+
+    public void LooseGame()
+    {
+        gameOverScore.text = waveNumber.text;
+        m_animator.SetTrigger("EndWave");
+        m_animator.SetTrigger("GameOver");
+    }
+
+    public void RestartGame()
+    {
+        GameManager.instance.RetryGame();
     }
 }
