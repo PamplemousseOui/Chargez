@@ -20,4 +20,16 @@ public class ShieldController : MonoBehaviour
         m_currentAngle = _rotation;
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, _rotation);
     }
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<EnemyComponent>(out var enemy))
+        {
+            if (enemy.TryGetComponent(out CavController cavController))
+            {
+                cavController.wallController.DestroyWall();
+            }
+            if(enemy.healthComponent.isAlive) enemy.healthComponent.InstantKill();
+        }
+    }
 }
