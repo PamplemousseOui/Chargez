@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerAnimator : MonoBehaviour
 
     [SerializeField] private GameObject m_dashFart;
     [SerializeField] private GameObject m_dashGhost;
+    [SerializeField] private GameObject m_hitPrefab;
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,6 +28,7 @@ public class PlayerAnimator : MonoBehaviour
         PlayerController.OnAttackLoadingEnd += OnAttackLoadingEnd;
         PlayerController.OnAttackRecoveryStart += OnAttackRecoveryStart;
         PlayerController.OnAttackRecoveryEnd += OnAttackRecoveryEnd;
+        PlayerController.OnPlayerHitWall += OnPlayerHitWall;
         WaveManager.OnEndWaveEvent += CompletelyResetAnim;
         PlayerController.OnDeath += CompletelyResetAnim;
     }
@@ -88,6 +91,12 @@ public class PlayerAnimator : MonoBehaviour
         m_animator.ResetTrigger("StopAttack");
         m_animator.ResetTrigger("ChargeAttack");
         m_animator.ResetTrigger("CancelAttack");
+    }
+
+    private void OnPlayerHitWall(Vector2 _point, Vector2 _normal)
+    {
+        if (!m_hitPrefab) return;
+        Instantiate(m_hitPrefab, _point, Quaternion.Euler(0.0f, 0.0f, Vector2.SignedAngle(Vector2.up, _normal)));
     }
     
     private void OnAttackLoadingEnd()

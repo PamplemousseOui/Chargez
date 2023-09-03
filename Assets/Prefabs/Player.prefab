@@ -5039,6 +5039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_dashFart: {fileID: 8360973624681494427, guid: a72a65b8f69e36c46b8b7faa455b3cce, type: 3}
   m_dashGhost: {fileID: 6521664943234593857, guid: 0c766a27570f59c4e9b6e366405aded7, type: 3}
+  m_hitPrefab: {fileID: 3680078753844771748, guid: e761acdf1be7fb34abb6e9fd59090aa0, type: 3}
 --- !u!114 &3850433096186504612
 MonoBehaviour:
   m_ObjectHideFlags: 0

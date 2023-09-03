@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
     public static EventHandler OnDashStop;
     public static EventHandler<float> OnDashEnergyConsumption; //new ratio
     public static EventHandler<float> OnDashEnergyRefill; //new ratio
+    public static Action<Vector2, Vector2> OnPlayerHitWall;
 
     private float m_currentAttackLoading;
     private float m_currentAttackProgress;
@@ -481,6 +482,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D _other)
     {
         m_hitNormal = _other.contacts[0].normal;
+        OnPlayerHitWall?.Invoke(_other.contacts[0].point, m_hitNormal);
         m_hitTimer = 0.0f;
     }
 
