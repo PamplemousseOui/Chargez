@@ -472,8 +472,7 @@ public class PlayerController : MonoBehaviour
         Vector2 additionnalVelocity = m_hitNormal * ratio * m_hitSpeed;
         m_hitTimer += Time.deltaTime;
         
-        Vector2 right = m_hitNormal.Perpendicular2();
-        
+        Vector2 right = new Vector2(m_hitNormal.y, m_hitNormal.x);
         
         m_rigidbody.velocity = Vector2.Lerp(desiredVelocity, right * Vector2.Dot(right, desiredVelocity), ratio) + additionnalVelocity;
         m_currentVelocity = desiredVelocity;
