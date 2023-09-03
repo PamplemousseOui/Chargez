@@ -72,20 +72,24 @@ public class SpawnManager : MonoBehaviour
                 switch (pickedWallIndex)
                 {
                     case 0:
+                        spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0,0,-180));
                         x = UnityEngine.Random.Range(0, arenaSize.x) - (arenaSize.x / 2);
                         y = arenaSize.y / 2 + 2;
                         break;
                     case 1:
-                        x = arenaSize.x / 2 + 2;
+                        spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
                         y = UnityEngine.Random.Range(0, arenaSize.y) - (arenaSize.y / 2);
+                        x = arenaSize.x / 2 + 2;
                         break;
                     case 2:
+                        spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
                         x = UnityEngine.Random.Range(0, arenaSize.x) - (arenaSize.x / 2);
                         y = -arenaSize.y / 2 - 2;
                         break;
                     case 3:
-                        x = -arenaSize.x / 2 - 2;
+                        spawnedEnemy.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -90));
                         y = UnityEngine.Random.Range(0, arenaSize.y) - (arenaSize.y / 2);
+                        x = -arenaSize.x / 2 - 2;
                         break;
                 }
                 break;
