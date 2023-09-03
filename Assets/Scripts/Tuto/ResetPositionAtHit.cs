@@ -14,6 +14,11 @@ public class ResetPositionAtHit : MonoBehaviour
 
         PlayerController.OnDamageReceived += ResetCharacterPosition;
     }
+    public void OnDisable()
+    {
+        PlayerController.OnDamageReceived -= ResetCharacterPosition;
+    }
+
 
     private void ResetCharacterPosition(float arg1, float arg2)
     {

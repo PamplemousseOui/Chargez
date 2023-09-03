@@ -31,7 +31,6 @@ public class InputManager : MonoBehaviour
     
     public void ReadPauseInput(InputAction.CallbackContext _context)
     {
-        Debug.Log("Pause input");
         if (_context.performed)
         {
             OnPausePress?.Invoke();
