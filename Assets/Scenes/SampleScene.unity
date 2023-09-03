@@ -430,39 +430,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315882219}
   m_CullTransparentMesh: 1
---- !u!1001 &349409393
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1889514809092912964, guid: 0e00a3aa85410ab488d69294c89c32f1, type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1889514809092912964, guid: 0e00a3aa85410ab488d69294c89c32f1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1889514809092912964, guid: 0e00a3aa85410ab488d69294c89c32f1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1889514809092912964, guid: 0e00a3aa85410ab488d69294c89c32f1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3784894385745261108, guid: 0e00a3aa85410ab488d69294c89c32f1, type: 3}
-      propertyPath: m_Name
-      value: SpawnArcher
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0e00a3aa85410ab488d69294c89c32f1, type: 3}
 --- !u!1 &416462929
 GameObject:
   m_ObjectHideFlags: 0
@@ -2554,67 +2521,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 713014cceff5c164ab5e052495b55d8a, type: 3}
---- !u!1001 &7372231374146348230
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5989835170416868714, guid: 98b44901df0fba44f8e01add97ebf5ff, type: 3}
-      propertyPath: m_Name
-      value: SpawnFootman
-      objectReference: {fileID: 0}
-    - target: {fileID: 6129987870575457771, guid: 98b44901df0fba44f8e01add97ebf5ff, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6129987870575457771, guid: 98b44901df0fba44f8e01add97ebf5ff, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6129987870575457771, guid: 98b44901df0fba44f8e01add97ebf5ff, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6129987870575457771, guid: 98b44901df0fba44f8e01add97ebf5ff, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6129987870575457771, guid: 98b44901df0fba44f8e01add97ebf5ff, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6129987870575457771, guid: 98b44901df0fba44f8e01add97ebf5ff, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6129987870575457771, guid: 98b44901df0fba44f8e01add97ebf5ff, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6129987870575457771, guid: 98b44901df0fba44f8e01add97ebf5ff, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6129987870575457771, guid: 98b44901df0fba44f8e01add97ebf5ff, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6129987870575457771, guid: 98b44901df0fba44f8e01add97ebf5ff, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6129987870575457771, guid: 98b44901df0fba44f8e01add97ebf5ff, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 98b44901df0fba44f8e01add97ebf5ff, type: 3}
 --- !u!1001 &7780516386284581981
 PrefabInstance:
   m_ObjectHideFlags: 0
