@@ -103,12 +103,11 @@ public class WaveManager : MonoBehaviour
         SelectBonuses();
         OnEndWaveEvent?.Invoke();
         GameManager.instance.PauseGame();
-        Debug.Log("End of wave");
     }
     
     private void OnSelectBonus(IBonusData _bonusdata)
     {
-        menuManager.HideBonus();
+        menuManager.HideBonus(_bonusdata);
         StartNextWave();
     }
 

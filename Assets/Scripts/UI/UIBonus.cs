@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIBonus : MonoBehaviour
@@ -14,6 +16,33 @@ public class UIBonus : MonoBehaviour
     [SerializeField] private TextMeshProUGUI name;
     [SerializeField] private Image image;
     [SerializeField] private TextMeshProUGUI description;
+    
+    private Button m_button;
+    private bool m_selected;
+    private Animator m_animator;
+    public Animator animator => m_animator;
+
+    private void Awake()
+    {
+        m_animator = GetComponent<Animator>();
+        m_button = GetComponent<Button>();
+    }
+    private void Update()
+    {
+        if(EventSystem.current.currentSelectedGameObject == m_button.gameObject)
+        {
+            if (!m_selected)
+            {
+                m_selected = true;
+                m_animator.SetTrigger("Select");
+            }
+        }
+        else if(m_selected)
+        {
+            m_selected = false;
+            m_animator.SetTrigger("Deselect");
+        }
+    }
 
     public void SetBonus(IBonusData _data)
     {
@@ -28,5 +57,6 @@ public class UIBonus : MonoBehaviour
         bonusData.ApplyEffect();
         OnSelectBonus?.Invoke(bonusData);
         Debug.Log("Select bonus " + name.text);
+        m_animator.SetTrigger("Choose");
     }
 }

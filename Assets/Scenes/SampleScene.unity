@@ -448,7 +448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &416462930
 RectTransform:
   m_ObjectHideFlags: 0
@@ -646,7 +646,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &446969960
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2294,30 +2294,6 @@ PrefabInstance:
     - target: {fileID: 4232766049812127944, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[0].type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[3].type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[4].type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[5].type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012407080955617152, guid: aec7c291273a6684f9643c20b5b5ab45, type: 3}
-      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[6].type
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
