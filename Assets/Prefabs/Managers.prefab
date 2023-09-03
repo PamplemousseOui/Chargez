@@ -278,6 +278,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: WavesManger
       objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[2].type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[4].type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[0].maxCooldown
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[0].minCooldown
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].maxCooldown
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[1].minCooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[3].maxCooldown
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[3].minCooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[4].maxCooldown
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081396733877322039, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
+      propertyPath: waves.Array.data[0].numberOfEnemyByTypes.Array.data[4].minCooldown
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8006719355509399282, guid: 768bdf899c6c71e4eb34e822c9ee7804, type: 3}
       propertyPath: m_RootOrder
       value: -1

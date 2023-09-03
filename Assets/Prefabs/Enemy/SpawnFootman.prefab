@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6961824106797983188}
   - component: {fileID: 3653481592641060495}
+  - component: {fileID: 6636908394274506167}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -84,6 +85,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6636908394274506167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3702066271480012409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 048342d08aa0455428c4e88ac654c4f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5989835170416868714
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,6 +108,7 @@ GameObject:
   - component: {fileID: 6129987870575457771}
   - component: {fileID: 6203487531597296844}
   - component: {fileID: 8095865572226835372}
+  - component: {fileID: 8599416217438209060}
   m_Layer: 0
   m_Name: SpawnFootman
   m_TagString: Untagged
@@ -153,3 +167,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8599416217438209060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5989835170416868714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb22c3262d8a61e419d4ec064ecd146c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

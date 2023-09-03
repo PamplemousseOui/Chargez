@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Power up
   sprite: {fileID: 21300000, guid: 8da54c17fe2d3b64ea017f93347a6711, type: 3}
-  description: Energy regenerate 10% faster.
+  description: Energy regenerate <color=#7EFF91>10% faster</color>.
   number: 5
   modifier:
     name: energy_regeneration

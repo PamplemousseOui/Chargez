@@ -27,8 +27,9 @@ public class WaveManager : MonoBehaviour
     public delegate void StartNewWaveEvent(WaveData waveData);
     public static StartNewWaveEvent OnStartNewWave;
 
-    public delegate void EndWaveEvent();
-    public static EndWaveEvent OnEndWaveEvent;
+    public delegate void SimpleEvent();
+    public static SimpleEvent OnEndWaveEvent;
+    public static SimpleEvent OnGameWinEvent;
 
     private void OnEnable()
     {
@@ -101,9 +102,18 @@ public class WaveManager : MonoBehaviour
     private void EndOfWave()
     {
         currentWaveData = null;
-        SelectBonuses();
-        OnEndWaveEvent?.Invoke();
         GameManager.instance.PauseGame();
+        if (waves.Count > currentWaveNumber)
+        {
+            SelectBonuses();
+            menuManager.EndWave();
+            OnEndWaveEvent?.Invoke();
+        }
+        else
+        {
+            menuManager.WinGame();
+            OnGameWinEvent?.Invoke();
+        }
     }
     
     private void OnSelectBonus(IBonusData _bonusdata)
