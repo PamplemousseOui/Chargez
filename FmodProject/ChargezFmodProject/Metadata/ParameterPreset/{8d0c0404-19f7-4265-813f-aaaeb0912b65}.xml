@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{8d0c0404-19f7-4265-813f-aaaeb0912b65}">
+		<property name="name">
+			<value>Doppler</value>
+		</property>
+		<relationship name="folder">
+			<destination>{098d220a-0175-4f03-9a8a-731f1d1256be}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{4dcaf99d-58b9-449b-9d35-f1197cc0a92a}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{4dcaf99d-58b9-449b-9d35-f1197cc0a92a}">
+		<property name="minimum">
+			<value>-40</value>
+		</property>
+		<property name="maximum">
+			<value>40</value>
+		</property>
+		<property name="initialValue">
+			<value>-40</value>
+		</property>
+	</object>
+</objects>

@@ -137,10 +137,10 @@
 			<value>1</value>
 		</property>
 		<property name="soundSize">
-			<value>5.5</value>
+			<value>4.5999999</value>
 		</property>
 		<property name="minimumExtent">
-			<value>164</value>
+			<value>110</value>
 		</property>
 	</object>
 	<object class="RandomizerModulator" id="{887c7bd6-1c87-4a2f-b3e5-f36657e08bb9}">

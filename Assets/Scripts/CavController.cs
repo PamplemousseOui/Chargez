@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CavController : MonoBehaviour
 {
+    public WallController wallController;
+
     private EnemyComponent m_enemy;
     private CavController m_left;
     private CavController m_right;
@@ -42,7 +44,7 @@ public class CavController : MonoBehaviour
 
     private void PlayKillAnimation()
     {
-        if(m_main) m_animator.SetTrigger("DeathMain");
+        if (m_main) m_animator.SetTrigger("DeathMain");
         else m_animator.SetTrigger("Death");
     }
 
