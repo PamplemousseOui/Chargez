@@ -39,15 +39,15 @@ public class EnemyComponent : MonoBehaviour
     private void OnDeath()
     {
         enabled = false;
-        if (deathAnimTrigger.Length > 0)
+
+        if (TryGetComponent(out Animator animator))
         {
-            if (TryGetComponent(out Animator animator))
+            if (deathAnimTrigger.Length > 0)
             {
                 animator.SetTrigger(deathAnimTrigger);
-                return;
             }
         }
-        Destroy(gameObject);
+        else Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

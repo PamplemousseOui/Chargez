@@ -35,7 +35,7 @@ public class TutoManager : MonoBehaviour
         GameManager.instance.waveManager.gameObject.SetActive(true);
         GameManager.instance.StartGame();
         camera.Priority = 0;
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     public void NextTuto()

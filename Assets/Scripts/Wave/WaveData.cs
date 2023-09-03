@@ -25,6 +25,7 @@ public class WaveData
         }
     }
 
+    public string friendlyName = "Wave 0";
     public float startCooldown = 5.0f;
     public List<NumberOfEnemyByType> numberOfEnemyByTypes;
 

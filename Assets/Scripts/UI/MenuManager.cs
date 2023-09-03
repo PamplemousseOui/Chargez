@@ -49,9 +49,15 @@ public class MenuManager : MonoBehaviour
             //bonuses[i].animator.SetTrigger("ShowBonus");
         }
         m_animator.SetTrigger("ShowBonus");
-        EventSystem.current.SetSelectedGameObject(bonuses[0].gameObject);
+        StartCoroutine(SelectGameObject(bonuses[0].gameObject));
     }
 
+    private IEnumerator SelectGameObject(GameObject _gameObject)
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        yield return new WaitForSeconds(0.3f);
+        EventSystem.current.SetSelectedGameObject(_gameObject);
+    }
     public void HideBonus(IBonusData _selected)
     {
         m_animator.SetTrigger("HideBonus");
@@ -77,7 +83,7 @@ public class MenuManager : MonoBehaviour
     {
         m_animator.SetTrigger("EndWave");
         m_animator.SetTrigger("GameWin");
-        EventSystem.current.SetSelectedGameObject(retryWinGame);
+        StartCoroutine(SelectGameObject(retryWinGame));
     }
 
     public void LooseGame()
@@ -85,7 +91,7 @@ public class MenuManager : MonoBehaviour
         gameOverScore.text = waveNumber.text;
         m_animator.SetTrigger("EndWave");
         m_animator.SetTrigger("GameOver");
-        EventSystem.current.SetSelectedGameObject(retryLooseGame);
+        StartCoroutine(SelectGameObject(retryLooseGame));
     }
 
     private bool pause = false;
@@ -99,7 +105,7 @@ public class MenuManager : MonoBehaviour
             pause = true;
             GameManager.instance.PauseGame();
             m_animator.SetTrigger("GamePause");
-            EventSystem.current.SetSelectedGameObject(resumeGame);
+            StartCoroutine(SelectGameObject(resumeGame));
         }
         else
         {
