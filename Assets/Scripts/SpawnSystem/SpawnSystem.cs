@@ -20,6 +20,5 @@ public class SpawnSystem : MonoBehaviour
     public void SpawneEnemy()
     {
         GameObject spawnedEnemy = Instantiate(enemy, transform.position, transform.rotation);
-        Destroy(gameObject);
     }
 }

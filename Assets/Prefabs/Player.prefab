@@ -5002,6 +5002,7 @@ MonoBehaviour:
   dashInvicibilityParam: DashInvicibility
   dashSpeedParam: DashSpeed
   attackLoadingRatioParam: AttackLoadingRatio
+  screenShaker: {fileID: 0}
   m_hitSpeedOverTime:
     serializedVersion: 2
     m_Curve:
@@ -5054,7 +5055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ba5fa4e1e5bac4486d94219327b0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 5
+  startHealth: 6
   currentHealth: 0
   isAlive: 0
 --- !u!50 &6993250933194112308
