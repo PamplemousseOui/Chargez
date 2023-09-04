@@ -15,6 +15,8 @@ public class WallSound : MonoBehaviour
     public ParamRef dopplerParam;
 
     private float previousDist;
+    private bool m_isKilled;
+    private Vector2 m_killedPos;
 
     private void OnEnable()
     {
@@ -30,8 +32,15 @@ public class WallSound : MonoBehaviour
     {
         if (emitterObject != null)
         {
-            emitterObject.transform.position = Vector3.MoveTowards(emitterObject.transform.position, GameManager.player.transform.position, 100);
-            emitterObject.transform.localPosition = new Vector3(emitterObject.transform.localPosition.x, 0f, emitterObject.transform.localPosition.z);
+            if (m_isKilled)
+            {
+                emitterObject.transform.position = m_killedPos;
+            }
+            else
+            {
+                emitterObject.transform.position = Vector3.MoveTowards(emitterObject.transform.position, GameManager.player.transform.position, 100);
+                emitterObject.transform.localPosition = new Vector3(emitterObject.transform.localPosition.x, 0f, emitterObject.transform.localPosition.z);
+            }
         }
     }
 
@@ -47,6 +56,8 @@ public class WallSound : MonoBehaviour
 
     private void OnWallDestroyed()
     {
+        m_isKilled = true;
+        m_killedPos = emitter.transform.position;
         emitter.PlayOneShot(deathEvent);
         emitter.Stop(moveEvent);
     }

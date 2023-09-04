@@ -13,6 +13,7 @@ public class CavController : MonoBehaviour
     private Animator m_animator;
 
     private bool m_main = true;
+
     public void SetLeft(CavController _left)
     {
         m_left = _left;
@@ -44,6 +45,7 @@ public class CavController : MonoBehaviour
 
     private void PlayKillAnimation()
     {
+        wallController.DestroyWall();
         if (m_main) m_animator.SetTrigger("DeathMain");
         else m_animator.SetTrigger("Death");
     }

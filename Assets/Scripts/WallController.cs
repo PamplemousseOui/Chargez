@@ -8,6 +8,7 @@ public class WallController : MonoBehaviour
     [SerializeField] private GameObject m_cavPrefab;
     [SerializeField] private float m_cavSize = 1.6f;
     [SerializeField] private float m_idleDuration = 1.0f;
+    public bool bypassInstantiation;
 
     private float m_size;
     private bool m_isDestroyed;
@@ -21,6 +22,7 @@ public class WallController : MonoBehaviour
 
     private void Start()
     {
+        if (bypassInstantiation) return;
         CavController previous = null;
         float waitingTime = 0.0f;
         for (float i = -m_size / 2.0f; i < m_size / 2.0f; i += m_cavSize)
