@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fart
   m_EditorClassIdentifier: 
   name: Backward attack
-  sprite: {fileID: 21300000, guid: 8da54c17fe2d3b64ea017f93347a6711, type: 3}
+  sprite: {fileID: 21300000, guid: 122d96b9fb40dd54ab8a7c6064b48147, type: 3}
   description: Also <color=#7EFF91>attack backwards</color>.
   number: 1
   modifier:

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Pike
   m_EditorClassIdentifier: 
   name: Pike
-  sprite: {fileID: 21300000, guid: 8da54c17fe2d3b64ea017f93347a6711, type: 3}
+  sprite: {fileID: 21300000, guid: c14d0a145bd3e314d817aace4149acda, type: 3}
   description: A <color=#7EFF91>frontal attack</color> when dashing.
   number: 1

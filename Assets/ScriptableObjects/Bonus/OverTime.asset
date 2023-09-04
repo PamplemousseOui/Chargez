@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OverTime
   m_EditorClassIdentifier: 
   name: Over time
-  sprite: {fileID: 21300000, guid: 8da54c17fe2d3b64ea017f93347a6711, type: 3}
+  sprite: {fileID: 21300000, guid: 0a699ef232e6a02449cc09389edf69a3, type: 3}
   description: Attack last <color=#7EFF91>10% longer</color>.
   number: 5
   modifier:

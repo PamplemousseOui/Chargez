@@ -175,7 +175,7 @@ MonoBehaviour:
       minCooldown: 4
       maxCooldown: 5
   - friendlyName: Wave 2
-    startCooldown: 5
+    startCooldown: 3
     maxEnemiesInArena: 1
     numberOfEnemyByTypes:
     - type: 0
@@ -592,7 +592,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990366792461702583}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0

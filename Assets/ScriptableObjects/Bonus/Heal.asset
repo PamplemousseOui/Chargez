@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Heal
   m_EditorClassIdentifier: 
   name: Heal
-  sprite: {fileID: 21300000, guid: 8da54c17fe2d3b64ea017f93347a6711, type: 3}
+  sprite: {fileID: 21300000, guid: 32a0114821757b54cba9160b355e6a58, type: 3}
   description: Heals <color=#7EFF91>2 healthpoints</color>.
   number: 10
   value: 2
