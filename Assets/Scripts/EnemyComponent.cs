@@ -10,6 +10,7 @@ public class EnemyComponent : MonoBehaviour
     public HealthComponent healthComponent;
     public string deathAnimTrigger = "Death";
     public bool canHitPlayerWhileDashing = true;
+    public bool killedWhenHitPlayer = true;
 
     private void OnEnable()
     {
@@ -56,11 +57,12 @@ public class EnemyComponent : MonoBehaviour
         if (!enabled) return;
         if (collision.tag == Tag.Player.ToString() && GameManager.canUpdateEnemies)
         {
-            if ((!GameManager.player.isDashing  || canHitPlayerWhileDashing) && collision.TryGetComponent(out HealthComponent healthComponent))
+            if ((!GameManager.player.isDashing || canHitPlayerWhileDashing) && collision.TryGetComponent(out HealthComponent otherHealthComponent))
             {   
-                if (healthComponent.isAlive && (healthComponent.GetCanTakeDamage() || (!GameManager.player.isDashing && type == EnemyType.Wall)))
+                if (otherHealthComponent.isAlive && (otherHealthComponent.GetCanTakeDamage() || (!GameManager.player.isDashing && type == EnemyType.Wall)))
                 {
-                    healthComponent.ApplyDamage(contactDamage);
+                    otherHealthComponent.ApplyDamage(contactDamage);
+                    if(killedWhenHitPlayer) healthComponent.InstantKill();
                 }
             }
         }

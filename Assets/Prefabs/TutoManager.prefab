@@ -1574,6 +1574,7 @@ MonoBehaviour:
   healthComponent: {fileID: 7881927967640614157}
   deathAnimTrigger: 
   canHitPlayerWhileDashing: 1
+  killedWhenHitPlayer: 1
 --- !u!114 &7881927967640614157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1840,6 +1841,14 @@ PrefabInstance:
       propertyPath: contactDamage
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: killedWhenHitPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: canHitPlayerWhileDashing
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1920,6 +1929,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
       propertyPath: contactDamage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: killedWhenHitPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: canHitPlayerWhileDashing
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2004,6 +2021,14 @@ PrefabInstance:
       propertyPath: contactDamage
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: killedWhenHitPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: canHitPlayerWhileDashing
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2036,6 +2061,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4186231191954206546, guid: 5b95652b09f8c1445b5c36f24ba355ea, type: 3}
       propertyPath: contactDamage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186231191954206546, guid: 5b95652b09f8c1445b5c36f24ba355ea, type: 3}
+      propertyPath: killedWhenHitPlayer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4769857082191067792, guid: 5b95652b09f8c1445b5c36f24ba355ea, type: 3}
@@ -2176,6 +2205,14 @@ PrefabInstance:
       propertyPath: contactDamage
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: killedWhenHitPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: canHitPlayerWhileDashing
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2256,6 +2293,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
       propertyPath: contactDamage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: killedWhenHitPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: canHitPlayerWhileDashing
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2340,6 +2385,14 @@ PrefabInstance:
       propertyPath: contactDamage
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: killedWhenHitPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: canHitPlayerWhileDashing
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2420,6 +2473,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
       propertyPath: contactDamage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: killedWhenHitPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: canHitPlayerWhileDashing
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2504,6 +2565,14 @@ PrefabInstance:
       propertyPath: contactDamage
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: killedWhenHitPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: canHitPlayerWhileDashing
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2584,6 +2653,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
       propertyPath: contactDamage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: killedWhenHitPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: canHitPlayerWhileDashing
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2668,6 +2745,14 @@ PrefabInstance:
       propertyPath: contactDamage
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: killedWhenHitPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: canHitPlayerWhileDashing
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2748,6 +2833,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
       propertyPath: contactDamage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: killedWhenHitPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: canHitPlayerWhileDashing
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2832,6 +2925,14 @@ PrefabInstance:
       propertyPath: contactDamage
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: killedWhenHitPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: canHitPlayerWhileDashing
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2912,6 +3013,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
       propertyPath: contactDamage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: killedWhenHitPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885240598050254514, guid: 7c828351b3bace64b98c500f55fbb1a9, type: 3}
+      propertyPath: canHitPlayerWhileDashing
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
