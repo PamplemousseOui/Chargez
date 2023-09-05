@@ -28,6 +28,7 @@ public class PlayerAnimator : MonoBehaviour
         PlayerController.OnAttackLoadingEnd += OnAttackLoadingEnd;
         PlayerController.OnAttackRecoveryStart += OnAttackRecoveryStart;
         PlayerController.OnAttackRecoveryEnd += OnAttackRecoveryEnd;
+        PlayerController.OnDamageReceived += OnDamageReceived;
         PlayerController.OnPlayerHitWall += OnPlayerHitWall;
         WaveManager.OnEndWaveEvent += CompletelyResetAnim;
         PlayerController.OnDeath += CompletelyResetAnim;
@@ -44,6 +45,7 @@ public class PlayerAnimator : MonoBehaviour
         PlayerController.OnAttackLoadingEnd -= OnAttackLoadingEnd;
         PlayerController.OnAttackRecoveryStart -= OnAttackRecoveryStart;
         PlayerController.OnAttackRecoveryEnd -= OnAttackRecoveryEnd;
+        PlayerController.OnDamageReceived -= OnDamageReceived;
         WaveManager.OnEndWaveEvent -= CompletelyResetAnim;
         PlayerController.OnDeath -= CompletelyResetAnim;
     }
@@ -70,6 +72,11 @@ public class PlayerAnimator : MonoBehaviour
         ResetTrigger();
         m_animator.SetTrigger("StopAttack");
         
+    }
+
+    private void OnDamageReceived(float arg1, float arg2)
+    {
+        m_animator.SetTrigger("Hit");
     }
 
     private void OnAttackLoadingStart(object sender, EventArgs e)
@@ -116,12 +123,16 @@ public class PlayerAnimator : MonoBehaviour
 
     private void OnDashStart(object sender, EventArgs e)
     {
+        m_animator.ResetTrigger("StartDash");
+        m_animator.ResetTrigger("StopDash");
         m_animator.SetTrigger("StartDash");
         SpawnFart();
     }
 
     private void OnDashStop(object sender, EventArgs e)
     {
+        m_animator.ResetTrigger("StartDash");
+        m_animator.ResetTrigger("StopDash");
         m_animator.SetTrigger("StopDash");
     }
 
