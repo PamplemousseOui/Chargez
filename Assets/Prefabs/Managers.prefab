@@ -87,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intensity: 20
   sustain: 0.2
-  release: 0.3
+  release: 0.1
   virtualCamera: {fileID: 3613756411326567960}
 --- !u!1 &3712539938188520294
 GameObject:

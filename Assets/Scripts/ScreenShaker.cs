@@ -9,6 +9,7 @@ public class ScreenShaker : MonoBehaviour
     public float intensity;
     public float sustain;
     public float release;
+    private float m_shakeElapsed;
     public CinemachineVirtualCamera virtualCamera;
 
     private CinemachineBasicMultiChannelPerlin m_noise;
@@ -16,31 +17,35 @@ public class ScreenShaker : MonoBehaviour
     private void Start()
     {
         m_noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        m_shakeElapsed = -1;
     }
 
-    public IEnumerator ScreenShake()
+    private void Update()
     {
-        float elapsed = 0f;
-
-        while (elapsed < sustain)
+        if (m_shakeElapsed < 0.0f) return; 
+        
+        if (m_shakeElapsed < sustain)
         {
-            yield return new WaitForEndOfFrame();
-            elapsed += Time.deltaTime * Time.timeScale;
-            m_noise.m_AmplitudeGain = intensity / ExtensionMethods.MapValueRange(Time.timeScale, 0.01f, 1f, 0.1f, 1f);
-            m_noise.m_FrequencyGain = intensity / ExtensionMethods.MapValueRange(Time.timeScale, 0.01f, 1f, 0.1f, 1f);
+            m_shakeElapsed += Time.deltaTime;
+            m_noise.m_AmplitudeGain = intensity;
+            m_noise.m_FrequencyGain = intensity;
         }
-
-        elapsed = 0f;
-
-        while (elapsed < release)
+        else if (m_shakeElapsed < release + sustain)
         {
-            yield return new WaitForEndOfFrame();
-            elapsed += Time.deltaTime * Time.timeScale;
+            m_shakeElapsed += Time.deltaTime;
 
-            m_noise.m_AmplitudeGain = intensity * (1 - elapsed / release) / Time.timeScale;
-            m_noise.m_FrequencyGain = intensity * (1 - elapsed / release) / Time.timeScale;
+            m_noise.m_AmplitudeGain = intensity * (1 - m_shakeElapsed / release);
+            m_noise.m_FrequencyGain = intensity * (1 - m_shakeElapsed / release);
         }
+        else
+        {
+            m_noise.m_AmplitudeGain = 0.0f;
+            m_noise.m_FrequencyGain = 0.0f;
+        }
+    }
 
-        yield return null;
+    public void ScreenShake()
+    {
+        m_shakeElapsed = 0f;
     }
 }

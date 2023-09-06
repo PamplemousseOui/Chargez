@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
             if(GetModifierValue("explosion") > 0.1f) GameManager.instance.spawnManager.DestroyAllEnemies();
             OnDamageReceived?.Invoke(_healthRatio, _damage); //J'AI MAAAAAAAAAAAAAAAAAAAAAAAL
             StartCoroutine(FreezeTime());
-            StartCoroutine(screenShaker.ScreenShake());
+            screenShaker.ScreenShake();
         }
         healthSlider.value = _healthRatio;
     }
