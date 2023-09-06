@@ -221,6 +221,8 @@ MonoBehaviour:
   contactDamage: 1
   healthComponent: {fileID: 4043143177436533345}
   deathAnimTrigger: Death
+  canHitPlayerWhileDashing: 0
+  killedWhenHitPlayer: 1
 --- !u!114 &4043143177436533345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +262,7 @@ MonoBehaviour:
   baseDamage: 1
   baseLaserWeight: 0.5
   freezeOnPlayerHit: 1
+  canHitPlayerWhileDashing: 0
   loadingLineWeight: 0.8
   shootingLineWeight: 0.8
   m_lineRenderer: {fileID: 6791631957793088813}

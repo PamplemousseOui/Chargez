@@ -149,6 +149,8 @@ MonoBehaviour:
   contactDamage: 1
   healthComponent: {fileID: 1889680713839211354}
   deathAnimTrigger: Death
+  canHitPlayerWhileDashing: 0
+  killedWhenHitPlayer: 1
 --- !u!114 &1889680713839211354
 MonoBehaviour:
   m_ObjectHideFlags: 0
