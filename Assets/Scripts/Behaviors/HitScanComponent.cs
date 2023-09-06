@@ -19,6 +19,7 @@ public class HitScanComponent : MonoBehaviour
     public float baseDamage;
     public float baseLaserWeight;
     public bool freezeOnPlayerHit;
+    public bool canHitPlayerWhileDashing = false;
     public float loadingLineWeight = 0.1f;
     public float shootingLineWeight = 0.5f;
 
@@ -174,7 +175,7 @@ public class HitScanComponent : MonoBehaviour
         {
             var position = transform.position;
             var up = transform.up;
-            LayerMask mask = LayerMask.GetMask(new []{"Player", "Default", "Wall", "Shield"});
+            LayerMask mask = LayerMask.GetMask(new []{"Player", "Wall", "Shield"});
             RaycastHit2D hit = Physics2D.Raycast(position + up, up, m_curShootLength, mask);
             RaycastHit2D hitLeft = Physics2D.Raycast(position + up + transform.right * m_currLaserWeight  / 2.0f, up, m_curShootLength, mask);
             RaycastHit2D hitRight = Physics2D.Raycast(position + up - transform.right * m_currLaserWeight  / 2.0f, up, m_curShootLength, mask);
@@ -184,7 +185,7 @@ public class HitScanComponent : MonoBehaviour
             else if (hitLeft.collider && hitLeft.transform.gameObject.CompareTag(Tag.Player.ToString())) other = hitLeft.collider;
             else if (hitRight.collider && hitRight.transform.gameObject.CompareTag(Tag.Player.ToString())) other = hitRight.collider;
             
-            if(other)
+            if(other && (!GameManager.player.isDashing  || canHitPlayerWhileDashing))
             {
                 if (m_canHitPlayer && isShooting && other.gameObject.TryGetComponent(out HealthComponent healthComponent))
                 {

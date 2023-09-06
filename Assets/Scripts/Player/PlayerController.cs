@@ -190,9 +190,9 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator FreezeTime()
     {
-        Time.timeScale = 0.01f;
-        yield return new WaitForSeconds(hitTimeFreezeDuration * Time.timeScale); ;
-        Time.timeScale = 1f;
+        GameManager.instance.PauseGame();
+        yield return new WaitForSeconds(hitTimeFreezeDuration); 
+        GameManager.instance.ResumeGame();
     }
 
     private void OnHealthComponentDeath()
