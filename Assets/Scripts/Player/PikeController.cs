@@ -37,6 +37,7 @@ public class PikeController : MonoBehaviour
 
     private void DashStart(object sender, EventArgs e)
     {
+        m_animator.ResetTrigger("StopDash");
         m_animator.SetTrigger("StartDash");
         m_orientation = GameManager.player.transform.rotation;
         m_isDashing = true;
@@ -45,6 +46,7 @@ public class PikeController : MonoBehaviour
     private void DashStop(object sender, EventArgs e)
     {
         m_isDashing = false;
+        m_animator.ResetTrigger("StartDash");
         m_animator.SetTrigger("StopDash");
 
     }

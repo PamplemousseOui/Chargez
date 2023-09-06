@@ -5051,8 +5051,33 @@ MonoBehaviour:
   turnInertia: 1
   pike: {fileID: 8055061947278858299}
   baseDashSpeed: 15
-  baseDashConsumption: 1.51515
+  baseDashConsumptionAtStart: 0
+  baseDashConsumptionOverTime: 1.51515
   baseRefillSpeed: 0.66
+  dashRefillRatio:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   canRotateWhileDashing: 1
   canDriftWhileDashing: 1
   canTurnWhileDashing: 0
@@ -10302,7 +10327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9054942987067415999, guid: 6b118b4d286c1004dac508daace9182d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
