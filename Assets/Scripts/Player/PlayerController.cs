@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -29,8 +30,10 @@ public class PlayerController : MonoBehaviour
 
     public PikeController pike;
     public float baseDashSpeed;
-    public float baseDashConsumption;
+    public float baseDashConsumptionAtStart;
+    public float baseDashConsumptionOverTime;
     public float baseRefillSpeed;
+    public AnimationCurve dashRefillRatio;
     public bool canRotateWhileDashing;
     public bool canDriftWhileDashing;
     public bool canTurnWhileDashing;
@@ -99,10 +102,12 @@ public class PlayerController : MonoBehaviour
 
     //Dash
     private float m_curDashSpeed => baseDashSpeed * (1.0f + GetModifierValue("character_speed"));
-    private float m_curDashConsumption;
+    private float m_curDashConsumptionOverTime;
+    private float m_curDashConsumptionAtStart;
     private float m_curDashRefillSpeed => baseRefillSpeed * (1.0f + GetModifierValue("energy_regeneration"));
     private float m_curDashEnergyRatio;
     private float m_curDashCooldown;
+    private float m_stopDashTimer;
     private float m_dashCooldownValue;
     private bool m_canDash;
     private Vector2 m_curDashDirection;
@@ -514,7 +519,8 @@ public class PlayerController : MonoBehaviour
 
     public void ComputeDashProperties()
     {
-        m_curDashConsumption = baseDashConsumption;
+        m_curDashConsumptionOverTime = baseDashConsumptionOverTime;
+        m_curDashConsumptionAtStart = baseDashConsumptionAtStart;
         m_curDashCooldown = baseDashCooldown;
 
         //Setting global fmod parameters
@@ -526,9 +532,10 @@ public class PlayerController : MonoBehaviour
 
     private void StartDash()
     {
-        if (m_canDash)
+        if (m_canDash && m_curDashEnergyRatio > 0)
         {
             m_curDashDirection = transform.up.normalized;
+            m_curDashEnergyRatio -= m_curDashConsumptionAtStart;
             isDashing = true;
             OnDashStart?.Invoke(this, null);
             if (isInvincibleDuringDash)
@@ -547,6 +554,8 @@ public class PlayerController : MonoBehaviour
             OnDashStop?.Invoke(this, null);
             StartDashCooldown();
             healthComponent.SetCanTakeDamage(true);
+
+            m_stopDashTimer = 0.0f;
         }
     }
 
@@ -556,7 +565,7 @@ public class PlayerController : MonoBehaviour
         {
             if (m_curDashEnergyRatio > 0)
             {
-                m_curDashEnergyRatio -= m_curDashConsumption * Time.deltaTime;
+                m_curDashEnergyRatio -= m_curDashConsumptionOverTime * Time.deltaTime;
                 OnDashEnergyConsumption?.Invoke(this, m_curDashEnergyRatio);
 
                 dashEnergySlider.value = m_curDashEnergyRatio;
@@ -568,7 +577,8 @@ public class PlayerController : MonoBehaviour
         }
         else if (m_curDashEnergyRatio < 1)
         {
-            m_curDashEnergyRatio += m_curDashRefillSpeed * Time.deltaTime;
+            m_stopDashTimer += Time.deltaTime;
+            m_curDashEnergyRatio += m_curDashRefillSpeed * dashRefillRatio.Evaluate(m_stopDashTimer) * Time.deltaTime;
             OnDashEnergyRefill?.Invoke(this, m_curDashEnergyRatio);
 
             dashEnergySlider.value = m_curDashEnergyRatio;

@@ -5051,8 +5051,33 @@ MonoBehaviour:
   turnInertia: 1
   pike: {fileID: 8055061947278858299}
   baseDashSpeed: 15
-  baseDashConsumption: 1.51515
-  baseRefillSpeed: 0.66
+  baseDashConsumptionAtStart: 0.1
+  baseDashConsumptionOverTime: 1.2
+  baseRefillSpeed: 0.88
+  dashRefillRatio:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.19678879
+      value: 0.0047302246
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.49477237
+      value: 1.0047302
+      inSlope: 9.662067
+      outSlope: 9.662067
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.058069523
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   canRotateWhileDashing: 1
   canDriftWhileDashing: 1
   canTurnWhileDashing: 0
