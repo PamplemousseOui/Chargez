@@ -32,11 +32,11 @@ public class PlayerSound : MonoBehaviour
         PlayerController.OnDashStart += OnDashStart;
         PlayerController.OnDashStop += OnDashStop;
 
-        PlayerController.OnAttackLoadingStart += OnAttackLoadingStart;
-        PlayerController.OnAttackLoadingCancel += OnAttackLoadingCancel;
-        PlayerController.OnAttackReleasable += OnAttackReleasable;
-        PlayerController.OnAttackStart += OnAttackStart;
-        PlayerController.OnAttackEnding += OnAttackEnding;
+        PlayerAttack.OnAttackLoadingStart += OnAttackLoadingStart;
+        PlayerAttack.OnAttackLoadingCancel += OnAttackLoadingCancel;
+        PlayerAttack.OnAttackReleasable += OnAttackReleasable;
+        PlayerAttack.OnAttackStart += OnAttackStart;
+        PlayerAttack.OnAttackEnding += OnAttackEnding;
 
         PlayerController.OnDamageReceived += OnDamageReceived;
         PlayerController.OnDeath += OnDeath;
@@ -54,11 +54,11 @@ public class PlayerSound : MonoBehaviour
         PlayerController.OnDashStart -= OnDashStart;
         PlayerController.OnDashStop -= OnDashStop;
 
-        PlayerController.OnAttackLoadingStart -= OnAttackLoadingStart;
-        PlayerController.OnAttackLoadingCancel -= OnAttackLoadingCancel;
-        PlayerController.OnAttackReleasable -= OnAttackReleasable;
-        PlayerController.OnAttackStart -= OnAttackStart;
-        PlayerController.OnAttackEnding -= OnAttackEnding;
+        PlayerAttack.OnAttackLoadingStart -= OnAttackLoadingStart;
+        PlayerAttack.OnAttackLoadingCancel -= OnAttackLoadingCancel;
+        PlayerAttack.OnAttackReleasable -= OnAttackReleasable;
+        PlayerAttack.OnAttackStart -= OnAttackStart;
+        PlayerAttack.OnAttackEnding -= OnAttackEnding;
 
         PlayerController.OnDamageReceived -= OnDamageReceived;
         PlayerController.OnDeath -= OnDeath;

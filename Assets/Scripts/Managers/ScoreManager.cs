@@ -33,12 +33,12 @@ public class ScoreManager : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerController.OnEnemyKilled += OnEnemyKilled;
+        PlayerAttack.OnEnemyKilled += OnEnemyKilled;
     }
 
     private void OnDisable()
     {
-        PlayerController.OnEnemyKilled -= OnEnemyKilled;
+        PlayerAttack.OnEnemyKilled -= OnEnemyKilled;
     }
 
     private void OnEnemyKilled(object sender, EnemyType _enemyType)

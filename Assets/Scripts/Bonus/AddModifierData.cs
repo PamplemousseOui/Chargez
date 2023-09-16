@@ -12,11 +12,11 @@ public class AddModifierData : IBonusData
         base.ApplyEffect();
         var player = GameManager.player;
 
-        var currModifier = player.modifiers.Find(x => x.name == modifier.name);
+        var currModifier = player.playerModifiers.modifiers.Find(x => x.name == modifier.name);
         if (currModifier != null)
         {
             currModifier.value += modifier.value;
         }
-        else GameManager.player.modifiers.Add(new Modifier(modifier));
+        else GameManager.player.playerModifiers.modifiers.Add(new Modifier(modifier));
     }
 }

@@ -10,19 +10,6 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [Header("Controller data")]
-    public float attackTime = 2f;
-    public float attackMinLoadingTime = 1f;
-    public float attackMaxLoadingTime = 5f;
-    public bool attackAutoReleaseOnLoadingEnd;
-    public float attackRecoveryTime;
-    public List<float> attackRotations;
-    public List<Modifier> modifiers = new List<Modifier>();
-    private float GetModifierValue(string _name)
-    {
-        var modifier = modifiers.Find(x => x.name == _name);
-        return modifier?.value ?? 0.0f;
-    }
-
     public float baseSpeed = 0.1f;
     public float maxTurnSpeed = 1f;
     public float maxDashTurnSpeed = 1f;
@@ -43,7 +30,6 @@ public class PlayerController : MonoBehaviour
 
     public float baseGripFactor;
 
-    public GameObject LeftAttackTriggerPrefab;
     public GameObject shieldPrefab;
 
     public bool reinitHealthOnNewWave;
@@ -53,23 +39,11 @@ public class PlayerController : MonoBehaviour
     public HealthComponent healthComponent;
     public Slider healthSlider;
     public Slider dashEnergySlider;
+    public PlayerModifiers playerModifiers;
 
     [Header("Fmod parameters")]
-    public string dashInvicibilityParam;
-    public string dashSpeedParam;
-    public string attackLoadingRatioParam;
-
-    //Attack Events
-    public static EventHandler OnAttackStart;
-    public static EventHandler OnAttackEnd;
-    public static EventHandler OnAttackLoadingStart;
-    public static EventHandler OnAttackLoadingCancel;
-    public static Action OnAttackLoadingEnd;
-    public static Action OnAttackRecoveryStart;
-    public static Action OnAttackRecoveryEnd;
-    public static Action OnAttackReleasable;
-    public static Action OnAttackEnding; //reach 0.6s
-    public static EventHandler<EnemyType> OnEnemyKilled;
+    [FMODUnity.ParamRef] public string dashInvicibilityParam;
+    [FMODUnity.ParamRef] public string dashSpeedParam;
 
     //Health Events
     public static Action<float, float> OnDamageReceived; //new health ratio, damages
@@ -94,17 +68,17 @@ public class PlayerController : MonoBehaviour
     private bool m_isAttackLoading;
     private bool m_isAttacking;
     public bool isDashing { get; private set; }
-    private float m_currentSpeed => baseSpeed * (1.0f + GetModifierValue("character_speed"));
+    private float m_currentSpeed => baseSpeed * (1.0f + playerModifiers.GetModifierValue("character_speed"));
 
 
     private float m_currentTurnSpeed;
     private float m_targetTurnSpeed;
 
     //Dash
-    private float m_curDashSpeed => baseDashSpeed * (1.0f + GetModifierValue("character_speed"));
+    private float m_curDashSpeed => baseDashSpeed * (1.0f + playerModifiers.GetModifierValue("character_speed"));
     private float m_curDashConsumptionOverTime;
     private float m_curDashConsumptionAtStart;
-    private float m_curDashRefillSpeed => baseRefillSpeed * (1.0f + GetModifierValue("energy_regeneration"));
+    private float m_curDashRefillSpeed => baseRefillSpeed * (1.0f + playerModifiers.GetModifierValue("energy_regeneration"));
     private float m_curDashEnergyRatio;
     private float m_curDashCooldown;
     private float m_stopDashTimer;
@@ -113,11 +87,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 m_curDashDirection;
     private Rigidbody2D m_rigidbody;
 
-    //Attack
-    private List<AttackTrigger> m_curAttacks;
-    private List<ShieldController> m_shields;
-
     public ScreenShaker screenShaker;
+    
+    //Shield
+    private List<ShieldController> m_shields;
 
     public void AddShield()
     {
@@ -147,9 +120,7 @@ public class PlayerController : MonoBehaviour
         GameManager.OnGameRetry += OnGameRetry;
         WaveManager.OnStartNewWave += OnStartNewWave;
         WaveManager.OnEndWaveEvent += OnEndWave;
-        
-        InputManager.OnAttackPress += StartAttackLoading;
-        InputManager.OnAttackRelease += ReleaseAttack;
+
         InputManager.OnDashPress += StartDash;
         InputManager.OnDashRelease += StopDash;
     }
@@ -161,9 +132,7 @@ public class PlayerController : MonoBehaviour
         GameManager.OnGameRetry -= OnGameRetry;
         WaveManager.OnStartNewWave -= OnStartNewWave;
         WaveManager.OnEndWaveEvent -= OnEndWave;
-        
-        InputManager.OnAttackPress -= StartAttackLoading;
-        InputManager.OnAttackRelease -= ReleaseAttack;
+
         InputManager.OnDashPress -= StartDash;
         InputManager.OnDashRelease -= StopDash;
     }
@@ -178,14 +147,13 @@ public class PlayerController : MonoBehaviour
     private void OnEndWave()
     {
         m_rigidbody.velocity = Vector2.zero;
-        StopAttack();
     }
 
     private void OnHealthUpdate(float _healthRatio, float _damage)
     {
         if (healthSlider.value >= _healthRatio && _damage >= 0.0f)
         {
-            if(GetModifierValue("explosion") > 0.1f) GameManager.instance.spawnManager.DestroyAllEnemies();
+            if(playerModifiers.GetModifierValue("explosion") > 0.1f) GameManager.instance.spawnManager.DestroyAllEnemies();
             OnDamageReceived?.Invoke(_healthRatio, _damage); //J'AI MAAAAAAAAAAAAAAAAAAAAAAAL
             StartCoroutine(FreezeTime());
             StartCoroutine(screenShaker.ScreenShake());
@@ -217,15 +185,10 @@ public class PlayerController : MonoBehaviour
     private void Init()
     {
         pike.gameObject.SetActive(false);
-        m_curAttacks = new List<AttackTrigger>();
-        modifiers = new List<Modifier>();
         m_shields = new List<ShieldController>();
-        ResetAttack();
 
         m_curDashEnergyRatio = 1;
         InitDashProperties();
-        if (AttackRecoveryCoroutine != null)
-            StopCoroutine(AttackRecoveryCoroutine);
     }
 
     private void Update()
@@ -233,24 +196,6 @@ public class PlayerController : MonoBehaviour
         if (healthComponent.isAlive && !GameManager.gameIsPaused)
         {
             UpdateDashCooldown();
-
-            if (m_isAttackLoading)
-            {
-                UpdateAttackLoading();
-                if (m_currentAttackLoading > attackMaxLoadingTime)
-                {
-                    if (attackAutoReleaseOnLoadingEnd)
-                    {
-                        StartAttack();
-                    }
-                    
-                    StopAttackLoading(true);
-                }
-            }
-            else if (m_isAttacking)
-            {
-                UpdateAttackProgress();
-            }
         }
     }
 
@@ -260,170 +205,6 @@ public class PlayerController : MonoBehaviour
         {
             UpdateDash();
             UpdatePosition();
-        }
-    }
-
-    private void StartAttackLoading()
-    {
-        if (!m_isPressingNewAttackInput)
-            m_isPressingNewAttackInput = true;
-        //Debug.Log("Attack loading start");
-        if (m_isAttackRecovering || m_isAttacking || GameManager.gameIsPaused || !healthComponent.isAlive) return;
-        else
-        {
-            m_isPressingNewAttackInput = false;
-            OnAttackLoadingStart?.Invoke(this, null);
-            m_isAttackLoading = true;
-            m_currentAttackLoading = 0f;
-        }
-    }
-
-    private void ReleaseAttack()
-    {
-        m_isPressingNewAttackInput = false;
-        if (m_isAttackLoading && !(GameManager.gameIsPaused || !healthComponent.isAlive))
-        {
-            if (m_currentAttackLoading > attackMinLoadingTime)
-            {
-                StartAttack();
-            }
-            else
-            {
-                StopAttackLoading(false);
-            }
-            m_isAttackLoading = false;
-        }
-    }
-
-    private void StopAttackLoading(bool _maxTimeReached)
-    {
-        m_isAttackLoading = false;
-        if (_maxTimeReached)
-        {
-            //Debug.Log("Attack loading end");
-            OnAttackLoadingEnd?.Invoke();
-        }
-        else
-        {
-            //Debug.Log("Attack loading canceled");
-            OnAttackLoadingCancel?.Invoke(this, null);
-        }
-    }
-
-    private void StartAttack()
-    {
-        //Debug.Log("Firing attack");
-        OnAttackStart?.Invoke(this, null);
-        m_isAttacking = true;
-        m_isAttackReleasable = false;
-        ResetAttackTriggers();
-
-        List<float> attacks = new List<float>(attackRotations);
-        if(GetModifierValue("backward_attack") > 0.1f) attacks.Add(180.0f);
-        
-        foreach (var attackRot in attacks)
-        {
-            GameObject curAttack = Instantiate(LeftAttackTriggerPrefab, transform);
-            curAttack.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, attackRot);
-            AttackTrigger attackTrigger = curAttack.GetComponent<AttackTrigger>();
-            attackTrigger.ApplyAreaModifier(GetModifierValue("attack_area"));
-            attackTrigger.ApplyDurationModifier(GetModifierValue("attack_duration"));
-            m_curAttacks.Add(attackTrigger);    
-        }
-        
-        m_currentAttackProgress = 0f;
-        m_curAttackTime = attackTime + GetModifierValue("attack_duration");
-    }
-
-    private void StopAttack()
-    {
-        //Debug.Log("Attack stopped");
-        OnAttackEnd?.Invoke(this, null);
-        if (m_isAttacking)
-        {
-            m_isAttackRecovering = true;
-            m_isAttacking = false;
-            m_isAttackEnding = false;
-            AttackRecoveryCoroutine = AttackRecoveryDelay();
-            StartCoroutine(AttackRecoveryCoroutine);
-        }
-        ResetAttackTriggers();
-    }
-
-    private IEnumerator AttackRecoveryDelay()
-    {
-        OnAttackRecoveryStart?.Invoke();
-        yield return new WaitForSeconds(attackRecoveryTime);
-        m_isAttackRecovering = false;
-        OnAttackRecoveryEnd?.Invoke();
-        if (m_isPressingNewAttackInput)
-        {
-            StartAttackLoading();
-        }
-    }
-
-    private void ResetAttackTriggers()
-    {
-        m_curAttacks = new List<AttackTrigger>();
-    }
-
-    private void UpdateAttackLoading()
-    {
-        m_currentAttackLoading += Time.deltaTime;
-        if (m_currentAttackLoading > attackMinLoadingTime && !m_isAttackReleasable)
-        {
-            m_isAttackReleasable = true;
-            OnAttackReleasable?.Invoke();
-        }
-        FMODUnity.RuntimeManager.StudioSystem.setParameterByName(attackLoadingRatioParam, m_currentAttackLoading / attackMaxLoadingTime);
-    }
-
-    private void UpdateAttackProgress()
-    {
-        m_currentAttackProgress += Time.deltaTime;
-
-        if (m_curAttackTime - m_currentAttackProgress < 0.6f && !m_isAttackEnding)
-        {
-            m_isAttackEnding = true;
-            OnAttackEnding?.Invoke();
-        }
-
-        if (m_currentAttackProgress > m_curAttackTime)
-            StopAttack();
-        else
-        {
-            CheckEnemyWithinMaxRange();
-        }
-    }
-
-    private void ResetAttack()
-    {
-        m_isAttackRecovering = false;
-        m_isAttacking = false;
-        m_isAttackLoading = false;
-        m_isAttackReleasable = false;
-        m_isAttackEnding = false;
-        m_curAttackTime = 0;
-        m_currentAttackLoading = 0;
-    }
-
-    private void CheckEnemyWithinMaxRange()
-    {
-        List<EnemyComponent> killedEnemies = new List<EnemyComponent>();
-        foreach (AttackTrigger attack in m_curAttacks)
-        {
-            foreach (EnemyComponent enemy in attack.enemiesInRange)
-            {
-                killedEnemies.Add(enemy);
-            }   
-        }
-
-        for (int i = killedEnemies.Count - 1; i >= 0; --i)
-        {
-            EnemyComponent enemy = killedEnemies[i];
-            enemy.healthComponent.InstantKill();
-            OnEnemyKilled?.Invoke(this, enemy.type);
-            //Debug.Log($"Destroying enemy {enemy.name}");
         }
     }
 

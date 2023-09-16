@@ -19,15 +19,15 @@ public class PlayerAnimator : MonoBehaviour
 
     void OnEnable()
     {
-        PlayerController.OnAttackStart += OnAttackStart;
-        PlayerController.OnAttackEnd += OnAttackEnd;
+        PlayerAttack.OnAttackStart += OnAttackStart;
+        PlayerAttack.OnAttackEnd += OnAttackEnd;
+        PlayerAttack.OnAttackLoadingStart += OnAttackLoadingStart;
+        PlayerAttack.OnAttackLoadingCancel += OnAttackLoadingCancel;
+        PlayerAttack.OnAttackLoadingEnd += OnAttackLoadingEnd;
+        PlayerAttack.OnAttackRecoveryStart += OnAttackRecoveryStart;
+        PlayerAttack.OnAttackRecoveryEnd += OnAttackRecoveryEnd;
         PlayerController.OnDashStart += OnDashStart;
         PlayerController.OnDashStop += OnDashStop;
-        PlayerController.OnAttackLoadingStart += OnAttackLoadingStart;
-        PlayerController.OnAttackLoadingCancel += OnAttackLoadingCancel;
-        PlayerController.OnAttackLoadingEnd += OnAttackLoadingEnd;
-        PlayerController.OnAttackRecoveryStart += OnAttackRecoveryStart;
-        PlayerController.OnAttackRecoveryEnd += OnAttackRecoveryEnd;
         PlayerController.OnDamageReceived += OnDamageReceived;
         PlayerController.OnPlayerHitWall += OnPlayerHitWall;
         WaveManager.OnEndWaveEvent += CompletelyResetAnim;
@@ -36,15 +36,15 @@ public class PlayerAnimator : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerController.OnAttackStart -= OnAttackStart;
-        PlayerController.OnAttackEnd -= OnAttackEnd;
+        PlayerAttack.OnAttackStart -= OnAttackStart;
+        PlayerAttack.OnAttackEnd -= OnAttackEnd;
+        PlayerAttack.OnAttackLoadingStart -= OnAttackLoadingStart;
+        PlayerAttack.OnAttackLoadingCancel -= OnAttackLoadingCancel;
+        PlayerAttack.OnAttackLoadingEnd -= OnAttackLoadingEnd;
+        PlayerAttack.OnAttackRecoveryStart -= OnAttackRecoveryStart;
+        PlayerAttack.OnAttackRecoveryEnd -= OnAttackRecoveryEnd;
         PlayerController.OnDashStart -= OnDashStart;
         PlayerController.OnDashStop -= OnDashStop;
-        PlayerController.OnAttackLoadingStart -= OnAttackLoadingStart;
-        PlayerController.OnAttackLoadingCancel -= OnAttackLoadingCancel;
-        PlayerController.OnAttackLoadingEnd -= OnAttackLoadingEnd;
-        PlayerController.OnAttackRecoveryStart -= OnAttackRecoveryStart;
-        PlayerController.OnAttackRecoveryEnd -= OnAttackRecoveryEnd;
         PlayerController.OnDamageReceived -= OnDamageReceived;
         WaveManager.OnEndWaveEvent -= CompletelyResetAnim;
         PlayerController.OnDeath -= CompletelyResetAnim;

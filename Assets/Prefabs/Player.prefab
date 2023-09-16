@@ -4989,6 +4989,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7131076433791632262}
   - component: {fileID: 9105690685780486065}
+  - component: {fileID: 5023564534110159762}
+  - component: {fileID: 4821995534930223598}
   - component: {fileID: 1546227680206470810}
   - component: {fileID: 3850433096186504612}
   - component: {fileID: 6993250933194112308}
@@ -5036,15 +5038,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187dcf0b0d03e2b4ba1fe6588015c2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackTime: 0.66
-  attackMinLoadingTime: 0.5
-  attackMaxLoadingTime: 1.33
-  attackAutoReleaseOnLoadingEnd: 1
-  attackRecoveryTime: 0.33
-  attackRotations:
-  - 90
-  - -90
-  modifiers: []
   baseSpeed: 8
   maxTurnSpeed: 120
   maxDashTurnSpeed: 240
@@ -5085,16 +5078,15 @@ MonoBehaviour:
   isInvincibleDuringDash: 0
   baseDashCooldown: 0
   baseGripFactor: 0.1
-  LeftAttackTriggerPrefab: {fileID: 34802375284031903, guid: 20498be53557f884480f7fef821437ed, type: 3}
   shieldPrefab: {fileID: 4472677897321614971, guid: 6f07ea6ca1d19ba47b5da1ef9127fa19, type: 3}
   reinitHealthOnNewWave: 0
   hitTimeFreezeDuration: 0.4
   healthComponent: {fileID: 3850433096186504612}
   healthSlider: {fileID: 0}
   dashEnergySlider: {fileID: 0}
+  playerModifiers: {fileID: 4821995534930223598}
   dashInvicibilityParam: DashInvicibility
   dashSpeedParam: DashSpeed
-  attackLoadingRatioParam: AttackLoadingRatio
   screenShaker: {fileID: 0}
   m_hitSpeedOverTime:
     serializedVersion: 2
@@ -5121,6 +5113,43 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   m_hitSpeed: 15
+--- !u!114 &5023564534110159762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5752417969661420192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e424fe8e662aa44891107f11129aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackTime: 0.66
+  attackMinLoadingTime: 0.5
+  attackMaxLoadingTime: 1.33
+  attackAutoReleaseOnLoadingEnd: 1
+  attackRecoveryTime: 0.33
+  attackRotations:
+  - 90
+  - -90
+  LeftAttackTriggerPrefab: {fileID: 34802375284031903, guid: 20498be53557f884480f7fef821437ed, type: 3}
+  healthComponent: {fileID: 3850433096186504612}
+  playerModifiers: {fileID: 4821995534930223598}
+  attackLoadingRatioParam: AttackLoadingRatio
+--- !u!114 &4821995534930223598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5752417969661420192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a889447ed28f0a54591df4d70a0b0a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modifiers: []
 --- !u!114 &1546227680206470810
 MonoBehaviour:
   m_ObjectHideFlags: 0
