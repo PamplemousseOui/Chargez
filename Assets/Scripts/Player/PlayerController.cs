@@ -299,7 +299,7 @@ public class PlayerController : MonoBehaviour
 
     private void StartDash()
     {
-        if (m_canDash && m_curDashEnergyRatio > 0)
+        if (m_canDash && m_curDashEnergyRatio > 0 && !GameManager.gameIsPaused && healthComponent.isAlive)
         {
             m_curDashDirection = transform.up.normalized;
             m_curDashEnergyRatio -= m_curDashConsumptionAtStart;
