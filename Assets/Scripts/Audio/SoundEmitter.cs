@@ -13,7 +13,7 @@ public class SoundEmitter : MonoBehaviour
 
     public void Play(FMODUnity.EventReference _fmodEvent)
     {
-        CreateAndPlayInstance(_fmodEvent);
+        EventInstance eventInstance = CreateAndPlayInstance(_fmodEvent);
     }
 
     public void Play(FMODUnity.EventReference _fmodEvent, EVENT_CALLBACK_TYPE _type, Action<object[]> _callbackAction)
@@ -91,24 +91,7 @@ public class SoundEmitter : MonoBehaviour
 
     private EventInstance CreateAndPlayInstance(FMODUnity.EventReference _fmodEvent)
     {
-        EventInstance eventInstanceToPlay = FMODUnity.RuntimeManager.CreateInstance(_fmodEvent);
-        List<EventInstance> playingEvents;
-
-        if (m_playingEventsDict.ContainsKey(_fmodEvent))
-        {
-            if (m_playingEventsDict.TryGetValue(_fmodEvent, out playingEvents))
-            {
-                playingEvents.Add(eventInstanceToPlay);
-                InstanceStart(eventInstanceToPlay);
-            }
-        }
-        else
-        {
-            playingEvents = new List<EventInstance> { eventInstanceToPlay };
-            m_playingEventsDict.Add(_fmodEvent, playingEvents);
-            InstanceStart(eventInstanceToPlay);
-        }
-        return eventInstanceToPlay;
+        return CreateAndPlayInstance(_fmodEvent, 0);
     }
 
     private EventInstance CreateAndPlayInstance(FMODUnity.EventReference _fmodEvent, int _startOffset)
@@ -144,6 +127,7 @@ public class SoundEmitter : MonoBehaviour
         }
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(_eventInstance, gameObject.transform);
         _eventInstance.start();
+        _eventInstance.release();
         StartCoroutine(DestroyOnEnd(_eventInstance));
     }
 
@@ -176,7 +160,6 @@ public class SoundEmitter : MonoBehaviour
     private void StopAndClear(EventInstance _eventInstance)
     {
         _eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        _eventInstance.release();
         SoundCallbackGetter.RemoveCallback(_eventInstance);
     }
 }
