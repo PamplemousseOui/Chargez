@@ -55,22 +55,8 @@ public class PlayerController : MonoBehaviour
     public static EventHandler<float> OnDashEnergyConsumption; //new ratio
     public static EventHandler<float> OnDashEnergyRefill; //new ratio
     public static Action<Vector2, Vector2> OnPlayerHitWall;
-
-    private float m_currentAttackLoading;
-    private float m_currentAttackProgress;
-    private float m_curAttackTime;
-    private bool m_isAttackRecovering;
-    private IEnumerator AttackRecoveryCoroutine;
-    private bool m_isPressingNewAttackInput;
-    private bool m_isAttackReleasable;
-    private bool m_isAttackEnding;
-
-    private bool m_isAttackLoading;
-    private bool m_isAttacking;
     public bool isDashing { get; private set; }
     private float m_currentSpeed => baseSpeed * (1.0f + playerModifiers.GetModifierValue("character_speed"));
-
-
     private float m_currentTurnSpeed;
     private float m_targetTurnSpeed;
 
