@@ -221,6 +221,8 @@ MonoBehaviour:
   contactDamage: 1
   healthComponent: {fileID: 4043143177436533345}
   deathAnimTrigger: Death
+  canHitPlayerWhileDashing: 1
+  killedWhenHitPlayer: 1
 --- !u!114 &4043143177436533345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,15 +253,16 @@ MonoBehaviour:
   target: {fileID: 0}
   loadingColor: {fileID: 2100000, guid: 87b8d3c44abecf14c9c42adb8f4fa351, type: 2}
   shootingColor: {fileID: 2100000, guid: b6f2d55aedc4a604796fc5d9bc5d48cf, type: 2}
-  baseShootDuration: 1
-  baseLoadingTime: 2
-  baseStopRotationBeforeShootTime: 0.28
-  baseShootMinRate: 1
-  baseShootMaxRate: 2
-  baseShootLength: 2000
-  baseDamage: 1
-  baseLaserWeight: 0.5
+  shootDuration: 1
+  loadingTime: 2
+  stopRotationBeforeShootTime: 0.28
+  shootMinRate: 1
+  shootMaxRate: 2
+  shootLength: 2000
+  damage: 1
+  laserWeight: 0.5
   freezeOnPlayerHit: 1
+  canHitPlayerWhileDashing: 0
   loadingLineWeight: 0.8
   shootingLineWeight: 0.8
   m_lineRenderer: {fileID: 6791631957793088813}

@@ -10,18 +10,18 @@ public class HitScanComponent : MonoBehaviour
     public GameObject target;
     public Material loadingColor;
     public Material shootingColor;
-    public float baseShootDuration;
-    public float baseLoadingTime;
-    public float baseStopRotationBeforeShootTime;
-    public float baseShootMinRate;
-    public float baseShootMaxRate;
-    public float baseShootLength;
-    public float baseDamage;
-    public float baseLaserWeight;
+    public float shootDuration = 1f;
+    public float loadingTime = 2f;
+    public float stopRotationBeforeShootTime = 0.28f;
+    public float shootMinRate = 1f;
+    public float shootMaxRate = 2f;
+    public float shootLength = 2000f;
+    public float damage = 1f;
+    public float laserWeight = 0.5f;
     public bool freezeOnPlayerHit;
     public bool canHitPlayerWhileDashing = false;
-    public float loadingLineWeight = 0.1f;
-    public float shootingLineWeight = 0.5f;
+    public float loadingLineWeight = 0.8f;
+    public float shootingLineWeight = 0.8f;
 
     [SerializeField] private LineRenderer m_lineRenderer; 
     public bool isShooting { get; private set; }
@@ -35,15 +35,10 @@ public class HitScanComponent : MonoBehaviour
     public Action OnShootStart;
     public Action OnShootEnd;
 
-    private float m_curShootDuration;
-    private float m_curLoadingTime;
-    private float m_curStopRotationBeforeShootTime;
     private float m_curRate;
     private float m_curRateTimerValue;
     private float m_curLoadingTimerValue;
     private float m_curshootDurationTimerValue;
-    private float m_curShootLength;
-    private float m_curDamage;
     private float m_currLaserWeight;
     
     private bool m_isLoading;
@@ -86,11 +81,8 @@ public class HitScanComponent : MonoBehaviour
     {
         m_isLoading = true;
         OnLoadingStart?.Invoke();
-        m_curShootLength = baseShootLength;
 
         m_curLoadingTimerValue = 0;
-        m_curLoadingTime = baseLoadingTime;
-        m_curStopRotationBeforeShootTime = baseStopRotationBeforeShootTime;
         
         m_lineRenderer.startWidth = loadingLineWeight;
         m_lineRenderer.endWidth = loadingLineWeight;
@@ -102,20 +94,20 @@ public class HitScanComponent : MonoBehaviour
         if (m_isLoading)
         {
             m_curLoadingTimerValue += Time.deltaTime;
-            OnLoadingRatioUpdate?.Invoke(m_curLoadingTimerValue / m_curLoadingTime);
-            if (m_curLoadingTimerValue > m_curLoadingTime - m_curStopRotationBeforeShootTime && lookAtComponent.canRotate)
+            OnLoadingRatioUpdate?.Invoke(m_curLoadingTimerValue / loadingTime);
+            if (m_curLoadingTimerValue > loadingTime - stopRotationBeforeShootTime && lookAtComponent.canRotate)
             {
                 GetComponent<Animator>().SetTrigger("Attack");
                 lookAtComponent.SetCanRotate(false);
             }
 
-            if (m_curLoadingTime - m_curLoadingTimerValue < 1f && !m_isLoadingEnding)
+            if (loadingTime - m_curLoadingTimerValue < 1f && !m_isLoadingEnding)
             {
                 OnLoadingEnding?.Invoke();
                 m_isLoadingEnding = true;
             }
 
-            if (m_curLoadingTimerValue > m_curLoadingTime)
+            if (m_curLoadingTimerValue > loadingTime)
             {
                 StopLoading();
                 StartShoot();
@@ -135,7 +127,6 @@ public class HitScanComponent : MonoBehaviour
         isShooting = true;
         m_canHitPlayer = true;
         m_curshootDurationTimerValue = 0; 
-        m_curShootDuration = baseShootDuration;
         OnShootStart?.Invoke();
         
         m_lineRenderer.startWidth = shootingLineWeight;
@@ -148,7 +139,7 @@ public class HitScanComponent : MonoBehaviour
         if (isShooting)
         {
             m_curshootDurationTimerValue += Time.deltaTime;
-            if (m_curshootDurationTimerValue > m_curShootDuration)
+            if (m_curshootDurationTimerValue > shootDuration)
             {
                 StopShoot();
             }
@@ -165,7 +156,7 @@ public class HitScanComponent : MonoBehaviour
     private void ReinitShoot()
     {
         m_curRateTimerValue = 0;
-        m_curRate = UnityEngine.Random.Range(baseShootMinRate, baseShootMaxRate);
+        m_curRate = UnityEngine.Random.Range(shootMinRate, shootMaxRate);
         lookAtComponent.SetCanRotate(true);
     }
 
@@ -176,9 +167,9 @@ public class HitScanComponent : MonoBehaviour
             var position = transform.position;
             var up = transform.up;
             LayerMask mask = LayerMask.GetMask(new []{"Player", "Wall", "Shield"});
-            RaycastHit2D hit = Physics2D.Raycast(position + up, up, m_curShootLength, mask);
-            RaycastHit2D hitLeft = Physics2D.Raycast(position + up + transform.right * m_currLaserWeight  / 2.0f, up, m_curShootLength, mask);
-            RaycastHit2D hitRight = Physics2D.Raycast(position + up - transform.right * m_currLaserWeight  / 2.0f, up, m_curShootLength, mask);
+            RaycastHit2D hit = Physics2D.Raycast(position + up, up, shootLength, mask);
+            RaycastHit2D hitLeft = Physics2D.Raycast(position + up + transform.right * m_currLaserWeight  / 2.0f, up, shootLength, mask);
+            RaycastHit2D hitRight = Physics2D.Raycast(position + up - transform.right * m_currLaserWeight  / 2.0f, up, shootLength, mask);
 
             Collider2D other = null;
             if (hit.collider && hit.transform.gameObject.CompareTag(Tag.Player.ToString())) other = hit.collider;
@@ -190,8 +181,8 @@ public class HitScanComponent : MonoBehaviour
                 if (m_canHitPlayer && isShooting && other.gameObject.TryGetComponent(out HealthComponent healthComponent))
                 {
                     Debug.Log($"hit object {hit.transform.gameObject}");
-                    m_curDamage = baseDamage;
-                    healthComponent.ApplyDamage(m_curDamage);
+                    damage = damage;
+                    healthComponent.ApplyDamage(damage);
                     m_canHitPlayer = false;
                 }
                 //StopShoot();
@@ -211,7 +202,7 @@ public class HitScanComponent : MonoBehaviour
         var up = transform.up;
         m_hitPoint = Vector2.zero;
         LayerMask mask = LayerMask.GetMask(new []{"Wall", "Shield"});
-        RaycastHit2D hit = Physics2D.Raycast(position + up, up, m_curShootLength, mask);
+        RaycastHit2D hit = Physics2D.Raycast(position + up, up, shootLength, mask);
         if (!hit.collider)
         {
             m_lineRenderer.enabled = false;
